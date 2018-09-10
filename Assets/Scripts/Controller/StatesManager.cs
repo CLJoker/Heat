@@ -39,6 +39,8 @@ namespace SA
         public Animator anim;
         public GameObject activeModel;
         [HideInInspector]
+        public AnimatorHook a_hook;
+        [HideInInspector]
         public Rigidbody rigid;
         [HideInInspector]
         public Collider controllerCollider;
@@ -70,6 +72,9 @@ namespace SA
 
             ignoreLayers = ~(1 << 9);
             ignoreForGround = ~(1 << 9 | 1 << 10);
+
+            a_hook = activeModel.AddComponent<AnimatorHook>();
+            a_hook.Init(this);
         }
 
         void SetupAnimator()

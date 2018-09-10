@@ -18,6 +18,7 @@ namespace SA
         bool pivotInput;
 
         bool isInit;
+        public bool debugAim;
 
         float delta;
 
@@ -77,10 +78,15 @@ namespace SA
             if (!isInit)
                 return;
 
+
             delta = Time.deltaTime;
             GetInput_Update();
-
+            AimPosition();
             InGame_UpdateStates_Update();
+
+
+            if (debugAim)
+                states.states.isAiming = true;
             states.Tick(delta);
         }
 
@@ -92,6 +98,19 @@ namespace SA
         void InGame_UpdateStates_Update()
         {
             states.states.isAiming = aimInput;
+        }
+
+        void AimPosition()
+        {
+            Ray ray = new Ray(camHandler.camTrans.position, camHandler.camTrans.forward);
+
+            states.inp.aimPosition = ray.GetPoint(30);
+
+            RaycastHit hit;
+            if(Physics.Raycast(ray, out hit, 100, states.ignoreLayers))
+            {
+                states.inp.aimPosition = hit.point;
+            }
         }
         #endregion
     }

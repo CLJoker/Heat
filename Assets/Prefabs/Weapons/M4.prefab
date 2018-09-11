@@ -102,6 +102,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4436360882798024}
+  - component: {fileID: 114955336308988908}
   m_Layer: 0
   m_Name: M4
   m_TagString: Untagged
@@ -193,9 +194,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1686332001137966}
-  m_LocalRotation: {x: 1, y: -0, z: -0, w: -0.00000008940696}
-  m_LocalPosition: {x: -16.120562, y: 1.4709401, z: -47.85417}
-  m_LocalScale: {x: 0.010000003, y: 0.010000012, z: 0.010000012}
+  m_LocalRotation: {x: 0.00000010264132, y: 0.000000115483985, z: 0.000000023120837,
+    w: 1}
+  m_LocalPosition: {x: 0.00011489955, y: -0.000032107346, z: -0.00018414769}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4102674465386066}
   - {fileID: 4817896005742978}
@@ -221,13 +223,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054217192923486}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.6192717, y: -0.011882086, z: 0.19206493, w: 0.7612309}
+  m_LocalPosition: {x: 44.1, y: 22.2, z: -9.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4436360882798024}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 108.66901, y: -136.637, z: -119.83}
 --- !u!4 &4822984559361638
 Transform:
   m_ObjectHideFlags: 1
@@ -506,3 +508,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1242573253599034}
   m_Mesh: {fileID: 4300004, guid: b2a22edd3225cae488adbefe555f5e81, type: 3}
+--- !u!114 &114955336308988908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1686332001137966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dddaef2af428304438388cfcb2408528, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHandIK: {fileID: 4817896005742978}

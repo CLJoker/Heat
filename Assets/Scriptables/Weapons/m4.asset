@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d49e86fc2ce02f43b989e0116c7c43e, type: 3}
+  m_Name: m4
+  m_EditorClassIdentifier: 
+  id: m4
+  m_h_ik: {fileID: 11400000, guid: a1b9b983baf466e47b7661c653d0f038, type: 2}
+  modelPrefab: {fileID: 1686332001137966, guid: ae88c0de910c65e41bb1c412c0ee9546,
+    type: 2}
+  fireRate: 0.1
+  megazineAmmo: 30
+  maxAmmo: 160
+  onIdleDisableOh: 1
+  WeaponType: 1
+  recoilY:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.01738739
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.12738837
+      value: 0.09653595
+      inSlope: 0.13007173
+      outSlope: 0.13007173
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.30412477
+      outWeight: 0.108092256
+    - serializedVersion: 3
+      time: 0.99746704
+      value: 0.009269714
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  recoilZ:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

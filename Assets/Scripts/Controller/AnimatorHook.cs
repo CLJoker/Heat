@@ -21,6 +21,9 @@ namespace SA
 
         public bool disable_o_h;
         public bool disable_m_h;
+        public bool onDisableOh;
+
+        RuntimeWeapon curWeapon;
 
         Vector3 lookDir;
 
@@ -38,8 +41,9 @@ namespace SA
             rh_target = new GameObject().transform;
             rh_target.name = "right hand target";
             rh_target.parent = aimPivot;
-            rh_target.transform.localPosition = new Vector3(0.231f, -0.123f, 0.167f);
-            rh_target.transform.localEulerAngles = new Vector3(-5.426f, 20.812f, -105.86f);
+
+            //rh_target.transform.localPosition = new Vector3(0.231f, -0.123f, 0.167f);
+            //rh_target.transform.localEulerAngles = new Vector3(-5.426f, 20.812f, -105.86f);
 
             //lh_target = new GameObject().transform;
             //lh_target.name = "left hand target";
@@ -49,6 +53,17 @@ namespace SA
 
             states.inp.aimPosition = states.transform.position + transform.forward * 15;
             states.inp.aimPosition.y += 1.4f;
+        }
+
+        public void EquipWeapon(RuntimeWeapon rw)
+        {
+            Weapon w = rw.w_actual;
+            lh_target = rw.w_hook.leftHandIK;
+
+            rh_target.localPosition = w.m_h_ik.pos;
+            rh_target.localEulerAngles = w.m_h_ik.rot;
+            onDisableOh = rw.w_actual.onIdleDisableOh;
+            curWeapon = rw;
         }
 
         private void OnAnimatorMove()
@@ -130,6 +145,11 @@ namespace SA
                 t_m_weight = 0;
             }
 
+            if(!states.states.isAiming && onDisableOh)
+            {
+                o_h_weight = 0;
+            }
+
             l_weight = Mathf.Lerp(l_weight, t_l_weight, states.delta * 3);
             m_h_weight = Mathf.Lerp(m_h_weight, t_m_weight, states.delta * 9);
         }
@@ -190,9 +210,9 @@ namespace SA
                     recoilIsInit = false;
                 }
 
-                offsetPosition = Vector3.forward;
-                offsetRotation = Vector3.right * 90;
-                rh_target.localPosition = basePosition + offsetPosition;
+                offsetPosition = Vector3.forward * curWeapon.w_actual.recoilZ.Evaluate(recoilT);
+                offsetRotation = Vector3.right * 90 * curWeapon.w_actual.recoilY.Evaluate(recoilT);
+                rh_target.localPosition = basePosition + offsetPosition ;
                 rh_target.localEulerAngles = baseRotation + offsetRotation;
             }
         }

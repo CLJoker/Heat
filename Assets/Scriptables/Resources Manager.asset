@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c74bafe5204bc47ad7f3cd10bfbe9e, type: 3}
+  m_Name: Resources Manager
+  m_EditorClassIdentifier: 
+  runtime: {fileID: 11400000, guid: f0a8fc1f38866c144b6b8b4352d3693a, type: 2}
+  all_weapons:
+  - {fileID: 11400000, guid: 13fae6258522b1c4b876266a476a7de4, type: 2}
+  - {fileID: 11400000, guid: 9bf928004e94eda469dd0a690c356a05, type: 2}
+  meshContainers:
+  - {fileID: 11400000, guid: 1b6e9c1acacf29645b46ea4540120175, type: 2}
+  - {fileID: 11400000, guid: 1c62f1aa993f2c3459b14ec54e902bab, type: 2}

@@ -29,10 +29,12 @@ namespace SA
 
         }
 
-
+        public ResourcesManager r_manager;
         public ControllerStates states;
         public ControllerStats stats;
         public InputVariables inp;
+        public WeaponManager w_manager;
+        public Character character;
 
 
         #region References
@@ -64,6 +66,8 @@ namespace SA
         #region Init
         public void Init()
         {
+            r_manager.Init();
+
             mTransform = gameObject.transform;
             SetupAnimator();
             SetupRigidbody();
@@ -75,6 +79,9 @@ namespace SA
 
             a_hook = activeModel.AddComponent<AnimatorHook>();
             a_hook.Init(this);
+
+            Init_WeaponManager();
+            SetupCharacter();
         }
 
         void SetupAnimator()
@@ -118,6 +125,12 @@ namespace SA
                 r.isKinematic = true;
                 r.gameObject.layer = 10;
             }
+        }
+
+        void SetupCharacter()
+        {
+            character = GetComponent<Character>();
+            character.LoadCharacter(r_manager);
         }
         #endregion
 
@@ -260,6 +273,45 @@ namespace SA
             anim.SetFloat(StaticStrings.horizontal, h, 0.2f, delta);
             anim.SetFloat(StaticStrings.vertical, v, 0.2f, delta);
         }
+        #endregion
+
+        #region Manager Functions
+        public void Init_WeaponManager()
+        {
+            CreateRuntimeWeapon(w_manager.mw_id, ref w_manager.m_weapon);
+            EquipRuntimeWeapon(w_manager.m_weapon);
+        }
+
+
+        public void CreateRuntimeWeapon(string id, ref RuntimeWeapon r_w_m)
+        {
+            Weapon w = r_manager.GetWeapon(id);
+            RuntimeWeapon rw = r_manager.runtime.WeaponToRuntimeWeapon(w);
+
+            GameObject go = Instantiate(w.modelPrefab);
+            rw.m_instance = go;
+            rw.w_actual = w;
+            rw.w_hook = go.GetComponent<WeaponHook>();
+            go.SetActive(false);
+
+            Transform p = anim.GetBoneTransform(HumanBodyBones.RightHand);
+            go.transform.parent = p;
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localEulerAngles = Vector3.zero;
+            go.transform.localScale = Vector3.one;
+
+            r_w_m = rw;
+        }
+
+        public void EquipRuntimeWeapon(RuntimeWeapon rw)
+        {
+            rw.m_instance.SetActive(true);
+            a_hook.EquipWeapon(rw);
+
+            anim.SetFloat(StaticStrings.WeaponType, rw.w_actual.WeaponType);
+        }
+
+
         #endregion
 
         bool OnGround()

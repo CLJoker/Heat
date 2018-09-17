@@ -79,7 +79,6 @@ namespace SA
 
             a_hook = activeModel.AddComponent<AnimatorHook>();
             a_hook.Init(this);
-
             Init_WeaponManager();
             SetupCharacter();
         }
@@ -130,7 +129,7 @@ namespace SA
         void SetupCharacter()
         {
             character = GetComponent<Character>();
-            character.LoadCharacter(r_manager);
+            character.Init(this);
         }
         #endregion
 

@@ -17,7 +17,7 @@ MonoBehaviour:
     type: 2}
   fireRate: 0.1
   megazineAmmo: 30
-  maxAmmo: 160
+  maxAmmo: 120
   onIdleDisableOh: 1
   WeaponType: 1
   recoilY:
@@ -55,7 +55,34 @@ MonoBehaviour:
     m_RotationOrder: 4
   recoilZ:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.01738739
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.12380256
+      value: -0.115698546
+      inSlope: 0.13007173
+      outSlope: 0.13007173
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.30412477
+      outWeight: 0.108092256
+    - serializedVersion: 3
+      time: 0.99746704
+      value: 0.009269714
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

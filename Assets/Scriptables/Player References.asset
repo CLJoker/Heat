@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3264d4f322f2104d9ef993ba7a177e4, type: 3}
+  m_Name: Player References
+  m_EditorClassIdentifier: 
+  targetSpread: {fileID: 11400000, guid: a5f9cb0b85a63ba46a9267ca954523fc, type: 2}
+  health: {fileID: 11400000, guid: 8b92661792f53f249b60b5273f6e29e6, type: 2}
+  curAmmo: {fileID: 11400000, guid: ef94d619522393940a63532229af3804, type: 2}
+  curCarrying: {fileID: 11400000, guid: f380b32ceb6ed634e931511a79ed43e2, type: 2}
+  e_UpdateUI: {fileID: 11400000, guid: ae662fe33e67f7e43986cd26917f7bee, type: 2}

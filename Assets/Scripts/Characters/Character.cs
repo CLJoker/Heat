@@ -61,6 +61,9 @@ namespace SA
 
         public GameObject LoadMask(Mask m)
         {
+            if (m == null)
+                return null;
+
             hair.SetActive(m.enableHair);
             eyebrows.SetActive(m.enableEyebrow);
 

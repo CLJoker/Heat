@@ -24,6 +24,8 @@ namespace SA
 
         public StatesManager states;
         public CameraHandler camHandler;
+        public PlayerReferences p_references;
+        bool updateUI;
 
         private void Start()
         {
@@ -34,6 +36,10 @@ namespace SA
         {
             states.Init();
             camHandler.Init(this);
+
+            UpdatePlayerReferencesForWeapon(states.w_manager.GetCurrentWeapon());
+            updateUI = true;
+
             isInit = true;
         }
 
@@ -49,6 +55,11 @@ namespace SA
             states.FixedTick(delta);
 
             camHandler.FixedTick(delta);
+
+            if (states.rigid.velocity.sqrMagnitude > 0)
+                p_references.targetSpread.value = 120f;
+            else
+                p_references.targetSpread.value = 30f;
         }
 
         void GetInput_FixedUpdate()
@@ -69,6 +80,7 @@ namespace SA
             states.inp.moveDirection = moveDir;
 
             states.inp.rotateDirection = camHandler.mTransform.forward;
+
         }
         #endregion
 
@@ -88,16 +100,35 @@ namespace SA
             if (debugAim)
                 states.states.isAiming = true;
             states.Tick(delta);
+
+            if(updateUI)
+            {
+                updateUI = false;
+                UpdatePlayerReferencesForWeapon(states.w_manager.GetCurrentWeapon());
+
+                p_references.e_UpdateUI.Raise();
+            }
         }
 
         void GetInput_Update()
         {
             aimInput = Input.GetMouseButton(1);
+            shootInput = Input.GetMouseButton(0);
         }
 
         void InGame_UpdateStates_Update()
         {
             states.states.isAiming = aimInput;
+
+            if(shootInput)
+            {
+                states.states.isAiming = true;
+                bool shootActual = states.ShootWeapon(Time.realtimeSinceStartup);
+                if(shootActual)
+                {
+                    updateUI = true;
+                }
+            }
         }
 
         void AimPosition()
@@ -112,6 +143,16 @@ namespace SA
                 states.inp.aimPosition = hit.point;
             }
         }
+        #endregion
+
+        #region Manager Functions
+
+        public void UpdatePlayerReferencesForWeapon(RuntimeWeapon r)
+        {
+            p_references.curAmmo.value = r.curAmmo;
+            p_references.curCarrying.value = r.curCarrying;
+        }
+
         #endregion
     }
 

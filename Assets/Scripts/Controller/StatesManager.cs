@@ -218,6 +218,7 @@ namespace SA
                 case CharState.normal:
                     states.onGround = OnGround();
                     HandleAnimationAll();
+                    a_hook.Tick();
                     break;
                 case CharState.onAir:
                     states.onGround = OnGround();
@@ -281,7 +282,6 @@ namespace SA
             EquipRuntimeWeapon(w_manager.m_weapon);
         }
 
-
         public void CreateRuntimeWeapon(string id, ref RuntimeWeapon r_w_m)
         {
             Weapon w = r_manager.GetWeapon(id);
@@ -308,8 +308,27 @@ namespace SA
             a_hook.EquipWeapon(rw);
 
             anim.SetFloat(StaticStrings.WeaponType, rw.w_actual.WeaponType);
+            w_manager.SetCurrentWeapon(rw);
         }
 
+        public bool ShootWeapon(float t)
+        {
+            bool retVal = false;
+
+            RuntimeWeapon c = w_manager.GetCurrentWeapon();
+            if (c.curAmmo > 0)
+            {
+                if (t - c.lastFired > c.w_actual.fireRate)
+                {
+                    c.lastFired = t;
+                    c.ShootWeapon();
+                    retVal = true;
+                    a_hook.RecoilAnim();
+                }
+            }
+
+            return retVal;
+        }
 
         #endregion
 

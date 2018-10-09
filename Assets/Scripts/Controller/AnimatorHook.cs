@@ -23,8 +23,6 @@ namespace SA
         public bool disable_m_h;
         public bool onDisableOh;
 
-        RuntimeWeapon curWeapon;
-
         Vector3 lookDir;
 
         public void Init(StatesManager st)
@@ -63,7 +61,8 @@ namespace SA
             rh_target.localPosition = w.m_h_ik.pos;
             rh_target.localEulerAngles = w.m_h_ik.rot;
             onDisableOh = rw.w_actual.onIdleDisableOh;
-            curWeapon = rw;
+            basePosition = w.m_h_ik.pos;
+            baseRotation = w.m_h_ik.rot;
         }
 
         private void OnAnimatorMove()
@@ -210,8 +209,8 @@ namespace SA
                     recoilIsInit = false;
                 }
 
-                offsetPosition = Vector3.forward * curWeapon.w_actual.recoilZ.Evaluate(recoilT);
-                offsetRotation = Vector3.right * 90 * curWeapon.w_actual.recoilY.Evaluate(recoilT);
+                offsetPosition = Vector3.forward * states.w_manager.GetCurrentWeapon().w_actual.recoilZ.Evaluate(recoilT);
+                offsetRotation = Vector3.right * 90 * -states.w_manager.GetCurrentWeapon().w_actual.recoilY.Evaluate(recoilT);
                 rh_target.localPosition = basePosition + offsetPosition ;
                 rh_target.localEulerAngles = baseRotation + offsetRotation;
             }

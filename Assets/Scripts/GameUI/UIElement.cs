@@ -9,12 +9,14 @@ namespace SA.UI
     {
         UIUpdater updater;
 
-        private void Awake()
+        private void Start()
         {
             updater = UIUpdater.singleton;
 
             if (updater != null)
                 updater.elements.Add(this);
+
+            Init();
         }
 
         public virtual void Init()

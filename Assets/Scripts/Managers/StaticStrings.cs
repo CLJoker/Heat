@@ -9,6 +9,8 @@ namespace SA
         //Inputs
         public static string Horizontal = "Horizontal";
         public static string Vertical = "Vertical";
+        public static string Pivot = "Pivot";
+        public static string Reload = "Reload";
 
 
         //Animator parameters

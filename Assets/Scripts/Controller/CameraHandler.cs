@@ -10,7 +10,9 @@ namespace SA
         public Transform target;
         public Transform pivot;
         public Transform mTransform;
-        public bool leftPivot;
+        public BoolVariable isLeftPivot;
+        public BoolVariable isAiming;
+        public BoolVariable isCrouching;
         float delta;
 
         float mouseX;
@@ -27,10 +29,14 @@ namespace SA
         StatesManager targetStates;
         public void Init(InputHandler inp)
         {
-            targetStates = inp.states;
-            target = targetStates.mTransform;
             mTransform = this.transform;
+            target = inp.states.mTransform;    
 
+        }
+
+        private void FixedUpdate()
+        {
+            FixedTick(Time.deltaTime);
         }
 
         public void FixedTick(float d)
@@ -44,7 +50,7 @@ namespace SA
             HandleRotation();
 
             float speed = camValues.moveSpeed;
-            if(targetStates.states.isAiming)
+            if(isAiming.value)
             {
                 speed = camValues.aimSpeed;
             }
@@ -59,18 +65,18 @@ namespace SA
             float targetZ = camValues.normalZ;
             float targetY = camValues.normalY;
 
-            if(targetStates.states.isCrouching)
+            if(isCrouching.value)
             {
                 targetY = camValues.crouchY;
             }
 
-            if(targetStates.states.isAiming)
+            if(isAiming.value)
             {
                 targetX = camValues.aimX;
                 targetZ = camValues.aimZ;
             }
 
-            if(leftPivot)
+            if(isLeftPivot.value)
             {
                 targetX = -targetX;
             }

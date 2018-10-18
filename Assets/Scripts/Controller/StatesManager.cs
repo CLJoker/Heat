@@ -209,6 +209,8 @@ namespace SA
         #endregion
 
         #region Update
+        float rT;
+
         public void Tick(float d)
         {
             delta = d;
@@ -219,6 +221,16 @@ namespace SA
                     states.onGround = OnGround();
                     HandleAnimationAll();
                     a_hook.Tick();
+
+                    if (states.isInteracting)
+                    {
+                        rT += delta;
+                        if(rT > 3)
+                        {
+                            states.isInteracting = false;
+                            rT = 0;
+                        }
+                    }
                     break;
                 case CharState.onAir:
                     states.onGround = OnGround();
@@ -325,6 +337,31 @@ namespace SA
                     retVal = true;
                     a_hook.RecoilAnim();
                 }
+            }
+
+            return retVal;
+        }
+
+        public bool Reload()
+        {
+            RuntimeWeapon c = w_manager.GetCurrentWeapon();
+            bool retVal = false;
+            if(c.curAmmo < c.w_actual.megazineAmmo)
+            {
+                if(c.w_actual.megazineAmmo <= c.curCarrying)
+                {
+                    c.curAmmo = c.w_actual.megazineAmmo;
+                    c.curCarrying -= c.curAmmo;
+                }
+                else
+                {
+                    c.curAmmo = c.curCarrying;
+                    c.curCarrying = 0;
+                }
+
+                retVal = true;
+                anim.CrossFade("Rifle Reload", 0.2f);
+                states.isInteracting = true;
             }
 
             return retVal;

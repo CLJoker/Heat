@@ -54,12 +54,10 @@ namespace SA
             InGame_UpdateStates_FixedUpdate();
             states.FixedTick(delta);
 
-            camHandler.FixedTick(delta);
+            //camHandler.FixedTick(delta);
 
-            if (states.rigid.velocity.sqrMagnitude > 0)
+            if (states.rigid.velocity.sqrMagnitude > 0.5f)
                 p_references.targetSpread.value = 120f;
-            else
-                p_references.targetSpread.value = 30f;
         }
 
         void GetInput_FixedUpdate()
@@ -114,10 +112,23 @@ namespace SA
         {
             aimInput = Input.GetMouseButton(1);
             shootInput = Input.GetMouseButton(0);
+            pivotInput = Input.GetButtonDown(StaticStrings.Pivot);
+            reloadInput = Input.GetButtonDown(StaticStrings.Reload);
         }
 
         void InGame_UpdateStates_Update()
         {
+            if (reloadInput)
+            {
+                bool isReloading = states.Reload();
+                if (isReloading)
+                {
+                    aimInput = false;
+                    shootInput = false;
+                    updateUI = true;
+                }
+            }
+
             states.states.isAiming = aimInput;
 
             if(shootInput)
@@ -126,8 +137,16 @@ namespace SA
                 bool shootActual = states.ShootWeapon(Time.realtimeSinceStartup);
                 if(shootActual)
                 {
+                    p_references.targetSpread.value += 80;
                     updateUI = true;
                 }
+            }
+
+            p_references.isAiming.value = states.states.isAiming;
+
+            if (pivotInput)
+            {
+                p_references.isLeftPivot.value = !p_references.isLeftPivot.value;
             }
         }
 

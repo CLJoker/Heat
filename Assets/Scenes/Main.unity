@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e74777ce2ee930646af958f00c5c4e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 73981162cf4545f4ab2db2235239d30b, type: 2}
+  gameEvent: {fileID: 11400000, guid: 51bf48ea5b1dd46479701ed011059131, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
@@ -444,7 +444,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1236123472}
         m_MethodName: SetActive
@@ -455,7 +455,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -1472,6 +1472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e4983200e88c5a4d81f68c58044d254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isNonControl: 1
   debugAim: 0
   states: {fileID: 841305927}
   camHandler: {fileID: 2121346752}

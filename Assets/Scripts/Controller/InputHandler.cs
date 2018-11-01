@@ -6,6 +6,7 @@ namespace SA
 {
     public class InputHandler : MonoBehaviour
     {
+        public bool isNonControl = false;
         float horizontal;
         float vertical;
 
@@ -63,6 +64,9 @@ namespace SA
 
         void GetInput_FixedUpdate()
         {
+            if (isNonControl)
+                return;
+
             vertical = Input.GetAxis(StaticStrings.Vertical);
             horizontal = Input.GetAxis(StaticStrings.Horizontal);
         }

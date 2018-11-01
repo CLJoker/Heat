@@ -13,6 +13,7 @@ namespace SA
         public BoolVariable isLeftPivot;
         public BoolVariable isAiming;
         public BoolVariable isCrouching;
+        public bool isDisable = false;
         float delta;
 
         float mouseX;
@@ -46,6 +47,9 @@ namespace SA
             if (target == null)
                 return;
 
+            if (isDisable)
+                return;
+
             HandlePositions();
             HandleRotation();
 
@@ -61,6 +65,9 @@ namespace SA
 
         void HandlePositions()
         {
+            if (isDisable)
+                return;
+
             float targetX = camValues.normalX;
             float targetZ = camValues.normalZ;
             float targetY = camValues.normalY;
@@ -94,6 +101,9 @@ namespace SA
 
         void HandleRotation()
         {
+            if (isDisable)
+                return;
+
             mouseX = Input.GetAxis("Mouse X");
             mouseY = Input.GetAxis("Mouse Y");
 

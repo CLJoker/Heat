@@ -34,6 +34,7 @@ namespace SA
 
         public void InitInGame()
         {
+            p_references.Init();
             states.Init();
             camHandler.Init(this);
 

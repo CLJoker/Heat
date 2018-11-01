@@ -21,5 +21,16 @@ namespace SA
         public FloatVariable targetSpread;
         public GameEvent e_UpdateUI;
 
+        public void Init()
+        {
+            curAmmo.value = 0;
+            curCarrying.value = 0;
+            health.value = 100;
+            isAiming.value = false;
+            isLeftPivot.value = false;
+            isCrouching.value = false;
+            targetSpread.value = 30;
+        }
+
     }
 }

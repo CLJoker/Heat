@@ -13,7 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   r_manager: {fileID: 11400000, guid: a6d9bb2cfe876514a9eeca76b38f3f1d, type: 2}
   version: 1
-  userName: CLJoker
   isConnected: 0
   uiSettings:
     curJob: {fileID: 11400000, guid: 644ea45551b576547a6d2adb95e008f9, type: 2}
@@ -22,3 +21,11 @@ MonoBehaviour:
     jobDescription: {fileID: 11400000, guid: d099e73eb18b6ec418fdc7e073f18663, type: 2}
     jobImg: {fileID: 11400000, guid: 03409fa22700df94ab5bd843aa8ab685, type: 2}
     mapName: {fileID: 11400000, guid: 8c561e1a81de08a4888efb429f783196, type: 2}
+  playerProfile:
+    userName: CLJoker
+    outfitId: suit
+    avatar: {fileID: 21300000, guid: c07e83c340d2aa84db4cc1f2ca4a47de, type: 3}
+    mask_id: luchador
+    mw_id: m4
+    sw_id: 1911
+    isFemale: 0

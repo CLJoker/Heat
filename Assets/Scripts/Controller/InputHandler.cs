@@ -26,16 +26,23 @@ namespace SA
         public StatesManager states;
         public CameraHandler camHandler;
         public PlayerReferences p_references;
+        public GameSettings gameSettings;
         bool updateUI;
 
         private void Start()
         {
+            if (gameSettings == null)
+                gameSettings = Resources.Load("GameSettings") as GameSettings;
+            gameSettings.r_manager.Init();
             InitInGame();
         }
 
         public void InitInGame()
         {
             p_references.Init();
+            if (states.r_manager == null)
+                states.r_manager = gameSettings.r_manager;
+            states.LoadPlayerProfile(gameSettings.playerProfile);
             states.Init();
             camHandler.Init(this);
 

@@ -19,4 +19,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1b6e9c1acacf29645b46ea4540120175, type: 2}
   - {fileID: 11400000, guid: 1c62f1aa993f2c3459b14ec54e902bab, type: 2}
   charObjects: []
-  masks: []
+  masks:
+  - {fileID: 11400000, guid: dcb10ac82bb1c034e9591507684d276b, type: 2}
+  - {fileID: 11400000, guid: f3b1ec510b84be54ca52bf69a605df45, type: 2}

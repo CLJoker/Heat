@@ -78,7 +78,7 @@ namespace SA
         void InitMaskDictionaries()
         {
             mask_dict.Clear();
-            for (int i = 0; i < masks.Length; i++)
+            for (int i = 0; i < masks.Length - 1; i++)
             {
                 if (mask_dict.ContainsKey(masks[i].obj.id))
                 {

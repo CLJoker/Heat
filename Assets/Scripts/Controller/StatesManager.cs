@@ -64,6 +64,18 @@ namespace SA
         #endregion
 
         #region Init
+
+        public void LoadPlayerProfile(PlayerProfile p)
+        {
+            w_manager.mw_id = p.mw_id;
+            w_manager.sw_id = p.sw_id;
+            character = GetComponent<Character>();
+            character.outfitID = p.outfitId;
+            character.maskObj = r_manager.GetMask(p.mask_id);
+            character.isFemale = p.isFemale;
+            
+        }
+
         public void Init()
         {
             r_manager.Init();
@@ -128,7 +140,7 @@ namespace SA
 
         void SetupCharacter()
         {
-            character = GetComponent<Character>();
+            
             character.Init(this);
         }
         #endregion

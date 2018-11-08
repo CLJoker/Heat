@@ -9,9 +9,11 @@ namespace SA
     {
         public ResourcesManager r_manager;
         public int version = 0;
-        public string userName;
         public bool isConnected;
         public UISettings uiSettings;
+
+        public PlayerProfile playerProfile;
+
         [System.Serializable]
         public class UISettings
         {

@@ -20,6 +20,7 @@ namespace SA
             public StringVariable jobType;
             public StringVariable jobDescription;
             public SpriteVariable jobImg;
+            public StringVariable mapName;
         }
 
         public void UpdateCurrentJob(Job targetJob)
@@ -28,6 +29,7 @@ namespace SA
             uiSettings.jobDescription.value = targetJob.jobDescription;
             uiSettings.jobType.value = StaticFunctions.JobTypeToString(targetJob.type);
             uiSettings.jobImg.sprite = targetJob.jobImg;
+            uiSettings.mapName.value = targetJob.targetLevel;
             if (uiSettings.onJobChange != null)
                 uiSettings.onJobChange.Raise();
         }

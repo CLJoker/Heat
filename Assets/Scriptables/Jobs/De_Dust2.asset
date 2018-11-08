@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 079347317e384ba47b27514c3146b1ab, type: 3}
-  m_Name: Shootout
+  m_Name: De_Dust2
   m_EditorClassIdentifier: 
-  targetLevel: City
-  type: 0
+  targetLevel: De_Dust2
+  type: 2
   maxPlayer: 10
-  jobDescription: Fight like a man, die like a hero
-  jobImg: {fileID: 21300000, guid: 23289d760a646fc46b32836c891ba3ca, type: 3}
+  jobDescription: Remember the old days? RUSH BB!!!
+  jobImg: {fileID: 21300000, guid: aad09c3d07d92f64491b1f1f97b6b43c, type: 3}

@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 079347317e384ba47b27514c3146b1ab, type: 3}
-  m_Name: Shootout
+  m_Name: HeavenFall
   m_EditorClassIdentifier: 
-  targetLevel: City
-  type: 0
+  targetLevel: HeavenFall
+  type: 1
   maxPlayer: 10
-  jobDescription: Fight like a man, die like a hero
-  jobImg: {fileID: 21300000, guid: 23289d760a646fc46b32836c891ba3ca, type: 3}
+  jobDescription: Heaven had fallen, hell had come to life
+  jobImg: {fileID: 21300000, guid: edb855269710b7d45a693c177c39199a, type: 3}

@@ -16,8 +16,9 @@ MonoBehaviour:
   userName: CLJoker
   isConnected: 0
   uiSettings:
-    curJob: {fileID: 0}
+    curJob: {fileID: 11400000, guid: 644ea45551b576547a6d2adb95e008f9, type: 2}
     onJobChange: {fileID: 11400000, guid: f9a721f9621f24847accfe65473ea178, type: 2}
     jobType: {fileID: 11400000, guid: e55361c2853ae454eb75e5f3b33d81bf, type: 2}
     jobDescription: {fileID: 11400000, guid: d099e73eb18b6ec418fdc7e073f18663, type: 2}
     jobImg: {fileID: 11400000, guid: 03409fa22700df94ab5bd843aa8ab685, type: 2}
+    mapName: {fileID: 11400000, guid: 8c561e1a81de08a4888efb429f783196, type: 2}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SA.UI;
 
 namespace SA
 {
@@ -35,6 +36,7 @@ namespace SA
         public InputVariables inp;
         public WeaponManager w_manager;
         public Character character;
+        public UI_LoadPlayerHUD playerHUD;
 
 
         #region References
@@ -73,7 +75,12 @@ namespace SA
             character.outfitID = p.outfitId;
             character.maskObj = r_manager.GetMask(p.mask_id);
             character.isFemale = p.isFemale;
-            
+            playerHUD = GetComponent<UI_LoadPlayerHUD>();
+            if(playerHUD != null)
+            {
+                playerHUD.playerAvatar.sprite = p.avatar;
+                playerHUD.playerName.text = p.userName;
+            }
         }
 
         public void Init()

@@ -36,7 +36,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4557213722412070}
-  - component: {fileID: 114893709247508730}
   m_Layer: 0
   m_Name: AK47
   m_TagString: Untagged
@@ -362,15 +361,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1018210710802566}
   m_Mesh: {fileID: 4300002, guid: 596b5076dad6e414483036c386728e4d, type: 3}
---- !u!114 &114893709247508730
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1028952238205128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dddaef2af428304438388cfcb2408528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftHandIK: {fileID: 4639377800770064}

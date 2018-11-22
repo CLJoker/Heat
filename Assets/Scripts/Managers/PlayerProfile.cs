@@ -8,11 +8,11 @@ namespace SA
     public class PlayerProfile
     {
         public string userName;
-        public string outfitId;
+        public StringVariable outfitId;
         public Sprite avatar;
-        public string mask_id;
-        public string mw_id;
-        public string sw_id;
-        public bool isFemale;
+        public StringVariable mask_id;
+        public StringVariable mw_id;
+        public StringVariable sw_id;
+        public BoolVariable isFemale;
     }
 }

@@ -122,6 +122,10 @@ namespace SA
 
         void GetInput_Update()
         {
+
+            if (isNonControl)
+                return;
+
             aimInput = Input.GetMouseButton(1);
             shootInput = Input.GetMouseButton(0);
             pivotInput = Input.GetButtonDown(StaticStrings.Pivot);

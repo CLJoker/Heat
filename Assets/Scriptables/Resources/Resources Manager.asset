@@ -15,6 +15,8 @@ MonoBehaviour:
   all_weapons:
   - {fileID: 11400000, guid: 13fae6258522b1c4b876266a476a7de4, type: 2}
   - {fileID: 11400000, guid: 9bf928004e94eda469dd0a690c356a05, type: 2}
+  - {fileID: 11400000, guid: 529b6af3df4bf8144b65e501c3e4a9bc, type: 2}
+  - {fileID: 11400000, guid: db284f3500a4c69468b79daf0a85b42f, type: 2}
   meshContainers:
   - {fileID: 11400000, guid: 1b6e9c1acacf29645b46ea4540120175, type: 2}
   - {fileID: 11400000, guid: 1c62f1aa993f2c3459b14ec54e902bab, type: 2}

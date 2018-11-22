@@ -69,12 +69,12 @@ namespace SA
 
         public void LoadPlayerProfile(PlayerProfile p)
         {
-            w_manager.mw_id = p.mw_id;
-            w_manager.sw_id = p.sw_id;
+            w_manager.mw_id = p.mw_id.value;
+            w_manager.sw_id = p.sw_id.value;
             character = GetComponent<Character>();
-            character.outfitID = p.outfitId;
-            character.maskObj = r_manager.GetMask(p.mask_id);
-            character.isFemale = p.isFemale;
+            character.outfitID = p.outfitId.value;
+            character.maskObj = r_manager.GetMask(p.mask_id.value);
+            character.isFemale = p.isFemale.value;
             playerHUD = GetComponent<UI_LoadPlayerHUD>();
             if(playerHUD != null)
             {

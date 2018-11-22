@@ -9,5 +9,15 @@ namespace SA
     {
         public string value;
 
+        public void Apply(StringVariable s)
+        {
+            value = s.value;
+        }
+
+        public void Apply(string s)
+        {
+            value = s;
+        }
+
     }
 }

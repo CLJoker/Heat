@@ -17,10 +17,13 @@ namespace SA
             RaycastHit hit;
             Debug.DrawRay(origin, dir * dis);
 
-            if(Physics.Raycast(origin, dir, out hit, dis))
+            if(Physics.Raycast(origin, dir, out hit, dis, states.ignoreLayers))
             {
                 Vector3 targetPosition = hit.point;
-                states.transform.position = targetPosition;
+                targetPosition.x = states.mTransform.position.x;
+                targetPosition.z = states.mTransform.position.z;
+
+                states.mTransform.position = targetPosition;
             }
         }
 

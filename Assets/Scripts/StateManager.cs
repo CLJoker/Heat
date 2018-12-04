@@ -16,11 +16,13 @@ namespace SA
             public float moveAmount;
             public Vector3 moveDirection;
             public Vector3 lookDirection;
+            public Vector3 aimPosition;
         }
         
         public State currentState;
 
         public bool isAiming;
+        public bool isInteracting;
 
         [HideInInspector]
         public Animator anim;
@@ -33,6 +35,10 @@ namespace SA
         public Rigidbody rigid;
         [HideInInspector]
         public LayerMask ignoreLayers;
+        [HideInInspector]
+        public AnimatorHook animHook;
+
+        public StateActions initActionsBatch;
 
         private void Start()
         {
@@ -44,6 +50,8 @@ namespace SA
             ignoreLayers = ~(1 << 9 | 1 << 3);
 
             anim = GetComponentInChildren<Animator>();
+
+            initActionsBatch.Execute(this);
         }
 
         private void FixedUpdate()

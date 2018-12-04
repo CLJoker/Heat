@@ -16,6 +16,7 @@ namespace SA
         public Vector3 moveDirection;
 
         public SO.TransformVariable cameraTransform;
+        public SO.TransformVariable pivotTransform;
 
         public StatesVariable playerStates;
 
@@ -40,6 +41,9 @@ namespace SA
 
                 playerStates.value.isAiming = aimInput.isPressed;
                 playerStates.value.movementValues.lookDirection = cameraTransform.value.forward;
+
+                Ray ray = new Ray(pivotTransform.value.position, pivotTransform.value.forward);
+                playerStates.value.movementValues.aimPosition = ray.GetPoint(100);
             }
         }
     }

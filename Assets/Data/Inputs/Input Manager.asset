@@ -13,7 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: {fileID: 11400000, guid: 7950065ad05cdcc4b98e823c2f077436, type: 2}
   vertical: {fileID: 11400000, guid: 10a66d120c8abd1459cbf87bc217fcbd, type: 2}
+  aimInput: {fileID: 11400000, guid: fb3dd9d1b76ae4c4ba32d3349f2c4ccd, type: 2}
   moveAmount: 0
-  moveDirection: {x: 0, y: 0, z: 0}
+  moveDirection: {x: 0, y: 0, z: -0}
   cameraTransform: {fileID: 11400000, guid: 8fd09eeffa5ab284ebd8d3dc3fa5afc9, type: 2}
   playerStates: {fileID: 11400000, guid: 259e7322b6c3be149a034283a31f787d, type: 2}

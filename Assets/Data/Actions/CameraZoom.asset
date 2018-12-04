@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65136ca024777104f9556e3dbb89edc7, type: 3}
   m_Name: CameraZoom
   m_EditorClassIdentifier: 
-  actualCameraTrans: {fileID: 0}
-  aimInput: {fileID: 0}
-  defaultZ: 0
-  zoomZ: 0
-  speed: 9
+  actualCameraTrans: {fileID: 11400000, guid: 0aa47e4cd0ae2664fadb006e70819695, type: 2}
+  aimInput: {fileID: 11400000, guid: fb3dd9d1b76ae4c4ba32d3349f2c4ccd, type: 2}
+  defaultZ: -3
+  zoomZ: -1
+  speed: 3

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e09f12a9b8fb5e44eb81fa499afbecc4, type: 3}
+  m_Name: Locomotion Aiming
+  m_EditorClassIdentifier: 
+  onFixed:
+  - {fileID: 11400000, guid: 284e179a0d333144696d87887c73f9fd, type: 2}
+  - {fileID: 11400000, guid: ec89c84791093a2478ccee107f2781c1, type: 2}
+  onUpdate:
+  - {fileID: 11400000, guid: 284e179a0d333144696d87887c73f9fd, type: 2}
+  - {fileID: 11400000, guid: 4d747ed529c80a448805c85052455198, type: 2}
+  - {fileID: 11400000, guid: 7fe2431e4e76e6d40b3b158ac56791c6, type: 2}
+  onEnter:
+  - {fileID: 11400000, guid: 70dd0818cecafd545b237b6c85e99c5f, type: 2}
+  onExit:
+  - {fileID: 11400000, guid: cbba20bff49881d488679f57aa62cfe2, type: 2}
+  idCount: 1
+  transitions:
+  - id: 0
+    condition: {fileID: 11400000, guid: 3d652cf353e499648bbbddf4371d82ee, type: 2}
+    targetState: {fileID: 11400000, guid: dd0b8ab9567abb346a7a1d923d70fe9e, type: 2}
+    disable: 0

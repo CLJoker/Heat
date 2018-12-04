@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetInput: Fire2
   isPressed: 0
-  keyState: 0
+  keyState: 1
   updateBoolVar: 1

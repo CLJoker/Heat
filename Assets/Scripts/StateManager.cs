@@ -15,9 +15,12 @@ namespace SA
             public float vertical;
             public float moveAmount;
             public Vector3 moveDirection;
+            public Vector3 lookDirection;
         }
         
         public State currentState;
+
+        public bool isAiming;
 
         [HideInInspector]
         public Animator anim;

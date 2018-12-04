@@ -11,4 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae09ad2eae87a6141acff168315f7d79, type: 3}
   m_Name: InitControllerBatch
   m_EditorClassIdentifier: 
-  stateActions: []
+  stateActions:
+  - {fileID: 11400000, guid: 0f10c46b96c2dac458bbebb420c13bcb, type: 2}

@@ -9,7 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee055aa272b002449b3ab7f42ab47e6f, type: 3}
-  m_Name: Aim_IsAiming
+  m_Name: Anim_IsAiming
   m_EditorClassIdentifier: 
-  targetBoolVar: {fileID: 0}
-  targetAnimVar: 
+  targetBoolVar: {fileID: 11400000, guid: f325ba32260c9574ba66980818c2de99, type: 2}
+  targetAnimVar: aiming
+  reverse: 0

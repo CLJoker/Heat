@@ -9,8 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f711075190227d47898e6814f59ba4f, type: 3}
-  m_Name: SwitchFromNormalToAimingMovement
+  m_Name: SwitchFromNormalToAimingRotation
   m_EditorClassIdentifier: 
   targetBool: {fileID: 11400000, guid: f325ba32260c9574ba66980818c2de99, type: 2}
-  onFalseAction: {fileID: 11400000, guid: 33e316b9dc49dce4ebee41baa1755fe2, type: 2}
-  onTrueAction: {fileID: 11400000, guid: 4d747ed529c80a448805c85052455198, type: 2}
+  onFalseAction: {fileID: 11400000, guid: 54db7c4ccdc94794ca5919545ea8769a, type: 2}
+  onTrueAction: {fileID: 11400000, guid: ec89c84791093a2478ccee107f2781c1, type: 2}

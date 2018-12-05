@@ -19,6 +19,7 @@ namespace SA
         public Transform shoulder;
         public Transform aimPivot;
         Vector3 lookDir;
+        Weapon currentWeapon;
 
         public void Init(StateManager st)
         {
@@ -45,6 +46,14 @@ namespace SA
         {
             lookDir = states.movementValues.aimPosition - aimPivot.position;
             HandleShoulder();
+        }
+
+        public void LoadWeapon(Weapon w)
+        {
+            currentWeapon = w;
+            rh_target.localPosition = w.rightHandPosition.value;
+            rh_target.localEulerAngles = w.rightHandEuler.value;
+            lh_target = w.runTime.weaponHook.leftHandIK;
         }
 
         void HandleShoulder()
@@ -169,7 +178,6 @@ namespace SA
                     recoilT = 1;
                     recoilIsInit = false;
                 }
-
 
                 rh_target.localPosition = basePosition + offsetPosition;
                 rh_target.localEulerAngles = baseRotation + offsetRotation;

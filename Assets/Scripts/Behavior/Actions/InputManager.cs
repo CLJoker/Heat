@@ -19,7 +19,7 @@ namespace SA
         public SO.TransformVariable pivotTransform;
 
         public StatesVariable playerStates;
-
+        public bool debugAim;
 
         public override void Execute()
         {
@@ -39,7 +39,17 @@ namespace SA
                 playerStates.value.movementValues.moveAmount = moveAmount;
                 playerStates.value.movementValues.moveDirection = moveDirection;
 
-                playerStates.value.isAiming = aimInput.isPressed;
+                if (!debugAim)
+                {
+                    playerStates.value.isAiming = aimInput.isPressed;
+                }
+                else
+                {
+                    playerStates.value.isAiming = true;
+                    aimInput.isPressed = true;
+                }
+
+                
                 playerStates.value.movementValues.lookDirection = cameraTransform.value.forward;
 
                 Ray ray = new Ray(pivotTransform.value.position, pivotTransform.value.forward);

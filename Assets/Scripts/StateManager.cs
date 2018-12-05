@@ -7,6 +7,7 @@ namespace SA
     public class StateManager : MonoBehaviour
     {
         public MovementValue movementValues;
+        public Inventory inventory;
 
         [System.Serializable]
         public class MovementValue

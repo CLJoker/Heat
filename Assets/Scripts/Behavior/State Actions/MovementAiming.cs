@@ -8,6 +8,7 @@ namespace SA
     public class MovementAiming : StateActions
     {
         public float movementSpeed = 2;
+        public float crouchSpeed = 2;
 
         public override void Execute(StateManager states)
         {
@@ -16,7 +17,11 @@ namespace SA
             else
                 states.rigid.drag = 4;
 
-            Vector3 velocity = states.movementValues.moveDirection * (states.movementValues.moveAmount * movementSpeed);
+            float targetSpeed = movementSpeed;
+            if (states.isCrouching)
+                targetSpeed = crouchSpeed;
+
+            Vector3 velocity = states.movementValues.moveDirection * (states.movementValues.moveAmount * targetSpeed);
             states.rigid.velocity = velocity;
         }
 

@@ -11,7 +11,8 @@ namespace SA
         public InputAxis horizontal;
         public InputAxis vertical;
         public InputButton aimInput;
-        public InputButton shootButton;
+        public InputButton shootInput;
+        public InputButton crouchInput;
 
         public float moveAmount;
         public Vector3 moveDirection;
@@ -39,7 +40,13 @@ namespace SA
                 playerStates.value.movementValues.vertical = vertical.value;
                 playerStates.value.movementValues.moveAmount = moveAmount;
                 playerStates.value.movementValues.moveDirection = moveDirection;
-                playerStates.value.isShooting = shootButton.isPressed;
+                playerStates.value.isShooting = shootInput.isPressed;
+
+                if (crouchInput.isPressed)
+                {
+                    playerStates.value.SetCrouching();
+                    crouchInput.targetBoolVariable.value = playerStates.value.isCrouching;
+                }
 
                 if (!debugAim)
                 {

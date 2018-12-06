@@ -18,3 +18,69 @@ MonoBehaviour:
   rightHandEuler: {fileID: 11400000, guid: 8de5f5f55d82385448558d15dab4bbd7, type: 2}
   modelPrefab: {fileID: 1028952238205128, guid: 04c4073defde03a4090e0401b7c18bec,
     type: 2}
+  recoilY:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -0.012496948
+      inSlope: 0.78260857
+      outSlope: 0.78260857
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.19166666
+      value: 0.13750303
+      inSlope: -0.36668286
+      outSlope: -0.36668286
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.23195876
+    - serializedVersion: 3
+      time: 1
+      value: -0.012496948
+      inSlope: -0.18556698
+      outSlope: -0.18556698
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  recoilZ:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -0.004299164
+      inSlope: -0.6850207
+      outSlope: -0.6850207
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.21681562
+      value: -0.15282235
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: -0.004299164
+      inSlope: 0.18964012
+      outSlope: 0.18964012
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

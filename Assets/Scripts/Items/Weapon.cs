@@ -17,12 +17,16 @@ namespace SA
         public GameObject modelPrefab;
         public RuntimeWeapon runTime;
 
+        public AnimationCurve recoilY;
+        public AnimationCurve recoilZ;
+
+
         public void Init()
         {
             runTime = new RuntimeWeapon();
             runTime.modelInstance = Instantiate(modelPrefab) as GameObject;
             runTime.weaponHook = runTime.modelInstance.GetComponent<WeaponHook>();
-            runTime.weaponHook.Init();
+            runTime.weaponHook.Init();           
         }
 
         public class RuntimeWeapon

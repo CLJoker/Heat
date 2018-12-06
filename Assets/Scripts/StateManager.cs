@@ -24,6 +24,7 @@ namespace SA
 
         public bool isAiming;
         public bool isInteracting;
+        public bool isShooting;
 
         [HideInInspector]
         public Animator anim;

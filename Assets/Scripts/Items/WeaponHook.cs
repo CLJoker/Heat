@@ -12,6 +12,10 @@ namespace SA
 
         AudioSource audioSource;
 
+
+        [HideInInspector]
+        public float lastFired;
+
         public void Init()
         {
             GameObject go = new GameObject();

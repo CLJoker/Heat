@@ -54,6 +54,9 @@ namespace SA
             rh_target.localPosition = w.rightHandPosition.value;
             rh_target.localEulerAngles = w.rightHandEuler.value;
             lh_target = w.runTime.weaponHook.leftHandIK;
+
+            basePosition = w.rightHandPosition.value;
+            baseRotation = w.rightHandEuler.value;
         }
 
         void HandleShoulder()
@@ -160,12 +163,9 @@ namespace SA
 
         public void RecoilAnim()
         {
-            if(!recoilIsInit)
-            {
-                recoilIsInit = true;
-                recoilT = 0;
-                offsetPosition = Vector3.zero;
-            }
+            recoilIsInit = true;
+            recoilT = 0;
+            offsetPosition = Vector3.zero;
         }
 
         public void RecoilActual()
@@ -178,6 +178,9 @@ namespace SA
                     recoilT = 1;
                     recoilIsInit = false;
                 }
+
+                offsetPosition = Vector3.forward * currentWeapon.recoilZ.Evaluate(recoilT);
+                offsetRotation = Vector3.right * 90 * -currentWeapon.recoilY.Evaluate(recoilT);
 
                 rh_target.localPosition = basePosition + offsetPosition;
                 rh_target.localEulerAngles = baseRotation + offsetRotation;

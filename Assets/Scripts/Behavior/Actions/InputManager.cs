@@ -11,6 +11,7 @@ namespace SA
         public InputAxis horizontal;
         public InputAxis vertical;
         public InputButton aimInput;
+        public InputButton shootButton;
 
         public float moveAmount;
         public Vector3 moveDirection;
@@ -38,6 +39,7 @@ namespace SA
                 playerStates.value.movementValues.vertical = vertical.value;
                 playerStates.value.movementValues.moveAmount = moveAmount;
                 playerStates.value.movementValues.moveDirection = moveDirection;
+                playerStates.value.isShooting = shootButton.isPressed;
 
                 if (!debugAim)
                 {

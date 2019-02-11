@@ -11,6 +11,7 @@ namespace SA
         public int currentBullets = 30;
         public int megazineBullets = 30;
         public float fireRate = 0.2f;
+        public Ammo ammoType;
 
         public Vector3Variable rightHandPosition;
         public Vector3Variable rightHandEuler;
@@ -26,7 +27,9 @@ namespace SA
             runTime = new RuntimeWeapon();
             runTime.modelInstance = Instantiate(modelPrefab) as GameObject;
             runTime.weaponHook = runTime.modelInstance.GetComponent<WeaponHook>();
-            runTime.weaponHook.Init();           
+            runTime.weaponHook.Init();
+
+            ammoType = GameManagers.GetAmmoPool().GetAmmo(ammoType.name);
         }
 
         public class RuntimeWeapon

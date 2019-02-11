@@ -9,7 +9,8 @@ namespace SA
     {
         public override void Execute(StateManager states)
         {
-            if(states.inventory.currentWeapon.currentBullets < states.inventory.currentWeapon.megazineBullets)
+            if(states.inventory.currentWeapon.currentBullets < states.inventory.currentWeapon.megazineBullets 
+                && states.inventory.currentWeapon.ammoType.carryingAmount > 0)
             {
                 if (states.isReloading)
                 {
@@ -25,7 +26,7 @@ namespace SA
                         {
                             states.isReloading = false;
                             states.isInteracting = false;
-                            states.inventory.ReloadCurrentWeapon();
+                            ReloadCurrentWeapon(states.inventory.currentWeapon);
                         }
                     }
                     return;
@@ -59,6 +60,18 @@ namespace SA
                     states.isReloading = true;
                 }
             }
+        }
+
+
+        public void ReloadCurrentWeapon(Weapon currentWeapon)
+        {
+            int target = currentWeapon.megazineBullets;
+            if (target > currentWeapon.ammoType.carryingAmount)
+            {
+                target = currentWeapon.megazineBullets - currentWeapon.ammoType.carryingAmount;
+            }
+            currentWeapon.ammoType.carryingAmount -= target;
+            currentWeapon.currentBullets = target;
         }
     }
 }

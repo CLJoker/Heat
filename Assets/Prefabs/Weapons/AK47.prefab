@@ -467,6 +467,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHandIK: {fileID: 4639377800770064}
   lastFired: 0
+  slider: {fileID: 4414674734957662}
+  sliderCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.5777392
+      outSlope: 3.5777392
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.08955224
+    - serializedVersion: 3
+      time: 0.49629608
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -3.2056239
+      outSlope: -3.2056239
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.09191255
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  multiplier: 0.09
+  sliderSpeed: 9
+  isShooting: 0
 --- !u!198 &198052249371998944
 ParticleSystem:
   m_ObjectHideFlags: 1

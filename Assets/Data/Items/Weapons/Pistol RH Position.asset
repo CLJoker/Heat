@@ -8,9 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2d0724abfa9dd643ae5594e50ea9f22, type: 3}
-  m_Name: ResourcesManager
+  m_Script: {fileID: 11500000, guid: b94b33feb8aa43b43870a6060b1f5374, type: 3}
+  m_Name: Pistol RH Position
   m_EditorClassIdentifier: 
-  allItems:
-  - {fileID: 11400000, guid: 8d89c4b83db20d040b5875d42f6cf309, type: 2}
-  - {fileID: 11400000, guid: f5b30ae5780db7241bbc2330f9677044, type: 2}
+  value: {x: 0.2, y: -0.05, z: 0.35}

@@ -9,5 +9,11 @@ namespace SA
     {
         public string weaponID;
         public Weapon currentWeapon;
+
+        public void ReloadCurrentWeapon()
+        {
+            int target = currentWeapon.megazineBullets;
+            currentWeapon.currentBullets = target;
+        }
     }
 }

@@ -26,10 +26,16 @@ namespace SA
         public bool isInteracting;
         public bool isShooting;
         public bool isCrouching;
+        public bool isReloading;
 
         public void SetCrouching()
         {
             isCrouching = !isCrouching;
+        }
+
+        public void SetReloading()
+        {
+            isReloading = true;
         }
 
         [HideInInspector]
@@ -78,6 +84,11 @@ namespace SA
             {
                 currentState.Tick(this);
             }
+        }
+
+        public void PlayAnimation(string targetAnim)
+        {
+            anim.CrossFade(targetAnim, 0.2f);
         }
     }
 }

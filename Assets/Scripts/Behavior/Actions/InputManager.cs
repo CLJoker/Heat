@@ -13,6 +13,7 @@ namespace SA
         public InputButton aimInput;
         public InputButton shootInput;
         public InputButton crouchInput;
+        public InputButton reloadInput;
 
         public float moveAmount;
         public Vector3 moveDirection;
@@ -47,6 +48,12 @@ namespace SA
                     playerStates.value.SetCrouching();
                     crouchInput.targetBoolVariable.value = playerStates.value.isCrouching;
                 }
+
+                if(reloadInput.isPressed)
+                {
+                    playerStates.value.SetReloading();
+                }
+                reloadInput.targetBoolVariable.value = playerStates.value.isReloading;
 
                 if (!debugAim)
                 {

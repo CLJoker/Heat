@@ -11,4 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937179a096a19424b82c7d1af7839478, type: 3}
   m_Name: AmmoPool
   m_EditorClassIdentifier: 
-  all_ammo: []
+  all_ammo:
+  - {fileID: 11400000, guid: 32961f692209e174b8f62dd231d83031, type: 2}
+  - {fileID: 11400000, guid: 0eb2c8e0265e39547bc1a9c16e100dee, type: 2}

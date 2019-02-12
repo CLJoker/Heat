@@ -14,6 +14,7 @@ MonoBehaviour:
   currentBullets: 30
   megazineBullets: 30
   fireRate: 0.2
+  ammoType: {fileID: 11400000, guid: 0eb2c8e0265e39547bc1a9c16e100dee, type: 2}
   rightHandPosition: {fileID: 11400000, guid: 18042c43eed08dd478eb33ddaa295343, type: 2}
   rightHandEuler: {fileID: 11400000, guid: 8de5f5f55d82385448558d15dab4bbd7, type: 2}
   modelPrefab: {fileID: 1028952238205128, guid: 04c4073defde03a4090e0401b7c18bec,

@@ -11,9 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5341af7b4914e6f4ea017e1b4d90c20a, type: 3}
   m_Name: 1911
   m_EditorClassIdentifier: 
-  currentBullets: 10
-  megazineBullets: 30
+  currentBullets: 7
+  megazineBullets: 7
   fireRate: 0.5
+  ammoType: {fileID: 11400000, guid: 32961f692209e174b8f62dd231d83031, type: 2}
   rightHandPosition: {fileID: 11400000, guid: af6e06ca786bd9a49bc4080ae0671176, type: 2}
   rightHandEuler: {fileID: 11400000, guid: d731559e3cc9a704ca5dfb80a3165d3d, type: 2}
   modelPrefab: {fileID: 1230115685534016, guid: cf3a1ce1e9929074d9b4da393a4c9cd5,

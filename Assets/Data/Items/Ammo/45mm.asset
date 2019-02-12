@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77cd1131847a3cf4d96a772739ca6991, type: 3}
   m_Name: 45mm
   m_EditorClassIdentifier: 
-  carryingAmount: 0
+  carryingAmount: 10

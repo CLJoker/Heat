@@ -4,7 +4,7 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: WFX_BulletHole Concrete Lighted
   m_Shader: {fileID: 4800000, guid: edb905ac1dd1f8d4688248976976eae3, type: 3}

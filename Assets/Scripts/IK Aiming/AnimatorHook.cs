@@ -83,7 +83,7 @@ namespace SA
 
         void HandleWeights()
         {
-            if(states.isInteracting)
+            if (states.isInteracting || states.isVaulting)
             {
                 m_h_weight = 0;
                 o_h_weight = 0;

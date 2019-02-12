@@ -21,7 +21,6 @@ namespace SA
         public AnimationCurve recoilY;
         public AnimationCurve recoilZ;
 
-
         public void Init()
         {
             runTime = new RuntimeWeapon();

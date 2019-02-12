@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SA
 {
-    public class StateManager : MonoBehaviour
+    public class StateManager : MonoBehaviour, IHittable
     {
         public MovementValue movementValues;
         public Inventory inventory;
@@ -27,6 +27,7 @@ namespace SA
         public bool isShooting;
         public bool isCrouching;
         public bool isReloading;
+        public bool isVaulting;
 
         public void SetCrouching()
         {
@@ -53,6 +54,9 @@ namespace SA
         public AnimatorHook animHook;
 
         public StateActions initActionsBatch;
+        public VaultData vaultData;
+        public AnimHashes hashes;
+        public Ballistics ballisticsAction;
 
         private void Start()
         {
@@ -66,6 +70,8 @@ namespace SA
             anim = GetComponentInChildren<Animator>();
 
             initActionsBatch.Execute(this);
+
+            hashes = new AnimHashes();
         }
 
         private void FixedUpdate()
@@ -89,6 +95,11 @@ namespace SA
         public void PlayAnimation(string targetAnim)
         {
             anim.CrossFade(targetAnim, 0.2f);
+        }
+
+        public void OnHit(StateManager shooter, Weapon wp, Vector3 dir, Vector3 pos)
+        {
+           
         }
     }
 }

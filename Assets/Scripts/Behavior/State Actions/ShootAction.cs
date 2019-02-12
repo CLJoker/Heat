@@ -50,6 +50,12 @@ namespace SA
                         w.runTime.weaponHook.Shoot();
 
                         states.animHook.RecoilAnim();
+
+                        if (states.ballisticsAction != null)
+                        {
+                            states.ballisticsAction.Execute(states, w);
+                        }
+
                         w.currentBullets--;
                         if (w.currentBullets < 0)
                             w.currentBullets = 0;

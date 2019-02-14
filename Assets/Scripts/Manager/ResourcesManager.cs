@@ -10,6 +10,8 @@ namespace SA
         public List<Item> allItems = new List<Item>();
         Dictionary<string, Item> itemDict = new Dictionary<string, Item>();
 
+        public RoomVariable currentRoom;
+
         public void Init()
         {
             for(int i= 0; i < allItems.Count; i++)

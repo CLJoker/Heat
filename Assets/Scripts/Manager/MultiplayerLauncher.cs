@@ -61,9 +61,39 @@ namespace SA
             isConnected.value = false;
         }
 
+        public override void OnCreatedRoom()
+        {
+            Room r = ScriptableObject.CreateInstance<Room>();
+
+            object sceneName;
+            PhotonNetwork.room.CustomProperties.TryGetValue("scene", out sceneName);
+            r.sceneName = (string)sceneName;
+            r.roomName = PhotonNetwork.room.Name;
+
+            GameManagers.GetResourcesManager().currentRoom.value = r;
+        }
+
+        public override void OnJoinedRoom()
+        {
+            base.OnJoinedRoom();
+        }
         #endregion
 
         #region Manager Methods
+        public void CreateRoom(RoomButton b)
+        {
+            RoomOptions roomOptions = new RoomOptions();
+            roomOptions.MaxPlayers = 4;
+
+            ExitGames.Client.Photon.Hashtable properties = new ExitGames.Client.Photon.Hashtable
+            {
+                {"scene", b.scene }
+            };
+
+            roomOptions.CustomRoomProperties = properties;
+            PhotonNetwork.CreateRoom(null, roomOptions, TypedLobby.Default);
+        }
+
         public void LoadMainMenu()
         {
             StartCoroutine(LoadScene("Main", OnMainMenu));

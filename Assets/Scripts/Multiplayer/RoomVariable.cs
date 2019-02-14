@@ -13,5 +13,17 @@ namespace SA
         {
             value = r;
         }
+
+        public void SetRoom(RoomButton b)
+        {
+            if (b.isRoomCreated)
+            {
+                Set(b.room);
+            }
+            else
+            {
+                MultiplayerLauncher.singleton.CreateRoom(b);
+            }
+        }
     }
 }

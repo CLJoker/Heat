@@ -167,7 +167,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: aad09c3d07d92f64491b1f1f97b6b43c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1392,7 +1392,7 @@ GameObject:
   - component: {fileID: 297497330}
   - component: {fileID: 297497329}
   m_Layer: 5
-  m_Name: JobName
+  m_Name: progress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2712,6 +2712,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 510333250}
+  - component: {fileID: 510333252}
+  - component: {fileID: 510333251}
   m_Layer: 5
   m_Name: DisplayJob
   m_TagString: Untagged
@@ -2741,6 +2743,48 @@ RectTransform:
   m_AnchoredPosition: {x: 659.55, y: 216.35004}
   m_SizeDelta: {x: 600.9, y: 647.3}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &510333251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 510333249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14afde136199f1b42b233093b4961c50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayJob: {fileID: 1718721362}
+  displayJobImage: {fileID: 13632168}
+  displayJobDescription: {fileID: 450781151}
+--- !u!114 &510333252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 510333249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a055b694402bd469a86915f1319e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 536b80010390ec242b6d6883a03e01f2, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 510333251}
+        m_MethodName: ChangeDisplayJob
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &527470182
 GameObject:
   m_ObjectHideFlags: 0
@@ -3323,9 +3367,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 607019488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b6e0a88bcd9ff647b86ecb6689043b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f70e729d5e263f4db6c57ba6e6b9303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRoomCreated: 0
+  room: {fileID: 0}
+  scene: City
+  mapInformation: {fileID: 11400000, guid: 030213c590505384884ee30b4e10d6f1, type: 2}
+  mapButton:
+    name: {fileID: 1734415377}
+    currentPlayer: {fileID: 2041009512}
+    currentProgress: {fileID: 297497329}
 --- !u!114 &607019491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3366,7 +3418,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 607019490}
-        m_MethodName: UpdateJobOnGameSettings
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 536b80010390ec242b6d6883a03e01f2, type: 2}
+        m_MethodName: Raise
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4624,6 +4687,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 536b80010390ec242b6d6883a03e01f2, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &840389876
@@ -4674,6 +4748,11 @@ MonoBehaviour:
   isRoomCreated: 0
   room: {fileID: 0}
   scene: City
+  mapInformation: {fileID: 11400000, guid: e39d806b1bbd8ed45a822ec57573343d, type: 2}
+  mapButton:
+    name: {fileID: 1139806562}
+    currentPlayer: {fileID: 1024650344}
+    currentProgress: {fileID: 2137312988}
 --- !u!1 &860100900
 GameObject:
   m_ObjectHideFlags: 0
@@ -6668,7 +6747,7 @@ GameObject:
   - component: {fileID: 1147199676}
   - component: {fileID: 1147199675}
   m_Layer: 5
-  m_Name: JobName
+  m_Name: progress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7030,7 +7109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1188685174
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10848,9 +10927,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1924875136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b6e0a88bcd9ff647b86ecb6689043b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f70e729d5e263f4db6c57ba6e6b9303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRoomCreated: 0
+  room: {fileID: 0}
+  scene: City
+  mapInformation: {fileID: 11400000, guid: 211f9a3fa57a9b04bba980635f515559, type: 2}
+  mapButton:
+    name: {fileID: 1419358141}
+    currentPlayer: {fileID: 328643148}
+    currentProgress: {fileID: 1147199675}
 --- !u!114 &1924875139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10891,7 +10978,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1924875138}
-        m_MethodName: UpdateJobOnGameSettings
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 536b80010390ec242b6d6883a03e01f2, type: 2}
+        m_MethodName: Raise
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12250,7 +12348,7 @@ GameObject:
   - component: {fileID: 2137312989}
   - component: {fileID: 2137312988}
   m_Layer: 5
-  m_Name: JobName
+  m_Name: progress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,6 +11,7 @@ namespace SA
         Dictionary<string, Item> itemDict = new Dictionary<string, Item>();
 
         public RoomVariable currentRoom;
+        public MapVariable currentMap;
 
         public void Init()
         {

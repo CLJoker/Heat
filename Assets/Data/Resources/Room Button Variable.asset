@@ -8,8 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46f51dffe7eb0934191b471a966572bf, type: 3}
-  m_Name: CurrentRoom
+  m_Script: {fileID: 11500000, guid: d73f15d1cd61f134bb168e16834c440e, type: 3}
+  m_Name: Room Button Variable
   m_EditorClassIdentifier: 
   value: {fileID: 0}
-  roomButtonVariable: {fileID: 11400000, guid: 652d84be9eab52f4795ed083fbd3685a, type: 2}

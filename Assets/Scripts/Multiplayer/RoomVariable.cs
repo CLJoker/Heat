@@ -8,6 +8,15 @@ namespace SA
     public class RoomVariable : ScriptableObject
     {
         public Room value;
+        public RoomButtonVariable roomButtonVariable;
+
+        public void JoinGame()
+        {
+            if (roomButtonVariable == null)
+                return;
+
+            SetRoom(roomButtonVariable.value);
+        }
 
         public void Set(Room r)
         {
@@ -24,6 +33,11 @@ namespace SA
             {
                 MultiplayerLauncher.singleton.CreateRoom(b);
             }
+        }
+
+        public void SetRoomButton(RoomButton b)
+        {
+            roomButtonVariable.value = b;
         }
     }
 }

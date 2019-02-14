@@ -1789,6 +1789,7 @@ MonoBehaviour:
   onConnectedToMaster: {fileID: 11400000, guid: 8ad2a53eea544e54e8177dce82718e11,
     type: 2}
   isConnected: {fileID: 11400000, guid: 2bbc71b7295692943a10d27a5855f519, type: 2}
+  isMultiplayer: {fileID: 11400000, guid: 75dc2b1a8600594468b55fa4950e18af, type: 2}
 --- !u!1 &358346118
 GameObject:
   m_ObjectHideFlags: 0
@@ -4612,12 +4613,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: c900b5e54794078449eff8dce56b4c0f, type: 2}
-        m_MethodName: SetRoom
-        m_Mode: 2
+      - m_Target: {fileID: 840389878}
+        m_MethodName: OnClick
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 840389878}
-          m_ObjectArgumentAssemblyTypeName: SA.RoomButton, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7875,6 +7876,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 75dc2b1a8600594468b55fa4950e18af, type: 2}
+        m_MethodName: Set
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &1369219395
@@ -10439,6 +10451,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: c900b5e54794078449eff8dce56b4c0f, type: 2}
+        m_MethodName: JoinGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &1853777557
@@ -12187,6 +12210,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1897804722}
         m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 75dc2b1a8600594468b55fa4950e18af, type: 2}
+        m_MethodName: Set
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -8,8 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caaf0ee5e32962442a8d0fe6cb741e1f, type: 3}
-  m_Name: Room1
+  m_Script: {fileID: 11500000, guid: 7b70bab822f15f64f9e4f622f615213e, type: 3}
+  m_Name: IsMultiplayer
   m_EditorClassIdentifier: 
-  sceneName: City
-  roomName: 
+  value: 0

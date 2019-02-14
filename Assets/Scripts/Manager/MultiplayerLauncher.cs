@@ -17,6 +17,7 @@ namespace SA
         public static MultiplayerLauncher singleton;
         public GameEvent onConnectedToMaster;
         public BoolVariable isConnected;
+        public BoolVariable isMultiplayer;
 
         #region Init
         private void Awake()
@@ -82,16 +83,33 @@ namespace SA
         #region Manager Methods
         public void CreateRoom(RoomButton b)
         {
-            RoomOptions roomOptions = new RoomOptions();
-            roomOptions.MaxPlayers = 4;
-
-            ExitGames.Client.Photon.Hashtable properties = new ExitGames.Client.Photon.Hashtable
+            if (isMultiplayer.value)
             {
-                {"scene", b.scene }
-            };
+                if (!isConnected.value)
+                {
+                    //Handle error, when cant connect but still on multiplayer
+                }
+                else
+                {
+                    RoomOptions roomOptions = new RoomOptions();
+                    roomOptions.MaxPlayers = 4;
 
-            roomOptions.CustomRoomProperties = properties;
-            PhotonNetwork.CreateRoom(null, roomOptions, TypedLobby.Default);
+                    ExitGames.Client.Photon.Hashtable properties = new ExitGames.Client.Photon.Hashtable
+                    {
+                        {"scene", b.scene }
+                    };
+
+                    roomOptions.CustomRoomProperties = properties;
+                    PhotonNetwork.CreateRoom(null, roomOptions, TypedLobby.Default);
+                }
+            }
+            else
+            {
+                Room r = ScriptableObject.CreateInstance<Room>();
+                r.sceneName = b.scene;
+                GameManagers.GetResourcesManager().currentRoom.Set(r);
+            }
+
         }
 
         public void LoadMainMenu()

@@ -12,7 +12,7 @@ namespace SA
 
         public void OnClick()
         {
-
+            GameManagers.GetResourcesManager().currentRoom.SetRoomButton(this);
         }
     }
 }

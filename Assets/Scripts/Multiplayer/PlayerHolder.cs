@@ -1,0 +1,15 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace SA
+{
+    public class PlayerHolder
+    {
+        public int photonId;
+        public string userName;
+        public NetworkPrint print;
+
+
+    }
+}

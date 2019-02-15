@@ -1356,7 +1356,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1049896222}
   m_OnClick:
     m_PersistentCalls:
@@ -1753,7 +1753,7 @@ GameObject:
   - component: {fileID: 353884258}
   - component: {fileID: 353884259}
   m_Layer: 0
-  m_Name: Multiplayer Manager
+  m_Name: Multiplayer Launcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1788,6 +1788,7 @@ MonoBehaviour:
   logLevel: 0
   onConnectedToMaster: {fileID: 11400000, guid: 8ad2a53eea544e54e8177dce82718e11,
     type: 2}
+  onJoinedRoom: {fileID: 11400000, guid: ce3e2b6bdedde984db1272acde64b65a, type: 2}
   isConnected: {fileID: 11400000, guid: 2bbc71b7295692943a10d27a5855f519, type: 2}
   isMultiplayer: {fileID: 11400000, guid: 75dc2b1a8600594468b55fa4950e18af, type: 2}
 --- !u!1 &358346118
@@ -2987,6 +2988,7 @@ GameObject:
   m_Component:
   - component: {fileID: 554108403}
   - component: {fileID: 554108404}
+  - component: {fileID: 554108405}
   m_Layer: 5
   m_Name: Main Menu Event Holder
   m_TagString: Untagged
@@ -3092,6 +3094,34 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &554108405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 554108402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a055b694402bd469a86915f1319e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: ce3e2b6bdedde984db1272acde64b65a, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 270155651}
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null

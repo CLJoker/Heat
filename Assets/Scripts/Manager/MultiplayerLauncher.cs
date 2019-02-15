@@ -16,6 +16,7 @@ namespace SA
 
         public static MultiplayerLauncher singleton;
         public GameEvent onConnectedToMaster;
+        public GameEvent onJoinedRoom;
         public BoolVariable isConnected;
         public BoolVariable isMultiplayer;
 
@@ -76,11 +77,19 @@ namespace SA
 
         public override void OnJoinedRoom()
         {
-            base.OnJoinedRoom();
+            onJoinedRoom.Raise();
+            InstantiateMultiplayerManager();
+
         }
         #endregion
 
         #region Manager Methods
+
+        void InstantiateMultiplayerManager()
+        {
+            PhotonNetwork.Instantiate("MultiplayerManager", Vector3.zero, Quaternion.identity, 0);
+        }
+
         public void CreateRoom(RoomButton b)
         {
             if (isMultiplayer.value)

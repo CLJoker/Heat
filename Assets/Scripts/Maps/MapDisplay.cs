@@ -11,6 +11,11 @@ namespace SA
         public GameObject displayJobImage;
         public Text displayJobDescription;
 
+        public void Start()
+        {
+            ChangeDisplayJob();
+        }
+
         public void ChangeDisplayJob()
         {
             Map m = GameManagers.GetResourcesManager().currentMap.value;

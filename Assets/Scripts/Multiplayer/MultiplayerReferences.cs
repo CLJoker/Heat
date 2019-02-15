@@ -9,6 +9,13 @@ namespace SA
         List<PlayerHolder> players = new List<PlayerHolder>();
 
         public PlayerHolder localPlayer;
+        public Transform referencesParent;
+
+        public MultiplayerReferences()
+        {
+            referencesParent = new GameObject().transform;
+            referencesParent.name = "references";
+        }
 
         public int getPlayerCount()
         {

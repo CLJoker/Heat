@@ -18,5 +18,11 @@ namespace SA
 
             mm.AddNewPlayer(this);
         }
+
+        public void InstantiateController(int spawnIndex)
+        {
+            GameObject inputHandler = Instantiate(Resources.Load("Input Handler")) as GameObject;
+            PhotonNetwork.Instantiate("MultiplayerController", Vector3.zero, Quaternion.identity, 0);
+        }
     }
 }

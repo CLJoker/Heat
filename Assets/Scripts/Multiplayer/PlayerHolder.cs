@@ -8,6 +8,7 @@ namespace SA
     {
         public int photonId;
         public string userName;
+        public int spawnPosition;
         public NetworkPrint print;
 
 

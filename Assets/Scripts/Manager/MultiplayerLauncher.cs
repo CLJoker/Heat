@@ -9,7 +9,7 @@ namespace SA
 {
     public class MultiplayerLauncher : Photon.PunBehaviour
     {
-        delegate void OnSceneLoaded();
+        public delegate void OnSceneLoaded();
         bool isLoading;
         public int gameVersion = 1;
         public PhotonLogLevel logLevel = PhotonLogLevel.ErrorsOnly;
@@ -26,6 +26,7 @@ namespace SA
             if(singleton == null)
             {
                 singleton = this;
+                DontDestroyOnLoad(this.gameObject);
             }
             else
             {
@@ -126,13 +127,34 @@ namespace SA
             StartCoroutine(LoadScene("Main", OnMainMenu));
         }
 
+        /// <summary>
+        /// Gets called by an event
+        /// </summary>
         public void LoadCurrentRoom()
+        {
+            if (isConnected)
+            {
+                MultiplayerManager.singleton.BroadCastSceneChange();
+            }
+            else
+            {
+                Room r = GameManagers.GetResourcesManager().currentRoom.value;
+                if (!isLoading)
+                {
+                    isLoading = true;
+                    StartCoroutine(LoadScene(r.sceneName));
+                }
+            }
+
+        }
+
+        public void LoadCurrentSceneActual(OnSceneLoaded callback = null)
         {
             Room r = GameManagers.GetResourcesManager().currentRoom.value;
             if (!isLoading)
             {
                 isLoading = true;
-                StartCoroutine(LoadScene(r.sceneName));
+                StartCoroutine(LoadScene(r.sceneName, callback));
             }
         }
 

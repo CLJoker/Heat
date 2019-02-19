@@ -2437,12 +2437,14 @@ MonoBehaviour:
     weaponID: AK
     currentWeapon: {fileID: 0}
   currentState: {fileID: 11400000, guid: dd0b8ab9567abb346a7a1d923d70fe9e, type: 2}
+  isLocal: 0
   isAiming: 0
   isInteracting: 0
   isShooting: 0
   isCrouching: 0
   isReloading: 0
   isVaulting: 0
+  isGrounded: 0
   anim: {fileID: 0}
   delta: 0
   mTransform: {fileID: 0}
@@ -2451,7 +2453,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   animHook: {fileID: 0}
-  initActionsBatch: {fileID: 11400000, guid: b5fc4659ea9b98244a6c984e50a1c0bf, type: 2}
   vaultData:
     startPosition: {x: 0, y: 0, z: 0}
     endingPosition: {x: 0, y: 0, z: 0}
@@ -2460,19 +2461,20 @@ MonoBehaviour:
     vaultT: 0
     isInit: 0
   ballisticsAction: {fileID: 11400000, guid: a1755d42d111636438e1364db5ae0fea, type: 2}
+  multiplayerListener: {fileID: 0}
 --- !u!136 &136322887898925124
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1138147466626216}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: bd0e54b375528224f88e5cc6b12d7c98, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2
-  m_Height: 1
+  m_Height: 1.8
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!137 &137344911165111138
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -29,6 +29,7 @@ namespace SA
         public bool isCrouching;
         public bool isReloading;
         public bool isVaulting;
+        public bool isGrounded;
 
         public void SetCrouching()
         {
@@ -48,7 +49,7 @@ namespace SA
         [HideInInspector]
         public Transform mTransform;
         [HideInInspector]
-        public Rigidbody rigid;
+        public new Rigidbody rigidbody;
         [HideInInspector]
         public LayerMask ignoreLayers;
         [HideInInspector]
@@ -60,9 +61,17 @@ namespace SA
         public Ballistics ballisticsAction;
 
         public MultiplayerListener multiplayerListener;
+        public bool isOfflineController;
+        public StateActions offlineActions;
 
         private void Start()
         {
+            mTransform = this.transform;
+            rigidbody = GetComponent<Rigidbody>();
+            if (isOfflineController)
+            {
+                offlineActions.Execute(this);
+            }
             hashes = new AnimHashes();
         }
 

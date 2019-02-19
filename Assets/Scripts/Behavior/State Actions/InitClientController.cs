@@ -11,9 +11,9 @@ namespace SA
         {
             states.mTransform = states.transform;
             states.anim = states.mTransform.GetComponentInChildren<Animator>();
-            states.rigid = states.mTransform.GetComponent<Rigidbody>();
+            states.rigidbody = states.mTransform.GetComponent<Rigidbody>();
 
-            states.rigid.isKinematic = true;
+            states.rigidbody.isKinematic = true;
         }
     }
 }

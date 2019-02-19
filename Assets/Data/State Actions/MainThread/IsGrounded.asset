@@ -11,3 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44af5d1186d7ed246bfe5f2ad8b0b83f, type: 3}
   m_Name: IsGrounded
   m_EditorClassIdentifier: 
+  groundedDis: 0.8
+  onAirDis: 0.85

@@ -13,11 +13,11 @@ namespace SA
         {
             states.mTransform = states.transform;
             states.anim = states.mTransform.GetComponentInChildren<Animator>();
-            states.rigid = states.mTransform.GetComponent<Rigidbody>();
+            states.rigidbody = states.mTransform.GetComponent<Rigidbody>();
 
-            states.rigid.drag = 4;
-            states.rigid.angularDrag = 999;
-            states.rigid.constraints = RigidbodyConstraints.FreezeRotation;
+            states.rigidbody.drag = 4;
+            states.rigidbody.angularDrag = 999;
+            states.rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             states.ignoreLayers = ~(1 << 9 | 1 << 3);
             if (initActionsBatch != null)
             {

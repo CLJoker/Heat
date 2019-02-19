@@ -13,16 +13,16 @@ namespace SA
         public override void Execute(StateManager states)
         {
             if (states.movementValues.moveAmount > 0.1f)
-                states.rigid.drag = 0;
+                states.rigidbody.drag = 0;
             else
-                states.rigid.drag = 4;
+                states.rigidbody.drag = 4;
 
             float targetSpeed = movementSpeed;
             if (states.isCrouching)
                 targetSpeed = crouchSpeed;
 
             Vector3 velocity = states.movementValues.moveDirection * (states.movementValues.moveAmount * targetSpeed);
-            states.rigid.velocity = velocity;
+            states.rigidbody.velocity = velocity;
         }
 
     }

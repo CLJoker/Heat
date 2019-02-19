@@ -129,9 +129,8 @@ GameObject:
   - component: {fileID: 54028781918897400}
   - component: {fileID: 136322887898925124}
   - component: {fileID: 114774915683604492}
-  - component: {fileID: 114675420372949146}
-  - component: {fileID: 114018734661493770}
-  - component: {fileID: 114482402361717610}
+  - component: {fileID: 114247674446128092}
+  - component: {fileID: 114470789672275930}
   m_Layer: 9
   m_Name: MultiplayerController
   m_TagString: Untagged
@@ -2392,7 +2391,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114018734661493770
+--- !u!114 &114247674446128092
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2400,11 +2399,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1138147466626216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4100a820471b1ee4f9edff9dcba6e20d, type: 3}
+  m_Script: {fileID: 11500000, guid: 30df110bd5ab76d40a03caa3afecd134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetVariable: {fileID: 11400000, guid: 259e7322b6c3be149a034283a31f787d, type: 2}
---- !u!114 &114482402361717610
+  local: {fileID: 11400000, guid: dd0b8ab9567abb346a7a1d923d70fe9e, type: 2}
+  initLocalPlayer: {fileID: 11400000, guid: ae7255de37d50e549a125b00fffad378, type: 2}
+  client: {fileID: 11400000, guid: d854e7160e4582f43bd7cfaf901490a3, type: 2}
+  initClientPlayer: {fileID: 11400000, guid: bb1febf7c62a68f41ae84dbfd9726705, type: 2}
+--- !u!114 &114470789672275930
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2419,36 +2421,24 @@ MonoBehaviour:
   group: 0
   OwnerShipWasTransfered: 0
   prefixBackup: -1
-  synchronization: 0
+  synchronization: 3
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 114247674446128092}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
---- !u!114 &114675420372949146
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1138147466626216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 362d145d98117b14e9549be01b91dfff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transformVariable: {fileID: 11400000, guid: b97e6095ea235b2468a2dd8eecdaa3c8, type: 2}
 --- !u!114 &114774915683604492
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1138147466626216}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3e08173336c77d4bbf8356471f54b2a, type: 3}
   m_Name: 
@@ -2463,7 +2453,7 @@ MonoBehaviour:
   inventory:
     weaponID: AK
     currentWeapon: {fileID: 0}
-  currentState: {fileID: 11400000, guid: dd0b8ab9567abb346a7a1d923d70fe9e, type: 2}
+  currentState: {fileID: 0}
   isAiming: 0
   isInteracting: 0
   isShooting: 0
@@ -2478,7 +2468,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   animHook: {fileID: 0}
-  initActionsBatch: {fileID: 11400000, guid: b5fc4659ea9b98244a6c984e50a1c0bf, type: 2}
   vaultData:
     startPosition: {x: 0, y: 0, z: 0}
     endingPosition: {x: 0, y: 0, z: 0}

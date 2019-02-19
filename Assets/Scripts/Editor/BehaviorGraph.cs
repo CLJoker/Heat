@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SA.BehaviorEditor
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Editor/Graph")]
     public class BehaviorGraph : ScriptableObject
     {
 	[SerializeField]

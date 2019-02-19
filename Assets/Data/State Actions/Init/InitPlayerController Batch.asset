@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae09ad2eae87a6141acff168315f7d79, type: 3}
+  m_Name: InitPlayerController Batch
+  m_EditorClassIdentifier: 
+  stateActions:
+  - {fileID: 11400000, guid: 0f10c46b96c2dac458bbebb420c13bcb, type: 2}
+  - {fileID: 11400000, guid: 0a3485ad7f5cfc842bea3b578ed0bbdf, type: 2}
+  - {fileID: 11400000, guid: 20e2d6b37df8a4949b9755297f34e45b, type: 2}
+  - {fileID: 11400000, guid: b44b1b9668860c348993bb690eaa825b, type: 2}

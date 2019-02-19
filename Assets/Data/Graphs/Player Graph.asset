@@ -9,15 +9,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 711dbd0dcc0707448ad710a82f0aa6b6, type: 3}
-  m_Name: Graph
+  m_Name: Player Graph
   m_EditorClassIdentifier: 
   windows:
   - id: 0
     drawNode: {fileID: 11400000, guid: 3de6cb72c5d54a842957b3d8754294e2, type: 2}
     windowRect:
       serializedVersion: 2
-      x: 23
-      y: 150
+      x: 78.799995
+      y: 118.20001
       width: 200
       height: 450
     windowTitle: State
@@ -42,8 +42,8 @@ MonoBehaviour:
     drawNode: {fileID: 11400000, guid: 3de6cb72c5d54a842957b3d8754294e2, type: 2}
     windowRect:
       serializedVersion: 2
-      x: 486
-      y: 142
+      x: 541.7999
+      y: 110.20001
       width: 200
       height: 310
     windowTitle: State
@@ -68,8 +68,8 @@ MonoBehaviour:
     drawNode: {fileID: 11400000, guid: 02d1192eec6276044a75147866515bb8, type: 2}
     windowRect:
       serializedVersion: 2
-      x: 254
-      y: 155
+      x: 309.80005
+      y: 123.20003
       width: 200
       height: 100
     windowTitle: Condition
@@ -95,8 +95,8 @@ MonoBehaviour:
     drawNode: {fileID: 11400000, guid: 02d1192eec6276044a75147866515bb8, type: 2}
     windowRect:
       serializedVersion: 2
-      x: 712
-      y: 139
+      x: 767.80005
+      y: 107.2
       width: 200
       height: 100
     windowTitle: Condition
@@ -122,8 +122,8 @@ MonoBehaviour:
     drawNode: {fileID: 11400000, guid: 765a518b20d9ed8449bf9d452b8f6306, type: 2}
     windowRect:
       serializedVersion: 2
-      x: 784
-      y: 286
+      x: 839.80005
+      y: 254.19992
       width: 100
       height: 80
     windowTitle: Portal

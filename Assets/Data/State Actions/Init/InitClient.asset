@@ -9,8 +9,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae09ad2eae87a6141acff168315f7d79, type: 3}
-  m_Name: InitControllerBatch
+  m_Name: InitClient
   m_EditorClassIdentifier: 
-  stateActions:
-  - {fileID: 11400000, guid: 0f10c46b96c2dac458bbebb420c13bcb, type: 2}
-  - {fileID: 11400000, guid: 0a3485ad7f5cfc842bea3b578ed0bbdf, type: 2}
+  stateActions: []

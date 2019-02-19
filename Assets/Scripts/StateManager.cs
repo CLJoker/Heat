@@ -53,24 +53,13 @@ namespace SA
         [HideInInspector]
         public AnimatorHook animHook;
 
-        public StateActions initActionsBatch;
+
         public VaultData vaultData;
         public AnimHashes hashes;
         public Ballistics ballisticsAction;
 
         private void Start()
         {
-            mTransform = this.transform;
-            rigid = GetComponent<Rigidbody>();
-            rigid.drag = 4;
-            rigid.angularDrag = 999;
-            rigid.constraints = RigidbodyConstraints.FreezeRotation;
-            ignoreLayers = ~(1 << 9 | 1 << 3);
-
-            anim = GetComponentInChildren<Animator>();
-
-            initActionsBatch.Execute(this);
-
             hashes = new AnimHashes();
         }
 
@@ -95,6 +84,17 @@ namespace SA
         public void PlayAnimation(string targetAnim)
         {
             anim.CrossFade(targetAnim, 0.2f);
+        }
+
+        public void SetCurrentState(State targetState)
+        {
+            if(currentState != null)
+            {
+                currentState.OnExit(this);
+            }
+
+            currentState = targetState;
+            currentState.OnEnter(this);
         }
 
         public void OnHit(StateManager shooter, Weapon wp, Vector3 dir, Vector3 pos)

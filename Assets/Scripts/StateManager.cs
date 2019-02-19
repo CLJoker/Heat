@@ -22,6 +22,7 @@ namespace SA
         
         public State currentState;
 
+        public bool isLocal;
         public bool isAiming;
         public bool isInteracting;
         public bool isShooting;
@@ -57,6 +58,8 @@ namespace SA
         public VaultData vaultData;
         public AnimHashes hashes;
         public Ballistics ballisticsAction;
+
+        public MultiplayerListener multiplayerListener;
 
         private void Start()
         {

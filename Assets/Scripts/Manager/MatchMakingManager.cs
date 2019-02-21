@@ -11,6 +11,8 @@ namespace SA
         Transform[] spawnPosition;
         List<MatchSpawnPosition> spawnPos = new List<MatchSpawnPosition>();
 
+        Dictionary<string, RoomButton> roomsDict = new Dictionary<string, RoomButton>();
+
         public static MatchMakingManager singleton;
 
         public Transform matchParent;
@@ -31,13 +33,68 @@ namespace SA
                 {
                     MatchSpawnPosition m = new MatchSpawnPosition();
                     m.pos = t;
-
                     spawnPos.Add(m);
                 }
             }
         }
 
-        public void AddMatch()
+        RoomButton GetRoomFromDictionary(string id)
+        {
+            RoomButton result = null;
+            roomsDict.TryGetValue(id, out result);
+
+            return result;
+        }
+
+        public void AddMatches(RoomInfo[] rooms)
+        {
+            SetDirtyRoom();
+
+            for(int i = 0; i < rooms.Length; i++)
+            {
+                RoomInfo r = rooms[i];
+
+                RoomButton createdRoom = GetRoomFromDictionary(rooms[i].Name);
+                if(createdRoom == null)
+                {
+                    AddMatch(r);
+                }
+                else
+                {
+                    createdRoom.isValid = true;
+                }
+            }
+
+            ClearNonValidRoom();
+        }
+
+        void SetDirtyRoom()
+        {
+            List<RoomButton> allRooms = new List<RoomButton>();
+            allRooms.AddRange(roomsDict.Values);
+
+            foreach(RoomButton r in allRooms)
+            {
+                r.isValid = false;
+            }
+        }
+
+        void ClearNonValidRoom()
+        {
+            List<RoomButton> allRooms = new List<RoomButton>();
+            allRooms.AddRange(roomsDict.Values);
+
+            foreach (RoomButton r in allRooms)
+            {
+                if (!r.isValid)
+                {
+                    roomsDict.Remove(r.roomInfo.Name);
+                    Destroy(r.gameObject);
+                }
+            }
+        }
+
+        public void AddMatch(RoomInfo roomInfo)
         {
             GameObject go = Instantiate(matchPrefab);
             go.transform.SetParent(matchParent);
@@ -46,6 +103,12 @@ namespace SA
             p.isUsed = true;
             go.transform.position = p.pos.position;
             go.transform.localScale = Vector3.one;
+
+            RoomButton roomButton = go.GetComponent<RoomButton>();
+            roomButton.roomInfo = roomInfo;
+            roomButton.isRoomCreated = true;
+            roomButton.isValid = true;
+            roomsDict.Add(roomInfo.Name, roomButton);
         }
 
         public MatchSpawnPosition GetSpawnPos()

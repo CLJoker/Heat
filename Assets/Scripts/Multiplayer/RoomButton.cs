@@ -10,6 +10,9 @@ namespace SA
         public bool isRoomCreated;
         public Room room;
         public string scene = "City";
+        public RoomInfo roomInfo;
+        public bool isValid;
+
         public Map mapInformation;
 
         public void Start()

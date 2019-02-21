@@ -28,6 +28,7 @@ namespace SA
             if (b.isRoomCreated)
             {
                 Set(b.room);
+                MultiplayerLauncher.singleton.JoinRoom(b.roomInfo);
             }
             else
             {

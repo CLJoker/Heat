@@ -11,6 +11,8 @@ namespace SA
     {
         public delegate void OnSceneLoaded();
         bool isLoading;
+        bool isInGame;
+
         public int gameVersion = 1;
         public PhotonLogLevel logLevel = PhotonLogLevel.ErrorsOnly;
 
@@ -92,13 +94,16 @@ namespace SA
         IEnumerator RoomCheck()
         {
             yield return new WaitForSeconds(3);
-            MatchMakingManager m = MatchMakingManager.singleton;
-            RoomInfo[] rooms = PhotonNetwork.GetRoomList();
-
-            Debug.Log(rooms.Length);
-            for (int i = 0; i < rooms.Length; i++)
+            if (!isInGame)
             {
-                m.AddMatch();
+                MatchMakingManager m = MatchMakingManager.singleton;
+                RoomInfo[] rooms = PhotonNetwork.GetRoomList();
+
+                Debug.Log(rooms.Length);
+                m.AddMatches(rooms);
+
+                yield return new WaitForSeconds(5);
+                StartCoroutine(RoomCheck());
             }
         }
         #endregion
@@ -143,6 +148,13 @@ namespace SA
                 GameManagers.GetResourcesManager().currentRoom.Set(r);
             }
 
+            isInGame = true;
+        }
+
+        public void JoinRoom(RoomInfo roomInfo)
+        {
+            PhotonNetwork.JoinRoom(roomInfo.Name);
+            isInGame = true;
         }
 
         public void LoadMainMenu()

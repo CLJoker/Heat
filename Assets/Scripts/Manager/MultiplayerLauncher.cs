@@ -82,9 +82,32 @@ namespace SA
             InstantiateMultiplayerManager();
 
         }
+
+        public override void OnJoinedLobby()
+        {
+            Debug.Log("OnJoinedLobby");
+            StartCoroutine(RoomCheck());
+        }
+
+        IEnumerator RoomCheck()
+        {
+            yield return new WaitForSeconds(3);
+            MatchMakingManager m = MatchMakingManager.singleton;
+            RoomInfo[] rooms = PhotonNetwork.GetRoomList();
+
+            Debug.Log(rooms.Length);
+            for (int i = 0; i < rooms.Length; i++)
+            {
+                m.AddMatch();
+            }
+        }
         #endregion
 
         #region Manager Methods
+        public void JoinLobby()
+        {
+            PhotonNetwork.JoinLobby();
+        }
 
         void InstantiateMultiplayerManager()
         {

@@ -16,11 +16,7 @@ namespace SA
             singleton = this;
             DontDestroyOnLoad(this.gameObject);
             mRef = new MultiplayerReferences();
-
-            if (PhotonNetwork.isMasterClient)
-            {
-                InstantiateNetworkPrint();
-            }
+            InstantiateNetworkPrint();
         }
 
         void InstantiateNetworkPrint()

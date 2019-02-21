@@ -108,6 +108,14 @@ namespace SA
             roomButton.roomInfo = roomInfo;
             roomButton.isRoomCreated = true;
             roomButton.isValid = true;
+
+            roomButton.room = ScriptableObject.CreateInstance<Room>();
+            object sceneObj = null;
+            roomInfo.CustomProperties.TryGetValue("scene", out sceneObj);
+            string sceneName = (string)sceneObj;
+            roomButton.room.sceneName = sceneName;
+            roomButton.room.roomName = roomInfo.Name;
+
             roomsDict.Add(roomInfo.Name, roomButton);
         }
 

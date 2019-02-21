@@ -82,7 +82,6 @@ namespace SA
         {
             onJoinedRoom.Raise();
             InstantiateMultiplayerManager();
-
         }
 
         public override void OnJoinedLobby()
@@ -116,7 +115,10 @@ namespace SA
 
         void InstantiateMultiplayerManager()
         {
-            PhotonNetwork.Instantiate("MultiplayerManager", Vector3.zero, Quaternion.identity, 0);
+            if (PhotonNetwork.isMasterClient)
+            {
+                PhotonNetwork.Instantiate("MultiplayerManager", Vector3.zero, Quaternion.identity, 0);
+            }
         }
 
         public void CreateRoom(RoomButton b)
@@ -137,6 +139,7 @@ namespace SA
                         {"scene", b.scene }
                     };
 
+                    roomOptions.CustomRoomPropertiesForLobby = new string[] { "scene" };
                     roomOptions.CustomRoomProperties = properties;
                     PhotonNetwork.CreateRoom(null, roomOptions, TypedLobby.Default);
                 }

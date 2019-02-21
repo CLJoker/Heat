@@ -629,7 +629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1529420324873918
 GameObject:
   m_ObjectHideFlags: 1
@@ -2470,7 +2470,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   delta: 0
   mTransform: {fileID: 0}
-  rigid: {fileID: 0}
+  rigidbody: {fileID: 0}
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2484,6 +2484,8 @@ MonoBehaviour:
     isInit: 0
   ballisticsAction: {fileID: 11400000, guid: a1755d42d111636438e1364db5ae0fea, type: 2}
   multiplayerListener: {fileID: 0}
+  isOfflineController: 0
+  offlineActions: {fileID: 0}
 --- !u!136 &136322887898925124
 CapsuleCollider:
   m_ObjectHideFlags: 1

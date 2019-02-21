@@ -53,5 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixedUpdateActions: []
   updateActions:
+  - {fileID: 11400000, guid: 2706092ca3d58ba45b2844b4ead4c7a8, type: 2}
   - {fileID: 11400000, guid: 88a20d36aa729214499e43a663746096, type: 2}
   - {fileID: 11400000, guid: 963f97e3fd06b8e4eb9b30dd2fe39e64, type: 2}

@@ -16,6 +16,7 @@ namespace SA
             singleton = this;
             DontDestroyOnLoad(this.gameObject);
             mRef = new MultiplayerReferences();
+            DontDestroyOnLoad(mRef.referencesParent.gameObject);
             InstantiateNetworkPrint();
         }
 
@@ -47,6 +48,11 @@ namespace SA
         public void CreateController()
         {
             mRef.localPlayer.print.InstantiateController(mRef.localPlayer.spawnPosition);
+        }
+
+        public MultiplayerReferences GetMultiplayerReferences()
+        {
+            return mRef;
         }
         #endregion
 

@@ -31,6 +31,10 @@ namespace SA
             }
             else
             {
+                object[] data = photonView.instantiationData;
+                string weaponId = (string)data[0];
+
+                states.inventory.weaponID = weaponId;
                 states.isLocal = false;
                 states.SetCurrentState(client);
                 initClientPlayer.Execute(states);

@@ -11,3 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ad50c16cdb1834eacdd5bc3437b537, type: 3}
   m_Name: Init Client Controller
   m_EditorClassIdentifier: 
+  actionStack:
+  - {fileID: 11400000, guid: 0f10c46b96c2dac458bbebb420c13bcb, type: 2}
+  - {fileID: 11400000, guid: 0a3485ad7f5cfc842bea3b578ed0bbdf, type: 2}

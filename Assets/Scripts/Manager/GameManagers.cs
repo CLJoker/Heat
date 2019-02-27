@@ -17,8 +17,14 @@ namespace SA
 
             return objectPooler;
         }
-        static ResourcesManager resourcesManager;
 
+        static PlayerProfile profile;
+        public static PlayerProfile GetPlayerProfile()
+        {
+            return Resources.Load("PlayerProfile") as PlayerProfile;
+        }
+
+        static ResourcesManager resourcesManager;
         public static ResourcesManager GetResourcesManager()
         {
             if(resourcesManager == null)

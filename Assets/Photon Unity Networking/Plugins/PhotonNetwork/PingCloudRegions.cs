@@ -194,6 +194,8 @@ public class PhotonPingManager
         {
             ping = new PingHttp();
         }
+        #elif NETFX_CORE
+        ping = new PingWindowsStore();
         #else
         if (PhotonHandler.PingImplementation == typeof(PingMono))
         {

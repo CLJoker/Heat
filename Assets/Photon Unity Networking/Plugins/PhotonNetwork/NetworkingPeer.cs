@@ -830,11 +830,17 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
         //    }
         //}
         //#pragma warning restore 0162
-
+        #if NETFX_CORE
+        if (PhotonHandler.PingImplementation == null)
+        {
+            PhotonHandler.PingImplementation = typeof(PingWindowsStore);
+        }
+        #else
         if (PhotonHandler.PingImplementation == null)
         {
             PhotonHandler.PingImplementation = typeof(PingMono);
         }
+        #endif
 
 
         #if NET_4_6 && (UNITY_EDITOR || !ENABLE_IL2CPP)

@@ -1,7 +1,11 @@
+v1.94 (15. February 2019)
+	Fixed: UWP export. This includes the placeholder for the dll in the Metro folder and using the PingWindowsStore class as required (PingMono does not exist in UWP).
+	Note: This update has no new version number, due to marginal-only fixes.
 v1.94 (13. February 2019)
     Fixed: A crash problem on Nintendo Switch. Setting a Thread.Name caused a crash in some Unity exports. We work around this by simply not naming internal threads.
     Updated: Photon3Unity3d.dll library to 4.1.2.9, rev4985.
-
+    Photon Chat:
+        Added: Client API for Max Subscribers and Publish Subscribers features inside public channels. 
 
 v1.93 (17. January 2019)
     Fixed: Support for 2018.3 and newer prefab editing workflow.
@@ -10,8 +14,6 @@ v1.93 (17. January 2019)
     Updated: To Photon3Unity3d.dll v4.1.2.6, which is the same as used in PUN 2 with several performance improvements. See plugins\release_history.txt.
 	Added: PhotonPing classes for the Best Region feature. They are not part of the used dll anymore (see below).
 	Updated: SocketWebTcp.cs to match the new photon dll. It's now only compatible with Unity 5.3 and up.
-    Photon Chat:
-        Added: Client API for Max Subscribers and Publish Subscribers features inside public channels. 
 
 v1.92 (26. October 2018)
     Updated: Removed "UsePreciseTimer" option and made it the only way to maintain time.

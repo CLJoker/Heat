@@ -52,6 +52,14 @@ namespace SA
                 stream.SendNext(states.movementValues.horizontal);
                 stream.SendNext(states.movementValues.vertical);
                 stream.SendNext(states.isAiming);
+
+                stream.SendNext(states.shootingFlag);
+                states.shootingFlag = false;
+
+                stream.SendNext(states.reloadingFlag);
+                states.reloadingFlag = false;
+
+                stream.SendNext(states.movementValues.aimPosition);
             }
             else
             {
@@ -62,9 +70,15 @@ namespace SA
 
                 states.movementValues.horizontal = (float)stream.ReceiveNext();
                 states.movementValues.vertical = (float)stream.ReceiveNext();
+
                 states.isAiming = (bool)stream.ReceiveNext();
                 states.movementValues.moveAmount = Mathf.Clamp01(Mathf.Abs(states.movementValues.horizontal) 
                     + Mathf.Abs(states.movementValues.vertical));
+
+                states.isShooting = (bool)stream.ReceiveNext();
+                states.isReloading = (bool)stream.ReceiveNext();
+
+                states.movementValues.aimPosition = (Vector3)stream.ReceiveNext();
             }
         }
 

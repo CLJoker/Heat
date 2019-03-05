@@ -10,6 +10,7 @@ namespace SA
         public StateActions initLocalPlayer;
         public State client;
         public StateActions initClientPlayer;
+        public State vaultClient;
 
         Transform mTransform;
 
@@ -49,17 +50,26 @@ namespace SA
                 stream.SendNext(mTransform.position);
                 stream.SendNext(mTransform.rotation);
 
-                stream.SendNext(states.movementValues.horizontal);
-                stream.SendNext(states.movementValues.vertical);
-                stream.SendNext(states.isAiming);
+                stream.SendNext(states.isVaulting);
 
-                stream.SendNext(states.shootingFlag);
-                states.shootingFlag = false;
+                if (!states.isVaulting)
+                {
+                    stream.SendNext(states.isCrouching);
 
-                stream.SendNext(states.reloadingFlag);
-                states.reloadingFlag = false;
+                    stream.SendNext(states.isAiming);
+
+                    stream.SendNext(states.shootingFlag);
+                    states.shootingFlag = false;
+
+                    stream.SendNext(states.reloadingFlag);
+                    states.reloadingFlag = false;
+
+                    stream.SendNext(states.movementValues.horizontal);
+                    stream.SendNext(states.movementValues.vertical);
+                }
 
                 stream.SendNext(states.movementValues.aimPosition);
+
             }
             else
             {
@@ -68,17 +78,47 @@ namespace SA
 
                 ReceivePositionRotation(position, rotation);
 
-                states.movementValues.horizontal = (float)stream.ReceiveNext();
-                states.movementValues.vertical = (float)stream.ReceiveNext();
+                states.isVaulting = (bool)stream.ReceiveNext();
+                if (states.isVaulting)
+                {
+                    states.isCrouching = false;
+                    states.isAiming = false;
+                    states.isReloading = false;
+                    states.isShooting = false;
+                    states.movementValues.horizontal = 0;
+                    states.movementValues.vertical = 0;
+                    states.movementValues.moveAmount = 0;
 
-                states.isAiming = (bool)stream.ReceiveNext();
-                states.movementValues.moveAmount = Mathf.Clamp01(Mathf.Abs(states.movementValues.horizontal) 
-                    + Mathf.Abs(states.movementValues.vertical));
+                    if (!states.vaultingFlag)
+                    {
+                        states.vaultingFlag = true;
+                        states.anim.CrossFade(states.hashes.VaultWalk, 0.2f);
+                        states.currentState = vaultClient;
+                    }
+                }
+                else
+                {
+                    if (states.vaultingFlag)
+                    {
+                        states.currentState = client;
+                        states.vaultingFlag = false;
+                    }
 
-                states.isShooting = (bool)stream.ReceiveNext();
-                states.isReloading = (bool)stream.ReceiveNext();
+                    states.isCrouching = (bool)stream.ReceiveNext();
+
+                    states.isAiming = (bool)stream.ReceiveNext();
+                    states.movementValues.moveAmount = Mathf.Clamp01(Mathf.Abs(states.movementValues.horizontal)
+                        + Mathf.Abs(states.movementValues.vertical));
+
+                    states.isShooting = (bool)stream.ReceiveNext();
+                    states.isReloading = (bool)stream.ReceiveNext();
+
+                    states.movementValues.horizontal = (float)stream.ReceiveNext();
+                    states.movementValues.vertical = (float)stream.ReceiveNext();                  
+                }
 
                 states.movementValues.aimPosition = (Vector3)stream.ReceiveNext();
+
             }
         }
 

@@ -2406,6 +2406,7 @@ MonoBehaviour:
   initLocalPlayer: {fileID: 11400000, guid: ae7255de37d50e549a125b00fffad378, type: 2}
   client: {fileID: 11400000, guid: d854e7160e4582f43bd7cfaf901490a3, type: 2}
   initClientPlayer: {fileID: 11400000, guid: bb1febf7c62a68f41ae84dbfd9726705, type: 2}
+  vaultClient: {fileID: 11400000, guid: b36216e8a20e9eb4997b2460e19a67ca, type: 2}
   snapDistance: 4
   snapAngle: 40
   predictionSpeed: 10
@@ -2467,6 +2468,9 @@ MonoBehaviour:
   isReloading: 0
   isVaulting: 0
   isGrounded: 0
+  shootingFlag: 0
+  reloadingFlag: 0
+  vaultingFlag: 0
   anim: {fileID: 0}
   delta: 0
   mTransform: {fileID: 0}

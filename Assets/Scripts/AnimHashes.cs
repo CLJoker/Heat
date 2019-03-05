@@ -18,5 +18,6 @@ namespace SA
         public int isInteracting = Animator.StringToHash("isInteracting");
         public int VaultWalk = Animator.StringToHash("Vault Walk");
         public int isAiming = Animator.StringToHash("aiming");
+        public int isCrouching = Animator.StringToHash("crouching");
     }
 }

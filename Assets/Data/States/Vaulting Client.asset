@@ -9,16 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e09f12a9b8fb5e44eb81fa499afbecc4, type: 3}
-  m_Name: Vaulting
+  m_Name: Vaulting Client
   m_EditorClassIdentifier: 
   onFixed: []
   onUpdate:
-  - {fileID: 11400000, guid: c65f7f71700544e428e86927d2881245, type: 2}
+  - {fileID: 11400000, guid: 020879e88b6f77040b30397d8b2bca01, type: 2}
   onEnter: []
   onExit: []
-  idCount: 1
-  transitions:
-  - id: 0
-    condition: {fileID: 11400000, guid: ce25e543286f7e049ba5159aa45e9196, type: 2}
-    targetState: {fileID: 11400000, guid: d854e7160e4582f43bd7cfaf901490a3, type: 2}
-    disable: 0
+  idCount: 0
+  transitions: []

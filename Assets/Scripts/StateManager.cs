@@ -7,6 +7,7 @@ namespace SA
     public class StateManager : MonoBehaviour, IHittable
     {
         public int photonId;
+        public PlayerStats stats;
         public MovementValue movementValues;
         public Inventory inventory;
 
@@ -35,6 +36,7 @@ namespace SA
         public bool shootingFlag;
         public bool reloadingFlag;
         public bool vaultingFlag;
+        public bool healthChangedFlag;
 
         public void SetCrouching()
         {
@@ -116,7 +118,15 @@ namespace SA
 
         public void OnHit(StateManager shooter, Weapon wp, Vector3 dir, Vector3 pos)
         {
-           
+            stats.health -= wp.ammoType.damageValue;
+            if(stats.health <= 0)
+            {
+                stats.health = 0;
+
+                //Raise death event
+            }
+
+            healthChangedFlag = true;
         }
     }
 }

@@ -39,6 +39,17 @@ namespace SA
             return playerHolder;
         }
 
+        public PlayerHolder GetPlayer(int photonId)
+        {
+            for(int i = 0; i < players.Count; i++)
+            {
+                if (players[i].photonId == photonId)
+                    return players[i];
+            }
+
+            return null;
+        }
+
         public bool IsUniquePlayer(int id)
         {
             for(int i = 0; i < players.Count; i++)

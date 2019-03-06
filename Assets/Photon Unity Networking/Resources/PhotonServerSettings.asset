@@ -44,4 +44,5 @@ MonoBehaviour:
   - TaggedPlayer
   - RPC_SceneChange
   - RPC_SetSpawnPositionForPlayer
+  - RPC_ShootWeapon
   DisableAutoOpenWizard: 1

@@ -10,7 +10,7 @@ namespace SA
         public string userName;
         public int spawnPosition;
         public NetworkPrint print;
-
+        public StateManager states;
 
     }
 }

@@ -7,9 +7,14 @@ namespace SA
     public class MultiplayerManager : Photon.MonoBehaviour
     {
         MultiplayerReferences mRef;
+        public MultiplayerReferences GetMRef()
+        {
+            return mRef;
+        }
 
         public static MultiplayerManager singleton;
 
+        public RayBallistics ballistics;
 
         void OnPhotonInstantiate(PhotonMessageInfo info)
         {
@@ -58,6 +63,12 @@ namespace SA
         {
             return mRef;
         }
+
+        public void BroadcastShootWeapon(StateManager states, Vector3 direction, Vector3 origin)
+        {
+            int photonId = states.photonId;
+            photonView.RPC("RPC_ShootWeapon", PhotonTargets.All, photonId, direction, origin);
+        }
         #endregion
 
         #region RPCs
@@ -74,6 +85,21 @@ namespace SA
             {
                 mRef.localPlayer.spawnPosition = spawnPosition;
             }
+        }
+
+        [PunRPC]
+        public void RPC_ShootWeapon(int photonId, Vector3 dir, Vector3 origin)
+        {
+            if(photonId == mRef.localPlayer.photonId)
+            {
+                return;
+            }
+            PlayerHolder shooter = mRef.GetPlayer(photonId);
+            if (shooter == null)
+                return;
+
+
+            ballistics.ClientShoot(shooter.states, dir, origin);
         }
         #endregion
     }

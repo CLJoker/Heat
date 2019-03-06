@@ -6,6 +6,7 @@ namespace SA
 {
     public class StateManager : MonoBehaviour, IHittable
     {
+        public int photonId;
         public MovementValue movementValues;
         public Inventory inventory;
 

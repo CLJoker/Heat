@@ -8,8 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77cd1131847a3cf4d96a772739ca6991, type: 3}
-  m_Name: 762x32mm
+  m_Script: {fileID: 11500000, guid: d933270a864652c489a8784d6e7f696f, type: 3}
+  m_Name: FixedDeltaTime
   m_EditorClassIdentifier: 
-  carryingAmount: 90
-  damageValue: 20
+  value: 0

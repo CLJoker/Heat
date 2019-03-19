@@ -51,7 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba20f10ac948084e951bd7f74328cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixedUpdateActions: []
+  startActions:
+  - {fileID: 11400000, guid: 5f12146381c59ed409e987f28c19db02, type: 2}
+  fixedUpdateActions:
+  - {fileID: 11400000, guid: be70c10f774c9a842a44156ad06f67d5, type: 2}
   updateActions:
   - {fileID: 11400000, guid: 2706092ca3d58ba45b2844b4ead4c7a8, type: 2}
   - {fileID: 11400000, guid: 88a20d36aa729214499e43a663746096, type: 2}

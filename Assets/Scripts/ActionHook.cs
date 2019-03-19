@@ -6,10 +6,22 @@ namespace SA
 {
     public class ActionHook : MonoBehaviour
     {
-		public Action[] fixedUpdateActions;
-		public Action[] updateActions;
+        public Action[] startActions;
+        public Action[] fixedUpdateActions;
+		public Action[] updateActions;      
 
-		void FixedUpdate()
+        private void Start()
+        {
+            if (startActions == null)
+                return;
+
+            for(int i = 0; i < startActions.Length; i++)
+            {
+                startActions[i].Execute();
+            }
+        }
+
+        void FixedUpdate()
 		{
 			if (fixedUpdateActions == null)
 				return;

@@ -8,8 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77cd1131847a3cf4d96a772739ca6991, type: 3}
-  m_Name: 762x32mm
+  m_Script: {fileID: 11500000, guid: 0d9c593d97c96ee4fa6b2d0fac91d9b4, type: 3}
+  m_Name: FixedDelta Time Manager
   m_EditorClassIdentifier: 
-  carryingAmount: 90
-  damageValue: 20
+  variable: {fileID: 11400000, guid: 805b032724ebdd34ab26b80f2213ba27, type: 2}
+  isFixed: 1

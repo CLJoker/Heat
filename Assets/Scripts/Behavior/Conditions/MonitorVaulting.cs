@@ -27,7 +27,7 @@ namespace SA
 
 
             Debug.DrawRay(origin, direction * rayForwardDis);
-            if(Physics.Raycast(origin, direction, out hit, rayForwardDis))
+            if(Physics.Raycast(origin, direction, out hit, rayForwardDis, state.ignoreLayers))
             {
                 Vector3 origin2 = origin;
                 origin2.y += origin2Offset;
@@ -38,7 +38,7 @@ namespace SA
                 Vector3 normalDir = -hit.normal;
 
                 Debug.DrawRay(origin2, direction * rayForwardDis);
-                if(Physics.Raycast(origin2, direction, out hit, rayDownDis))
+                if(Physics.Raycast(origin2, direction, out hit, rayDownDis, state.ignoreLayers))
                 {
 
                 }
@@ -46,7 +46,7 @@ namespace SA
                 {
                     Vector3 origin3 = origin2 + (direction * rayHigherForwardDis);
                     Debug.DrawRay(origin3, -Vector3.up * rayDownDis);
-                    if(Physics.Raycast(origin3, -Vector3.up, out hit, rayDownDis))
+                    if(Physics.Raycast(origin3, -Vector3.up, out hit, rayDownDis, state.ignoreLayers))
                     {
                         result = true;
                         state.anim.SetBool(state.hashes.isInteracting, true);

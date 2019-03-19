@@ -11,6 +11,11 @@ namespace SA
         public MovementValue movementValues;
         public Inventory inventory;
 
+        [HideInInspector]
+        public List<Rigidbody> ragdollRB = new List<Rigidbody>();
+        [HideInInspector]
+        public List<Collider> ragdollCols = new List<Collider>();
+
         [System.Serializable]
         public class MovementValue
         {
@@ -118,6 +123,11 @@ namespace SA
 
         public void OnHit(StateManager shooter, Weapon wp, Vector3 dir, Vector3 pos)
         {
+            GameObject hitParticle = GameManagers.GetObjPool().RequestObject("Blood_Fx");
+            Quaternion rot = Quaternion.LookRotation(-dir);
+            hitParticle.transform.position = pos;
+            hitParticle.transform.rotation = rot;
+
             stats.health -= wp.ammoType.damageValue;
             if(stats.health <= 0)
             {

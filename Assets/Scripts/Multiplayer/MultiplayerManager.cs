@@ -15,6 +15,21 @@ namespace SA
         public static MultiplayerManager singleton;
 
         public RayBallistics ballistics;
+        List<PlayerHolder> playersToSpawn = new List<PlayerHolder>();
+        private void Update()
+        {
+            float delta = Time.deltaTime;
+            for(int i = playersToSpawn.Count - 1; i >= 0; i--)
+            {
+                playersToSpawn[i].spawnTimer = delta;
+                if(playersToSpawn[i].spawnTimer > 5)
+                {
+                    playersToSpawn[i].spawnTimer = 0;
+                    photonView.RPC("RPC_SpawnPlayer", PhotonTargets.All, playersToSpawn[i].photonId);
+                    playersToSpawn.RemoveAt(i);
+                }
+            }
+        }
 
         void OnPhotonInstantiate(PhotonMessageInfo info)
         {
@@ -69,6 +84,11 @@ namespace SA
             int photonId = states.photonId;
             photonView.RPC("RPC_ShootWeapon", PhotonTargets.All, photonId, direction, origin);
         }
+
+        public void BroadcastKillPlayer(int photonId, int shooter)
+        {
+            photonView.RPC("RPC_ReceiveKillPlayer", PhotonTargets.MasterClient, photonId, shooter);
+        }
         #endregion
 
         #region RPCs
@@ -100,6 +120,33 @@ namespace SA
 
 
             ballistics.ClientShoot(shooter.states, dir, origin);
+        }
+
+        [PunRPC]
+        public void RPC_SpawnPlayer(int photonId)
+        {
+            PlayerHolder playerHolder = mRef.GetPlayer(photonId);
+
+            if (playerHolder.states != null)
+                playerHolder.states.SpawnPlayer();
+
+        }
+
+        [PunRPC]
+        public void RPC_ReceiveKillPlayer(int photonId, int shooter)
+        {
+            // Master Client
+            photonView.RPC("RPC_KillPlayer", PhotonTargets.All, photonId, shooter);
+            playersToSpawn.Add(mRef.GetPlayer(photonId));
+        }
+
+        [PunRPC]
+        public void RPC_KillPlayer(int photonId, int shooter)
+        {
+            PlayerHolder playerHolder = mRef.GetPlayer(photonId);
+
+            if (playerHolder.states != null)
+                playerHolder.states.KillPlayer();
         }
         #endregion
     }

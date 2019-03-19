@@ -37,6 +37,7 @@ namespace SA
         public bool isReloading;
         public bool isVaulting;
         public bool isGrounded;
+        public bool isDead;
 
         public bool shootingFlag;
         public bool reloadingFlag;
@@ -133,10 +134,32 @@ namespace SA
             {
                 stats.health = 0;
 
-                //Raise death event
+                if (!isDead)
+                {
+                    isDead = true;
+                    MultiplayerManager.singleton.BroadcastKillPlayer(photonId, shooter.photonId);
+                }
             }
 
             healthChangedFlag = true;
+        }
+
+        public void SpawnPlayer()
+        {
+            if (isLocal)
+            {
+                healthChangedFlag = true;
+                stats.health = 100;
+            }
+
+            anim.Play("locomotion");
+            isDead = false;
+        }
+
+        public void KillPlayer()
+        {
+            isDead = true;
+            anim.CrossFade("death", 0.4f);
         }
     }
 }

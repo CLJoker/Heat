@@ -11,6 +11,6 @@ namespace SA
         public int spawnPosition;
         public NetworkPrint print;
         public StateManager states;
-
+        public float spawnTimer;
     }
 }

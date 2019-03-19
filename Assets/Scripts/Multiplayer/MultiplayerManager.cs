@@ -21,14 +21,16 @@ namespace SA
             float delta = Time.deltaTime;
             for(int i = playersToSpawn.Count - 1; i >= 0; i--)
             {
-                playersToSpawn[i].spawnTimer = delta;
+                playersToSpawn[i].spawnTimer += delta;
                 if(playersToSpawn[i].spawnTimer > 5)
                 {
                     playersToSpawn[i].spawnTimer = 0;
+                    playersToSpawn[i].health = 100;
                     int ran = Random.Range(0, mRef.spawnPositions.Length);
                     Vector3 pos = mRef.spawnPositions[ran].transform.position;
                     Quaternion rot = mRef.spawnPositions[ran].transform.rotation;
 
+                    photonView.RPC("RPC_BroadcastPlayerHealth", PhotonTargets.All, playersToSpawn[i].photonId, 100);
                     photonView.RPC("RPC_SpawnPlayer", PhotonTargets.All, playersToSpawn[i].photonId, pos, rot);
                     playersToSpawn.RemoveAt(i);
                 }
@@ -108,15 +110,33 @@ namespace SA
             return mRef;
         }
 
+        public void BroadcastPlayerHealth(int photonId, int health, int shooter)
+        {
+            if(health <= 0)
+            {
+                BroadcastPlayerIsHitBy(photonId, shooter);
+                playersToSpawn.Add(mRef.GetPlayer(photonId));
+            }
+
+            photonView.RPC("RPC_BroadcastPlayerHealth", PhotonTargets.All, photonId, health);
+        }
+
         public void BroadcastShootWeapon(StateManager states, Vector3 direction, Vector3 origin)
         {
             int photonId = states.photonId;
             photonView.RPC("RPC_ShootWeapon", PhotonTargets.All, photonId, direction, origin);
         }
 
-        public void BroadcastKillPlayer(int photonId, int shooter)
+        public void BroadcastPlayerIsHitBy(int photonId, int shooterId)
         {
-            photonView.RPC("RPC_ReceiveKillPlayer", PhotonTargets.MasterClient, photonId, shooter);
+            PlayerHolder p = mRef.GetPlayer(shooterId);
+            p.killCount++;
+            photonView.RPC("RPC_SyncKillCount", PhotonTargets.All, shooterId, p.killCount);
+        }
+
+        public void BroadcastKillPlayer(int photonId)
+        {
+            photonView.RPC("RPC_KillPlayer", PhotonTargets.All, photonId);
         }
         #endregion
 
@@ -129,22 +149,12 @@ namespace SA
                 mRef.localPlayer.print.InstantiateController(pos, rot);
             }
 
-
         }
 
         [PunRPC]
         public void RPC_SceneChange()
         {
             MultiplayerLauncher.singleton.LoadCurrentSceneActual(LevelLoadedCallback);
-        }
-
-        [PunRPC]
-        public void RPC_SetSpawnPositionForPlayer(int photonId, int spawnPosition)
-        {
-            if(photonId == mRef.localPlayer.photonId)
-            {
-                mRef.localPlayer.spawnPosition = spawnPosition;
-            }
         }
 
         [PunRPC]
@@ -173,20 +183,36 @@ namespace SA
         }
 
         [PunRPC]
-        public void RPC_ReceiveKillPlayer(int photonId, int shooter)
-        {
-            // Master Client
-            photonView.RPC("RPC_KillPlayer", PhotonTargets.All, photonId, shooter);
-            playersToSpawn.Add(mRef.GetPlayer(photonId));
-        }
-
-        [PunRPC]
-        public void RPC_KillPlayer(int photonId, int shooter)
+        public void RPC_KillPlayer(int photonId)
         {
             PlayerHolder playerHolder = mRef.GetPlayer(photonId);
 
             if (playerHolder.states != null)
                 playerHolder.states.KillPlayer();
+        }
+
+        [PunRPC]
+        public void RPC_SyncKillCount(int photonId, int killCount)
+        {
+            if(photonId == mRef.localPlayer.photonId)
+            {
+                mRef.localPlayer.killCount = killCount;
+            }
+        }
+
+        [PunRPC]
+        public void RPC_BroadcastPlayerHealth(int photonId, int health)
+        {
+            PlayerHolder player = mRef.GetPlayer(photonId);
+            player.health = health;
+
+            if(player == mRef.localPlayer)
+            {
+                if(player.health <= 0)
+                {
+                    BroadcastKillPlayer(photonId);
+                }
+            }
         }
         #endregion
     }

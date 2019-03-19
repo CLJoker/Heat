@@ -36,6 +36,7 @@ namespace SA
             PlayerHolder playerHolder = new PlayerHolder();
             playerHolder.photonId = print.photonId;
             playerHolder.print = print;
+            playerHolder.health = 100;
             players.Add(playerHolder);
             return playerHolder;
         }

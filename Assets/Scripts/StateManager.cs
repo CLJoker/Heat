@@ -131,20 +131,41 @@ namespace SA
             hitParticle.transform.position = pos;
             hitParticle.transform.rotation = rot;
 
-            stats.health -= wp.ammoType.damageValue;
-            if(stats.health <= 0)
+            if (PhotonNetwork.isMasterClient)
             {
-                stats.health = 0;
-
                 if (!isDead)
                 {
-                    isDead = true;
-                    MultiplayerManager.singleton.BroadcastKillPlayer(photonId, shooter.photonId);
-                    KillPlayer();
+                    stats.health -= wp.ammoType.damageValue;
+                    healthChangedFlag = true;
+                    MultiplayerManager mm = MultiplayerManager.singleton;
+                    mm.BroadcastPlayerHealth(photonId, stats.health, shooter.photonId);
+
+                    if(stats.health <= 0)
+                    {
+                        isDead = true;
+                    }
+                    else
+                    {
+                        anim.Play("damage2");
+                    }
                 }
             }
+            
 
-            healthChangedFlag = true;
+            //stats.health -= wp.ammoType.damageValue;
+            //if(stats.health <= 0)
+            //{
+            //    stats.health = 0;
+
+            //    if (!isDead)
+            //    {
+            //        isDead = true;
+            //        MultiplayerManager.singleton.BroadcastKillPlayer(photonId, shooter.photonId);
+            //        KillPlayer();
+            //    }
+            //}
+
+            //healthChangedFlag = true;
         }
 
         public void SpawnPlayer(Vector3 spawnPosition, Quaternion rotation)

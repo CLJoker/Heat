@@ -65,8 +65,10 @@ namespace SA
                     aimInput.isPressed = true;
                 }
 
-                
-                playerStates.value.movementValues.lookDirection = cameraTransform.value.forward;
+                if(cameraTransform.value != null)
+                {
+                    playerStates.value.movementValues.lookDirection = cameraTransform.value.forward;
+                }            
 
                 Ray ray = new Ray(pivotTransform.value.position, pivotTransform.value.forward);
                 playerStates.value.movementValues.aimPosition = ray.GetPoint(100);

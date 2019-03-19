@@ -25,7 +25,11 @@ namespace SA
                 if(playersToSpawn[i].spawnTimer > 5)
                 {
                     playersToSpawn[i].spawnTimer = 0;
-                    photonView.RPC("RPC_SpawnPlayer", PhotonTargets.All, playersToSpawn[i].photonId);
+                    int ran = Random.Range(0, mRef.spawnPositions.Length);
+                    Vector3 pos = mRef.spawnPositions[ran].transform.position;
+                    Quaternion rot = mRef.spawnPositions[ran].transform.rotation;
+
+                    photonView.RPC("RPC_SpawnPlayer", PhotonTargets.All, playersToSpawn[i].photonId, pos, rot);
                     playersToSpawn.RemoveAt(i);
                 }
             }
@@ -61,6 +65,12 @@ namespace SA
         }
 
         #region MyCalls
+        public void FindSpawnPositionOnLevel()
+        {
+            SpawnPosition[] spawnPositions = GameObject.FindObjectsOfType<SpawnPosition>();
+            mRef.spawnPositions = spawnPositions;
+        }
+
         public void BroadCastSceneChange()
         {
             if (PhotonNetwork.isMasterClient)
@@ -69,9 +79,28 @@ namespace SA
             }
         }
 
-        public void CreateController()
+        public void LevelLoadedCallback()
         {
-            mRef.localPlayer.print.InstantiateController(mRef.localPlayer.spawnPosition);
+            //mRef.localPlayer.print.InstantiateController(mRef.localPlayer.spawnPosition);
+
+            if (PhotonNetwork.isMasterClient)
+            {
+                FindSpawnPositionOnLevel();
+                AssignSpawnPositions();
+            }
+        }
+
+        void AssignSpawnPositions()
+        {
+            List<PlayerHolder> players = mRef.getPlayers();
+
+            for (int i = 0; i < players.Count; i++)
+            {
+                int index = i % mRef.spawnPositions.Length;
+                SpawnPosition p = mRef.spawnPositions[index];
+                photonView.RPC("RPC_BroadcastCreateController", PhotonTargets.All, players[i].photonId
+                    , p.transform.position, p.transform.rotation);
+            }
         }
 
         public MultiplayerReferences GetMultiplayerReferences()
@@ -93,9 +122,20 @@ namespace SA
 
         #region RPCs
         [PunRPC]
+        public void RPC_BroadcastCreateController(int photonId, Vector3 pos, Quaternion rot)
+        {
+            if (photonId == mRef.localPlayer.photonId)
+            {
+                mRef.localPlayer.print.InstantiateController(pos, rot);
+            }
+
+
+        }
+
+        [PunRPC]
         public void RPC_SceneChange()
         {
-            MultiplayerLauncher.singleton.LoadCurrentSceneActual(CreateController);
+            MultiplayerLauncher.singleton.LoadCurrentSceneActual(LevelLoadedCallback);
         }
 
         [PunRPC]
@@ -123,12 +163,12 @@ namespace SA
         }
 
         [PunRPC]
-        public void RPC_SpawnPlayer(int photonId)
+        public void RPC_SpawnPlayer(int photonId, Vector3 targetPosition, Quaternion targetRotation)
         {
             PlayerHolder playerHolder = mRef.GetPlayer(photonId);
 
             if (playerHolder.states != null)
-                playerHolder.states.SpawnPlayer();
+                playerHolder.states.SpawnPlayer(targetPosition, targetRotation);
 
         }
 

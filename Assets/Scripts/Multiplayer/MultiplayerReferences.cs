@@ -6,6 +6,7 @@ namespace SA
 {
     public class MultiplayerReferences : MonoBehaviour
     {
+        public SpawnPosition[] spawnPositions;
         List<PlayerHolder> players = new List<PlayerHolder>();
 
         public PlayerHolder localPlayer;

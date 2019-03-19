@@ -19,7 +19,7 @@ namespace SA
             mm.AddNewPlayer(this);
         }
 
-        public void InstantiateController(int spawnIndex)
+        public void InstantiateController(Vector3 pos, Quaternion rot)
         {
             GameObject inputHandler = Instantiate(Resources.Load("Input Handler")) as GameObject;
 
@@ -27,7 +27,7 @@ namespace SA
             data[0] = photonId;
             data[1] = photonView.instantiationData[0];
 
-            PhotonNetwork.Instantiate("MultiplayerController", Vector3.zero, Quaternion.identity, 0, data);
+            PhotonNetwork.Instantiate("MultiplayerController", pos, rot, 0, data);
         }
     }
 }

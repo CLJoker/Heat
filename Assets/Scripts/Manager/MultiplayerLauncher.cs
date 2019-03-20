@@ -20,6 +20,7 @@ namespace SA
         public GameEvent onConnectedToMaster;
         public GameEvent onJoinedRoom;
         public GameEvent onBackToMenuFromGame;
+        public GameEvent onLoading;
         public BoolVariable isConnected;
         public BoolVariable isMultiplayer;
         public BoolVariable isWinner;
@@ -194,6 +195,7 @@ namespace SA
             if (!isLoading)
             {
                 isLoading = true;
+                //onLoading.Raise();
                 StartCoroutine(LoadScene(r.sceneName, callback));
             }
         }
@@ -202,10 +204,39 @@ namespace SA
         {
             yield return SceneManager.LoadSceneAsync(targetLevel, LoadSceneMode.Single);
             isLoading = false;
-            if(callback != null)
+            if (callback != null)
             {
                 callback.Invoke();
+                Debug.Log("Callback ################");
             }
+
+
+            //AsyncOperation async = SceneManager.LoadSceneAsync(targetLevel, LoadSceneMode.Single);
+            //async.allowSceneActivation = false;
+            //yield return async;
+
+            //while(!async.isDone)
+            //{
+            //    float progress = Mathf.Clamp01(async.progress / 0.9f);
+            //    string progressText = "Loading: " + (progress * 100f) + "%";
+            //    LoadingProgress.singleton.UpdateLoadingProgress(progressText, progress);
+            //    yield return null;
+            //}
+
+            //if (async.isDone)
+            //{
+            //    yield return null;
+            //    float progress2 = Mathf.Clamp01(async.progress / 0.9f);
+            //    string progressText2 = "Starting Game... ";
+            //    LoadingProgress.singleton.UpdateLoadingProgress(progressText2, progress2);
+            //    async.allowSceneActivation = true;
+            //    isLoading = false;
+            //    if (callback != null)
+            //    {
+            //        callback.Invoke();
+            //        Debug.Log("Callback ################");
+            //    }              
+            //}
         }
         #endregion
 
@@ -229,6 +260,8 @@ namespace SA
 
         void OnMainMenuLoadedCallback()
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             onBackToMenuFromGame.Raise();
         }
 

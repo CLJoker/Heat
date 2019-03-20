@@ -7,6 +7,7 @@ namespace SA
     public class MultiplayerManager : Photon.MonoBehaviour
     {
         MultiplayerReferences mRef;
+        public bool inGame;
         public MultiplayerReferences GetMRef()
         {
             return mRef;
@@ -19,6 +20,10 @@ namespace SA
         private void Update()
         {
             float delta = Time.deltaTime;
+
+            if (!PhotonNetwork.isMasterClient)
+                return;
+
             for(int i = playersToSpawn.Count - 1; i >= 0; i--)
             {
                 playersToSpawn[i].spawnTimer += delta;
@@ -89,6 +94,7 @@ namespace SA
             {
                 FindSpawnPositionOnLevel();
                 AssignSpawnPositions();
+                inGame = true;
             }
         }
 
@@ -133,7 +139,7 @@ namespace SA
             p.killCount++;
             photonView.RPC("RPC_SyncKillCount", PhotonTargets.All, shooterId, p.killCount);
 
-            if(p.killCount > 3)
+            if(p.killCount > 0)
             {
                 BroadcastMatchOver(shooterId);
             }

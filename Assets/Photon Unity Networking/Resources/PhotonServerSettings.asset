@@ -51,4 +51,5 @@ MonoBehaviour:
   - RPC_BroadcastCreateController
   - RPC_BroadcastPlayerHealth
   - RPC_SyncKillCount
+  - RPC_BroadcastMatchOver
   DisableAutoOpenWizard: 1

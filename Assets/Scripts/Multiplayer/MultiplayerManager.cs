@@ -101,7 +101,7 @@ namespace SA
                 int index = i % mRef.spawnPositions.Length;
                 SpawnPosition p = mRef.spawnPositions[index];
                 photonView.RPC("RPC_BroadcastCreateController", PhotonTargets.All, players[i].photonId
-                    , p.transform.position, p.transform.rotation);
+                    , p.transform.position + Vector3.up * 0.1f, p.transform.rotation);
             }
         }
 
@@ -132,11 +132,30 @@ namespace SA
             PlayerHolder p = mRef.GetPlayer(shooterId);
             p.killCount++;
             photonView.RPC("RPC_SyncKillCount", PhotonTargets.All, shooterId, p.killCount);
+
+            if(p.killCount > 3)
+            {
+                BroadcastMatchOver(shooterId);
+            }
+        }
+
+        public void BroadcastMatchOver(int photonId)
+        {
+            photonView.RPC("RPC_BroadcastMatchOver", PhotonTargets.All, photonId);
         }
 
         public void BroadcastKillPlayer(int photonId)
         {
             photonView.RPC("RPC_KillPlayer", PhotonTargets.All, photonId);
+        }
+
+        public void ClearReferences()
+        {
+            if(mRef.referencesParent != null)
+            {
+                Destroy(mRef.referencesParent.gameObject);
+                Destroy(this.gameObject);
+            }
         }
         #endregion
 
@@ -149,6 +168,18 @@ namespace SA
                 mRef.localPlayer.print.InstantiateController(pos, rot);
             }
 
+        }
+
+        [PunRPC]
+        public void RPC_BroadcastMatchOver(int photonId)
+        {
+            bool isWinner = false;
+            if(mRef.localPlayer.photonId == photonId)
+            {
+                isWinner = true;
+                Debug.Log("winner");
+            }
+            MultiplayerLauncher.singleton.EndMatch(this, isWinner);
         }
 
         [PunRPC]

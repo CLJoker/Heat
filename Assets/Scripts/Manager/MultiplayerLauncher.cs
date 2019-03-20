@@ -19,8 +19,10 @@ namespace SA
         public static MultiplayerLauncher singleton;
         public GameEvent onConnectedToMaster;
         public GameEvent onJoinedRoom;
+        public GameEvent onBackToMenuFromGame;
         public BoolVariable isConnected;
         public BoolVariable isMultiplayer;
+        public BoolVariable isWinner;
 
         #region Init
         private void Awake()
@@ -208,8 +210,33 @@ namespace SA
         #endregion
 
         #region Setup Methods
+        public void EndMatch(MultiplayerManager mm, bool isWinner)
+        {
+            if (PhotonNetwork.inRoom)
+            {
+                PhotonNetwork.LeaveRoom();
+            }
+
+            this.isWinner.value = isWinner;
+            mm.ClearReferences();
+            LoadMainMenuFromGame();
+        }
+
+        void LoadMainMenuFromGame()
+        {
+            StartCoroutine(LoadScene("Main", OnMainMenuLoadedCallback));
+        }
+
+        void OnMainMenuLoadedCallback()
+        {
+            onBackToMenuFromGame.Raise();
+        }
+
         public void OnMainMenu()
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
             isConnected.value = PhotonNetwork.connected;
             if (isConnected.value)
             {

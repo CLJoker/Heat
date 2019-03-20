@@ -27,7 +27,7 @@ namespace SA
             data[0] = photonId;
             data[1] = photonView.instantiationData[0];
 
-            PhotonNetwork.Instantiate("MultiplayerController", pos, rot, 0, data);
+            GameObject go = PhotonNetwork.Instantiate("MultiplayerController", pos, rot, 0, data);
         }
     }
 }

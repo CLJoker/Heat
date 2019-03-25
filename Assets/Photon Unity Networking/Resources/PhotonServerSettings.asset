@@ -52,4 +52,5 @@ MonoBehaviour:
   - RPC_BroadcastPlayerHealth
   - RPC_SyncKillCount
   - RPC_BroadcastMatchOver
+  - RPC_BroadcastTime
   DisableAutoOpenWizard: 1

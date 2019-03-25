@@ -1,13 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SO;
 
 namespace SA
 {
     public class MultiplayerManager : Photon.MonoBehaviour
     {
         MultiplayerReferences mRef;
-        public bool inGame;
+        bool inGame;
+        bool endMatch;
+        [SerializeField]
+        int winKillCount = 2;
+        [SerializeField]
+        float startingTime = 300;
+        float currentTime;
+        float timerInterval;
+        [SerializeField]
+        IntVariable timerInSeconds;
+        [SerializeField]
+        GameEvent timerUpdate;
+        bool isMaster;
+
         public MultiplayerReferences GetMRef()
         {
             return mRef;
@@ -19,15 +33,42 @@ namespace SA
         List<PlayerHolder> playersToSpawn = new List<PlayerHolder>();
         private void Update()
         {
-            float delta = Time.deltaTime;
-
-            if (!PhotonNetwork.isMasterClient)
+            if (endMatch)
                 return;
 
-            for(int i = playersToSpawn.Count - 1; i >= 0; i--)
+            float delta = Time.deltaTime;
+            if (inGame)
+            {
+                currentTime -= delta;
+                timerInterval += delta;
+                if(timerInterval > 1)
+                {
+                    timerInterval = 0;
+                    timerInSeconds.value = Mathf.RoundToInt(currentTime);
+                    timerUpdate.Raise();
+
+                    if (isMaster)
+                    {
+                        photonView.RPC("RPC_BroadcastTime", PhotonTargets.All, currentTime);
+                    }
+                }
+
+                if (currentTime <= 0)
+                {
+                    if (isMaster)
+                    {
+                        TimerRunOut();
+                    }                       
+                }
+            }
+
+            if (!isMaster)
+                return;
+
+            for (int i = playersToSpawn.Count - 1; i >= 0; i--)
             {
                 playersToSpawn[i].spawnTimer += delta;
-                if(playersToSpawn[i].spawnTimer > 5)
+                if (playersToSpawn[i].spawnTimer > 5)
                 {
                     playersToSpawn[i].spawnTimer = 0;
                     playersToSpawn[i].health = 100;
@@ -49,6 +90,13 @@ namespace SA
             mRef = new MultiplayerReferences();
             DontDestroyOnLoad(mRef.referencesParent.gameObject);
             InstantiateNetworkPrint();
+            currentTime = startingTime;
+            isMaster = PhotonNetwork.isMasterClient;
+        }
+
+        void OnMasterClientSwitched(PhotonPlayer newMasterClient)
+        {
+            isMaster = PhotonNetwork.isMasterClient;
         }
 
         void InstantiateNetworkPrint()
@@ -139,7 +187,7 @@ namespace SA
             p.killCount++;
             photonView.RPC("RPC_SyncKillCount", PhotonTargets.All, shooterId, p.killCount);
 
-            if(p.killCount > 2)
+            if(p.killCount > winKillCount)
             {
                 BroadcastMatchOver(shooterId);
             }
@@ -148,6 +196,7 @@ namespace SA
         public void BroadcastMatchOver(int photonId)
         {
             photonView.RPC("RPC_BroadcastMatchOver", PhotonTargets.All, photonId);
+            endMatch = true;
         }
 
         public void BroadcastKillPlayer(int photonId)
@@ -163,9 +212,36 @@ namespace SA
                 Destroy(this.gameObject);
             }
         }
+
+        public void TimerRunOut()
+        {
+            List<PlayerHolder> players = mRef.getPlayers();
+            int killCount = 0;
+            int winnerId = -1;
+
+            for(int i = 0; i<players.Count; i++)
+            {
+                if(players[i].killCount > killCount)
+                {
+                    killCount = players[i].killCount;
+                    winnerId = players[i].photonId;
+                }
+            }
+
+            BroadcastMatchOver(winnerId);
+        }
         #endregion
 
         #region RPCs
+        [PunRPC]
+        public void RPC_BroadcastTime(float masterTime)
+        {
+            if (!isMaster)
+            {
+                currentTime = masterTime;
+            }
+        }
+
         [PunRPC]
         public void RPC_BroadcastCreateController(int photonId, Vector3 pos, Quaternion rot)
         {

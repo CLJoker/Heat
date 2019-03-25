@@ -252,6 +252,7 @@ namespace SA
             this.isWinner.value = isWinner;
             mm.ClearReferences();
             LoadMainMenuFromGame();
+            OnMainMenu();
         }
 
         void LoadMainMenuFromGame()

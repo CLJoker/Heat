@@ -52,6 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0b7330b64713946bc3258d70769c55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingTime: 10
+  timerInSeconds: {fileID: 11400000, guid: 205d3cfd48fb84247a0a950b1ad67461, type: 2}
+  timerUpdate: {fileID: 11400000, guid: 05d8aa30abc8c494a8602fe4095d6338, type: 2}
   ballistics: {fileID: 11400000, guid: a1755d42d111636438e1364db5ae0fea, type: 2}
 --- !u!114 &114584458507739556
 MonoBehaviour:

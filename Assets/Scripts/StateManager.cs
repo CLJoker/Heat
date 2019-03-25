@@ -136,7 +136,7 @@ namespace SA
                 if (!isDead)
                 {
                     stats.health -= wp.ammoType.damageValue;
-                    healthChangedFlag = true;
+                    //healthChangedFlag = true;
                     MultiplayerManager mm = MultiplayerManager.singleton;
                     mm.BroadcastPlayerHealth(photonId, stats.health, shooter.photonId);
 
@@ -146,7 +146,7 @@ namespace SA
                     }
                     else
                     {
-                        anim.Play("damage2");
+                        //anim.Play("damage2");
                     }
                 }
             }

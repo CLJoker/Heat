@@ -139,7 +139,7 @@ namespace SA
             p.killCount++;
             photonView.RPC("RPC_SyncKillCount", PhotonTargets.All, shooterId, p.killCount);
 
-            if(p.killCount > 0)
+            if(p.killCount > 2)
             {
                 BroadcastMatchOver(shooterId);
             }
@@ -242,14 +242,18 @@ namespace SA
         {
             PlayerHolder player = mRef.GetPlayer(photonId);
             player.health = health;
+            player.states.stats.health = health;
+            player.states.healthChangedFlag = true;
 
             if(player == mRef.localPlayer)
             {
                 if(player.health <= 0)
                 {
                     BroadcastKillPlayer(photonId);
-                }
+                    return;
+                }               
             }
+            player.states.anim.Play("damage2");
         }
         #endregion
     }

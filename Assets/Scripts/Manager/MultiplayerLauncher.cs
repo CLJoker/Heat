@@ -203,6 +203,7 @@ namespace SA
         IEnumerator LoadScene(string targetLevel, OnSceneLoaded callback = null)
         {
             yield return SceneManager.LoadSceneAsync(targetLevel, LoadSceneMode.Single);
+            yield return new WaitForSeconds(2);
             isLoading = false;
             if (callback != null)
             {

@@ -131,6 +131,9 @@ namespace SA
 
         void OnAnimatorIK()
         {
+            if (states.isDead)
+                return;
+
             HandleWeights();
 
             anim.SetLookAtWeight(l_weight, b_weight, 1, 1, 1);

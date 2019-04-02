@@ -19,9 +19,12 @@ namespace SA
         void OnPhotonInstantiate(PhotonMessageInfo info)
         {
             states = GetComponent<StateManager>();
+            states.InitReferences();
             mTransform = this.transform;
             object[] data = photonView.instantiationData;
             states.photonId = (int)data[0];
+            string modelId = (string)data[2];
+            states.LoadCharacterModel(modelId);
 
             MultiplayerManager m = MultiplayerManager.singleton;
             this.transform.parent = m.GetMultiplayerReferences().referencesParent;

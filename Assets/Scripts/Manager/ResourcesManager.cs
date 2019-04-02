@@ -36,6 +36,12 @@ namespace SA
             return newItem;
         }
 
+        public ClothItem GetClothItem(string targetId)
+        {
+            ClothItem clothItem = (ClothItem)GetItem(targetId);
+            return clothItem;
+        }
+
         Item GetItem(string targetID)
         {
             Item retVal = null;

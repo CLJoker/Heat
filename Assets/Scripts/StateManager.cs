@@ -77,17 +77,37 @@ namespace SA
         public bool isOfflineController;
         public StateActions offlineActions;
 
+        public CharacterHook characterHook;
+
         private void Start()
+        {
+            InitReferences();
+            if (isOfflineController)
+            {
+                PlayerProfile playerProfile = GameManagers.GetPlayerProfile();
+
+                LoadCharacterModel(playerProfile.modelId);
+
+                if(offlineActions != null)
+                    offlineActions.Execute(this);
+            }
+
+        }
+
+        public void InitReferences()
         {
             mTransform = this.transform;
             rigidbody = GetComponent<Rigidbody>();
             stats.health = 100;
             healthChangedFlag = true;
-            if (isOfflineController)
-            {
-                offlineActions.Execute(this);
-            }
+            characterHook = GetComponentInChildren<CharacterHook>();
             hashes = new AnimHashes();
+        }
+
+        public void LoadCharacterModel(string modelId)
+        {
+            ClothItem cloth = GameManagers.GetResourcesManager().GetClothItem(modelId);
+            characterHook.Init(cloth);
         }
 
         private void FixedUpdate()
@@ -126,6 +146,9 @@ namespace SA
 
         public void OnHit(StateManager shooter, Weapon wp, Vector3 dir, Vector3 pos)
         {
+            if (shooter == this)
+                return;
+
             GameObject hitParticle = GameManagers.GetObjPool().RequestObject("Blood_Fx");
             Quaternion rot = Quaternion.LookRotation(-dir);
             hitParticle.transform.position = pos;
@@ -170,10 +193,6 @@ namespace SA
 
         public void SpawnPlayer(Vector3 spawnPosition, Quaternion rotation)
         {
-            if (isLocal)
-            {
-
-            }
             healthChangedFlag = true;
             stats.health = 100;
 

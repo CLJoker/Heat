@@ -9,12 +9,19 @@ namespace SA
         public int photonId;
         public bool isLocal;
 
+        string weaponId;
+        string modelId;
+
         void OnPhotonInstantiate(PhotonMessageInfo info)
         {
             MultiplayerManager mm = MultiplayerManager.singleton;
 
             photonId = photonView.ownerId;
             isLocal = photonView.isMine;
+
+            object[] data = photonView.instantiationData;
+            weaponId = (string)data[0];
+            modelId = (string)data[1];
 
             mm.AddNewPlayer(this);
         }
@@ -23,11 +30,13 @@ namespace SA
         {
             GameObject inputHandler = Instantiate(Resources.Load("Input Handler")) as GameObject;
 
-            object[] data = new object[2];
+            object[] data = new object[3];
             data[0] = photonId;
-            data[1] = photonView.instantiationData[0];
+            data[1] = weaponId;
+            data[2] = modelId;
 
             GameObject go = PhotonNetwork.Instantiate("MultiplayerController", pos, rot, 0, data);
+            go.GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 }

@@ -143,8 +143,8 @@ namespace SA
             {
                 FindSpawnPositionOnLevel();
                 AssignSpawnPositions();
-                inGame = true;
             }
+            inGame = true;
         }
 
         void AssignSpawnPositions()
@@ -240,6 +240,8 @@ namespace SA
             if (!isMaster)
             {
                 currentTime = masterTime;
+                timerInSeconds.value = Mathf.RoundToInt(currentTime);
+                timerUpdate.Raise();
             }
         }
 

@@ -31,6 +31,8 @@ namespace SA
 
             PlayerHolder playerHolder = m.GetMRef().GetPlayer(states.photonId);
             playerHolder.states = states;
+            string weaponId = (string)data[1];
+            states.inventory.weaponID = weaponId;
 
             if (photonView.isMine)
             {
@@ -40,9 +42,6 @@ namespace SA
             }
             else
             {
-                string weaponId = (string)data[1];
-
-                states.inventory.weaponID = weaponId;
                 states.isLocal = false;
                 states.SetCurrentState(client);
                 initClientPlayer.Execute(states);

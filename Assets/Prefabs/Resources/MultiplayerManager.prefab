@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winKillCount: 2
-  startingTime: 100
+  startingTime: 30
   timerInSeconds: {fileID: 11400000, guid: 205d3cfd48fb84247a0a950b1ad67461, type: 2}
   timerUpdate: {fileID: 11400000, guid: 05d8aa30abc8c494a8602fe4095d6338, type: 2}
   ballistics: {fileID: 11400000, guid: a1755d42d111636438e1364db5ae0fea, type: 2}

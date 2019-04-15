@@ -52,7 +52,7 @@ namespace SA
                 t = 0;
             }
 
-            t += Time.deltaTime;
+            t += Time.deltaTime * speed;
             if(t > 1)
             {
                 t = 1;

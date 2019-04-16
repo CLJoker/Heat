@@ -18,11 +18,47 @@ namespace SA
         Quaternion endRot;
         bool isInit;
         bool isLerping;
+        [HideInInspector]
+        public CategorySelection currentCategory = CategorySelection.None;
+
+        List<ClothItem> cloths;
+        int curCloth;
+        List<Weapon> weapons;
+        int curWeapon;
+        int curSubWeapon;
+
+        public StateManager states;
+
+        public Transform weaponParent;
+        GameObject weaponObj;
+        public Transform subWeaponParent;
+        GameObject subWeaponObj;
+
+        public enum CategorySelection
+        {
+            None, Cloth, Weapon, SubWeapon
+        }
 
         private void OnEnable()
         {
             camera.position = cameraPosition[0].position;
             camera.rotation = cameraPosition[0].rotation;
+            currentCategory = CategorySelection.None;
+
+            cloths = GameManagers.GetResourcesManager().GetAllCloth();
+            weapons = GameManagers.GetResourcesManager().GetAllWeapon();
+
+            InitItemsIndex();
+            if (weaponObj != null)
+            {
+                Destroy(weaponObj);
+            }
+            weaponObj = CreateWeapon(weapons[curWeapon], weaponParent);
+            if (subWeaponObj != null)
+            {
+                Destroy(subWeaponObj);                
+            }
+            subWeaponObj = CreateWeapon(weapons[curSubWeapon], subWeaponParent);
         }
 
         private void Update()
@@ -32,6 +68,24 @@ namespace SA
 
         public void AssignCameraPosition(int index)
         {
+            switch (index)
+            {
+                case 0:
+                    currentCategory = CategorySelection.None;
+                    break;
+                case 1:
+                    currentCategory = CategorySelection.Weapon;
+                    break;
+                case 2:
+                    currentCategory = CategorySelection.SubWeapon;
+                    break;
+                case 3:
+                    currentCategory = CategorySelection.Cloth;
+                    break;
+                default:
+                    break;
+            }
+
             camIndex = index;
             isLerping = true;
             isInit = false;
@@ -66,6 +120,151 @@ namespace SA
 
             camera.position = tp;
             camera.rotation = tr;
+        }
+
+        public void PreviousItem()
+        {
+            switch (currentCategory)
+            {
+                case CategorySelection.Cloth:
+                    curCloth -= 1;
+                    if(curCloth < 0)
+                    {
+                        curCloth = cloths.Count - 1;
+                    }
+                    GameManagers.GetPlayerProfile().modelId = cloths[curCloth].name;
+                    states.LoadCharacterModel(cloths[curCloth].name);
+                    break;
+                case CategorySelection.Weapon:
+                    curWeapon -= 1;
+                    if(curWeapon < 0)
+                    {
+                        curWeapon = weapons.Count - 1;
+                    }
+                    GameManagers.GetPlayerProfile().itemIds[0] = weapons[curWeapon].name;
+                    if(weaponObj != null)
+                    {
+                        Destroy(weaponObj);
+                        weaponObj = CreateWeapon(weapons[curWeapon], weaponParent);
+                    }
+                    break;
+                case CategorySelection.SubWeapon:
+                    curSubWeapon -= 1;
+                    if (curSubWeapon < 0)
+                    {
+                        curSubWeapon = weapons.Count - 1;
+                    }
+                    GameManagers.GetPlayerProfile().itemIds[1] = weapons[curSubWeapon].name;
+                    if (subWeaponObj != null)
+                    {
+                        Destroy(subWeaponObj);
+                        subWeaponObj = CreateWeapon(weapons[curSubWeapon], subWeaponParent);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void NextItem()
+        {
+            switch (currentCategory)
+            {
+                case CategorySelection.Cloth:
+                    curCloth += 1;
+                    if (curCloth > cloths.Count - 1)
+                    {
+                        curCloth = 0;
+                    }
+                    GameManagers.GetPlayerProfile().modelId = cloths[curCloth].name;
+                    states.LoadCharacterModel(cloths[curCloth].name);
+                    break;
+                case CategorySelection.Weapon:
+                    curWeapon += 1;
+                    if (curWeapon > weapons.Count - 1)
+                    {
+                        curWeapon = 0;
+                    }
+                    GameManagers.GetPlayerProfile().itemIds[0] = weapons[curWeapon].name;
+                    if (weaponObj != null)
+                    {
+                        Destroy(weaponObj);
+                        weaponObj = CreateWeapon(weapons[curWeapon], weaponParent);
+                    }
+                    break;
+                case CategorySelection.SubWeapon:
+                    curSubWeapon += 1;
+                    if (curSubWeapon > weapons.Count - 1)
+                    {
+                        curSubWeapon = 0;
+                    }
+                    GameManagers.GetPlayerProfile().itemIds[1] = weapons[curSubWeapon].name;
+                    if (subWeaponObj != null)
+                    {
+                        Destroy(subWeaponObj);
+                        subWeaponObj = CreateWeapon(weapons[curSubWeapon], subWeaponParent);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        #region Init Item Index
+        private void InitItemsIndex()
+        {
+            InitClothIndex();
+            InitWeaponIndex();
+            InitSubWeaponIndex();
+        }
+
+        private void InitClothIndex()
+        {
+            string modelId = GameManagers.GetPlayerProfile().modelId;
+
+            for(int i = 0; i < cloths.Count; i++)
+            {
+                if(string.Equals(modelId, cloths[i].name))
+                {
+                    curCloth = i;
+                    break;
+                }
+            }
+        }
+
+        private void InitWeaponIndex()
+        {
+            string weapon = GameManagers.GetPlayerProfile().itemIds[0];
+
+            for (int i = 0; i < weapons.Count; i++)
+            {
+                if (string.Equals(weapon, weapons[i].name))
+                {
+                    curWeapon = i;
+                    break;
+                }
+            }
+        }
+
+        private void InitSubWeaponIndex()
+        {
+            string subWeapon = GameManagers.GetPlayerProfile().itemIds[1];
+
+            for (int i = 0; i < weapons.Count; i++)
+            {
+                if (string.Equals(subWeapon, weapons[i].name))
+                {
+                    curSubWeapon = i;
+                    break;
+                }
+            }
+        }
+        #endregion
+
+        GameObject CreateWeapon(Weapon w, Transform p)
+        {
+            GameObject go = Instantiate(w.modelPrefab, p.position, p.rotation, p);
+            return go;
         }
 
     }

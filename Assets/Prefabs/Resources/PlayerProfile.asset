@@ -13,4 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelId: MaleSwat
   itemIds:
+  - AK
   - 1911

@@ -42,6 +42,32 @@ namespace SA
             return clothItem;
         }
 
+        public List<ClothItem> GetAllCloth()
+        {
+            List<ClothItem> r = new List<ClothItem>();
+            foreach(Item i in allItems)
+            {
+                if(i is ClothItem)
+                {
+                    r.Add((ClothItem)i);
+                }
+            }
+            return r;
+        }
+
+        public List<Weapon> GetAllWeapon()
+        {
+            List<Weapon> r = new List<Weapon>();
+            foreach (Item i in allItems)
+            {
+                if (i is Weapon)
+                {
+                    r.Add((Weapon)i);
+                }
+            }
+            return r;
+        }
+
         Item GetItem(string targetID)
         {
             Item retVal = null;

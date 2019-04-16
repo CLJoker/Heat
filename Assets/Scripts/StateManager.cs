@@ -84,10 +84,7 @@ namespace SA
             InitReferences();
             if (isOfflineController)
             {
-                PlayerProfile playerProfile = GameManagers.GetPlayerProfile();
-
-                LoadCharacterModel(playerProfile.modelId);
-
+                LoadCharacterFromProfile();
                 if(offlineActions != null)
                     offlineActions.Execute(this);
             }
@@ -108,6 +105,12 @@ namespace SA
         {
             ClothItem cloth = GameManagers.GetResourcesManager().GetClothItem(modelId);
             characterHook.Init(cloth);
+        }
+
+        public void LoadCharacterFromProfile()
+        {
+            PlayerProfile playerProfile = GameManagers.GetPlayerProfile();
+            LoadCharacterModel(playerProfile.modelId);
         }
 
         private void FixedUpdate()

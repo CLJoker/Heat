@@ -12,6 +12,11 @@ namespace SA
         public PlayerHolder localPlayer;
         public Transform referencesParent;
 
+        #region Team Logic
+        List<PlayerHolder> firstTeamPlayers = new List<PlayerHolder>();
+        List<PlayerHolder> secondTeamPlayers = new List<PlayerHolder>();
+        #endregion
+
         public MultiplayerReferences()
         {
             referencesParent = new GameObject().transform;
@@ -37,6 +42,17 @@ namespace SA
             playerHolder.photonId = print.photonId;
             playerHolder.print = print;
             playerHolder.health = 100;
+            if(firstTeamPlayers.Count >= secondTeamPlayers.Count)
+            {
+                firstTeamPlayers.Add(playerHolder);
+                playerHolder.team = 1;
+            }
+            else
+            {
+                secondTeamPlayers.Add(playerHolder);
+                playerHolder.team = 2;
+            }
+
             players.Add(playerHolder);
             return playerHolder;
         }

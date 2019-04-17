@@ -14,5 +14,9 @@ namespace SA
         public NetworkPrint print;
         public StateManager states;
         public float spawnTimer;
+        /// <summary>
+        /// Team 1 or 2
+        /// </summary>
+        public int team;
     }
 }

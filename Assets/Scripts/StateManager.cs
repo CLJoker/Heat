@@ -88,7 +88,7 @@ namespace SA
                 if(offlineActions != null)
                     offlineActions.Execute(this);
             }
-
+            Debug.Log("Done all init");
         }
 
         public void InitReferences()
@@ -99,6 +99,7 @@ namespace SA
             healthChangedFlag = true;
             characterHook = GetComponentInChildren<CharacterHook>();
             hashes = new AnimHashes();
+            Debug.Log("Done init references");
         }
 
         public void LoadCharacterModel(string modelId)
@@ -108,9 +109,10 @@ namespace SA
         }
 
         public void LoadCharacterFromProfile()
-        {
+        {          
             PlayerProfile playerProfile = GameManagers.GetPlayerProfile();
             LoadCharacterModel(playerProfile.modelId);
+            Debug.Log("Load from profile: " + playerProfile.modelId);
         }
 
         private void FixedUpdate()

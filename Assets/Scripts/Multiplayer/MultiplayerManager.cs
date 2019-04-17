@@ -22,6 +22,9 @@ namespace SA
         GameEvent timerUpdate;
         bool isMaster;
 
+        int firstTeamKillCount = 0;
+        int secondTeamKillCount = 0;
+
         public MultiplayerReferences GetMRef()
         {
             return mRef;

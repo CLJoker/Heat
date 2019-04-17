@@ -504,6 +504,24 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!1 &70700991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1890467753239442, guid: d6463b2a444fc5e40891b18ddd534b8a,
+    type: 2}
+  m_PrefabInternal: {fileID: 751745753}
+--- !u!114 &70700994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 70700991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2065a3afb8ff5504794f5de76e5eb201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  body:
+    meshRenderer: {fileID: 801531312}
 --- !u!1 &76808246
 GameObject:
   m_ObjectHideFlags: 0
@@ -5981,6 +5999,11 @@ RectTransform:
   m_AnchoredPosition: {x: 403.4, y: 330.75}
   m_SizeDelta: {x: 650.8, y: 176.2}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!137 &801531312 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 137377477478437392, guid: d6463b2a444fc5e40891b18ddd534b8a,
+    type: 2}
+  m_PrefabInternal: {fileID: 751745753}
 --- !u!4 &807576032 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4654385128673136, guid: 31ca8f22c00470e4a95b60879a64b639,
@@ -9599,6 +9622,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1537306132}
+        m_MethodName: LoadCharacterFromProfile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   IfFalse:
@@ -9629,6 +9663,17 @@ MonoBehaviour:
       - m_Target: {fileID: 1654645431}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1654645432}
+        m_MethodName: LoadCharacterFromProfile
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11756,6 +11801,10 @@ Prefab:
       propertyPath: m_ConnectedAnchor.z
       value: -9.896622
       objectReference: {fileID: 0}
+    - target: {fileID: 1138147466626216, guid: 31ca8f22c00470e4a95b60879a64b639, type: 2}
+      propertyPath: m_Name
+      value: OfflineController
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114247674446128092, guid: 31ca8f22c00470e4a95b60879a64b639, type: 2}
     - {fileID: 114470789672275930, guid: 31ca8f22c00470e4a95b60879a64b639, type: 2}
@@ -12097,6 +12146,24 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1461409693}
   m_CullTransparentMesh: 0
+--- !u!1 &1461890713 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1890467753239442, guid: d6463b2a444fc5e40891b18ddd534b8a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1537306129}
+--- !u!114 &1461890716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1461890713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2065a3afb8ff5504794f5de76e5eb201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  body:
+    meshRenderer: {fileID: 1756635339}
 --- !u!1 &1471351586
 GameObject:
   m_ObjectHideFlags: 0
@@ -12745,6 +12812,66 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1830067173925558, guid: d6463b2a444fc5e40891b18ddd534b8a,
     type: 2}
   m_PrefabInternal: {fileID: 1537306129}
+--- !u!114 &1537306132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1537306131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e08173336c77d4bbf8356471f54b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  photonId: 0
+  stats:
+    health: 100
+  movementValues:
+    horizontal: 0
+    vertical: 0
+    moveAmount: 0
+    moveDirection: {x: 0, y: 0, z: 0}
+    lookDirection: {x: 0, y: 0, z: 0}
+    aimPosition: {x: 0, y: 0, z: 0}
+  inventory:
+    weaponID: AK
+    currentWeapon: {fileID: 0}
+  ragdollRB: []
+  ragdollCols: []
+  currentState: {fileID: 0}
+  isLocal: 0
+  isAiming: 0
+  isInteracting: 0
+  isShooting: 0
+  isCrouching: 0
+  isReloading: 0
+  isVaulting: 0
+  isGrounded: 0
+  isDead: 0
+  shootingFlag: 0
+  reloadingFlag: 0
+  vaultingFlag: 0
+  healthChangedFlag: 0
+  anim: {fileID: 0}
+  delta: 0
+  mTransform: {fileID: 0}
+  rigidbody: {fileID: 0}
+  ignoreLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  animHook: {fileID: 0}
+  vaultData:
+    startPosition: {x: 0, y: 0, z: 0}
+    endingPosition: {x: 0, y: 0, z: 0}
+    vaultSpeed: 1
+    animLength: 0
+    vaultT: 0
+    isInit: 0
+  ballisticsAction: {fileID: 0}
+  multiplayerListener: {fileID: 0}
+  isOfflineController: 1
+  offlineActions: {fileID: 0}
+  characterHook: {fileID: 1461890716}
 --- !u!1 &1538981294
 GameObject:
   m_ObjectHideFlags: 0
@@ -13552,6 +13679,66 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1830067173925558, guid: d6463b2a444fc5e40891b18ddd534b8a,
     type: 2}
   m_PrefabInternal: {fileID: 751745753}
+--- !u!114 &1654645432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1654645431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e08173336c77d4bbf8356471f54b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  photonId: 0
+  stats:
+    health: 100
+  movementValues:
+    horizontal: 0
+    vertical: 0
+    moveAmount: 0
+    moveDirection: {x: 0, y: 0, z: 0}
+    lookDirection: {x: 0, y: 0, z: 0}
+    aimPosition: {x: 0, y: 0, z: 0}
+  inventory:
+    weaponID: AK
+    currentWeapon: {fileID: 0}
+  ragdollRB: []
+  ragdollCols: []
+  currentState: {fileID: 0}
+  isLocal: 0
+  isAiming: 0
+  isInteracting: 0
+  isShooting: 0
+  isCrouching: 0
+  isReloading: 0
+  isVaulting: 0
+  isGrounded: 0
+  isDead: 0
+  shootingFlag: 0
+  reloadingFlag: 0
+  vaultingFlag: 0
+  healthChangedFlag: 0
+  anim: {fileID: 0}
+  delta: 0
+  mTransform: {fileID: 0}
+  rigidbody: {fileID: 0}
+  ignoreLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  animHook: {fileID: 0}
+  vaultData:
+    startPosition: {x: 0, y: 0, z: 0}
+    endingPosition: {x: 0, y: 0, z: 0}
+    vaultSpeed: 1
+    animLength: 0
+    vaultT: 0
+    isInit: 0
+  ballisticsAction: {fileID: 0}
+  multiplayerListener: {fileID: 0}
+  isOfflineController: 1
+  offlineActions: {fileID: 0}
+  characterHook: {fileID: 70700994}
 --- !u!137 &1701101769 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 137344911165111138, guid: 31ca8f22c00470e4a95b60879a64b639,
@@ -14273,6 +14460,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!137 &1756635339 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 137377477478437392, guid: d6463b2a444fc5e40891b18ddd534b8a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1537306129}
 --- !u!1 &1784930919
 GameObject:
   m_ObjectHideFlags: 0

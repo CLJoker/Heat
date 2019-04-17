@@ -21,9 +21,12 @@ namespace SA
         [SerializeField]
         GameEvent timerUpdate;
         bool isMaster;
-
-        int firstTeamKillCount = 0;
-        int secondTeamKillCount = 0;
+        [SerializeField]
+        IntVariable firstTeamKillCount;
+        [SerializeField]
+        IntVariable secondTeamKillCount;
+        [SerializeField]
+        GameEvent updateTeamKillCount;
 
         public MultiplayerReferences GetMRef()
         {
@@ -95,6 +98,8 @@ namespace SA
             InstantiateNetworkPrint();
             currentTime = startingTime;
             isMaster = PhotonNetwork.isMasterClient;
+            firstTeamKillCount.value = 0;
+            secondTeamKillCount.value = 0;
         }
 
         void OnMasterClientSwitched(PhotonPlayer newMasterClient)
@@ -189,6 +194,17 @@ namespace SA
         {
             PlayerHolder p = mRef.GetPlayer(shooterId);
             p.killCount++;
+            Debug.Log("Player team: " + p.team);
+            if(p.team == 1)
+            {
+                firstTeamKillCount.value += 1;
+                photonView.RPC("RPC_SyncTeamKillCount", PhotonTargets.All, 1, firstTeamKillCount.value);
+            }
+            if(p.team == 2)
+            {
+                secondTeamKillCount.value += 1;
+                photonView.RPC("RPC_SyncTeamKillCount", PhotonTargets.All, 2, secondTeamKillCount.value);
+            }
             photonView.RPC("RPC_SyncKillCount", PhotonTargets.All, shooterId, p.killCount);
 
             if(p.killCount > winKillCount)
@@ -336,6 +352,20 @@ namespace SA
                 }               
             }
             player.states.anim.Play("damage2");
+        }
+
+        [PunRPC]
+        public void RPC_SyncTeamKillCount(int team, int teamKill)
+        {
+            if(team == 1)
+            {
+                firstTeamKillCount.value = teamKill;
+            }
+            if(team == 2)
+            {
+                secondTeamKillCount.value = teamKill;
+            }
+            updateTeamKillCount.Raise();
         }
         #endregion
     }

@@ -42,7 +42,7 @@ namespace SA
             playerHolder.photonId = print.photonId;
             playerHolder.print = print;
             playerHolder.health = 100;
-            if(firstTeamPlayers.Count >= secondTeamPlayers.Count)
+            if(firstTeamPlayers.Count <= secondTeamPlayers.Count)
             {
                 firstTeamPlayers.Add(playerHolder);
                 playerHolder.team = 1;

@@ -9,6 +9,5 @@ namespace SA
     {
         public string modelId;
         public string[] itemIds;
-
     }
 }

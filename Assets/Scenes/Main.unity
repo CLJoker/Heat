@@ -11805,6 +11805,10 @@ Prefab:
       propertyPath: m_Name
       value: OfflineController
       objectReference: {fileID: 0}
+    - target: {fileID: 1671363794536416, guid: 31ca8f22c00470e4a95b60879a64b639, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114247674446128092, guid: 31ca8f22c00470e4a95b60879a64b639, type: 2}
     - {fileID: 114470789672275930, guid: 31ca8f22c00470e4a95b60879a64b639, type: 2}

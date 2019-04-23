@@ -14,8 +14,7 @@ namespace SA
 		public bool updateBoolVar = true;
         //You need to import the SO library from my github to use a BoolVariable asset
         public SO.BoolVariable targetBoolVariable;
-
-
+        
         public override void Execute()
 		{
 			switch (keyState)

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetInput: Fire2
   isPressed: 0
-  keyState: 1
-  updateBoolVar: 1
+  keyState: 0
+  updateBoolVar: 0
   targetBoolVariable: {fileID: 11400000, guid: f325ba32260c9574ba66980818c2de99, type: 2}

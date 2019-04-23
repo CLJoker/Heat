@@ -39,7 +39,7 @@ namespace SA
             }
 
 
-            if (states.isShooting)
+            if (states.isShooting && states.isAiming)
             {
                 states.shootingFlag = true;
                 states.isShooting = false;

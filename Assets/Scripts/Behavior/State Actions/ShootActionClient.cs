@@ -28,7 +28,7 @@ namespace SA
                 }
             }
 
-            if (states.isShooting && !states.isReloading)
+            if (states.isShooting && !states.isReloading && states.isAiming)
             {
                 states.isShooting = false;
                 Weapon w = states.inventory.currentWeapon;

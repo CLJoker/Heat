@@ -55,15 +55,22 @@ namespace SA
                 }
                 reloadInput.targetBoolVariable.value = playerStates.value.isReloading;
 
-                if (!debugAim)
+                if (aimInput.isPressed)
                 {
-                    playerStates.value.isAiming = aimInput.isPressed;
+                    playerStates.value.isAiming = !playerStates.value.isAiming;
+                    aimInput.targetBoolVariable.value = playerStates.value.isAiming;
                 }
-                else
-                {
-                    playerStates.value.isAiming = true;
-                    aimInput.isPressed = true;
-                }
+
+                //if (!debugAim)
+                //{
+                //    playerStates.value.isAiming = aimInput.isPressed;
+                //}
+                //else
+                //{
+                //    playerStates.value.isAiming = aimInput.isPressed;
+                //    aimInput.targetBoolVariable.value = playerStates.value.isAiming;
+                //    //aimInput.isPressed = true;
+                //}
 
                 if(cameraTransform.value != null)
                 {

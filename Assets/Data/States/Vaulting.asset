@@ -20,5 +20,5 @@ MonoBehaviour:
   transitions:
   - id: 0
     condition: {fileID: 11400000, guid: ce25e543286f7e049ba5159aa45e9196, type: 2}
-    targetState: {fileID: 11400000, guid: d854e7160e4582f43bd7cfaf901490a3, type: 2}
+    targetState: {fileID: 11400000, guid: dd0b8ab9567abb346a7a1d923d70fe9e, type: 2}
     disable: 0

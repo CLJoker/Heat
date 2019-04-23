@@ -16,6 +16,9 @@ namespace SA
         public GameEvent curAmmoUpdate;
         public IntVariable curAmmo;
 
+        public GameEvent curCarryingAmmoUpdate;
+        public IntVariable curCarryingAmmo;
+
         public override void Execute()
         {
             if (states.value == null)
@@ -32,6 +35,12 @@ namespace SA
             {
                 curAmmo.value = states.value.inventory.currentWeapon.currentBullets;
                 curAmmoUpdate.Raise();
+            }
+
+            if(curCarryingAmmo.value != states.value.inventory.currentWeapon.ammoType.carryingAmount)
+            {
+                curCarryingAmmo.value = states.value.inventory.currentWeapon.ammoType.carryingAmount;
+                curCarryingAmmoUpdate.Raise();
             }
         }
 

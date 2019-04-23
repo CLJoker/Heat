@@ -16,3 +16,6 @@ MonoBehaviour:
   playerHealth: {fileID: 11400000, guid: efc1b6fe7e8e31a42bdd9ebbe375a57b, type: 2}
   curAmmoUpdate: {fileID: 11400000, guid: eb345bccd7ddc1f40bafb0b5b640e599, type: 2}
   curAmmo: {fileID: 11400000, guid: bf1354f22ebb05940b892c0f1980710a, type: 2}
+  curCarryingAmmoUpdate: {fileID: 11400000, guid: d7bd65009f3f8db4cbfab22a50ac781c,
+    type: 2}
+  curCarryingAmmo: {fileID: 11400000, guid: e369e7384e220904db24fc793e25393e, type: 2}

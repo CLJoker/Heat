@@ -73,13 +73,32 @@ namespace SA
 
         public void ReloadCurrentWeapon(Weapon currentWeapon)
         {
+            //Target will consider how much bullet can we take
             int target = currentWeapon.megazineBullets;
-            if (target > currentWeapon.ammoType.carryingAmount)
+
+            //if (target > currentWeapon.ammoType.carryingAmount)
+            //{
+            //    target = currentWeapon.megazineBullets - currentWeapon.ammoType.carryingAmount;
+            //}            
+
+            //currentWeapon.ammoType.carryingAmount -= target;
+            //currentWeapon.currentBullets = target;
+
+            if(target > currentWeapon.ammoType.carryingAmount)
             {
-                target = currentWeapon.megazineBullets - currentWeapon.ammoType.carryingAmount;
+                target = currentWeapon.ammoType.carryingAmount;
             }
+
+            int actualGet = currentWeapon.currentBullets + target;
+            if(actualGet > currentWeapon.megazineBullets)
+            {
+                int holder = actualGet - currentWeapon.megazineBullets;
+                target -= holder;
+                actualGet = currentWeapon.megazineBullets;
+            }
+
+            currentWeapon.currentBullets = actualGet;
             currentWeapon.ammoType.carryingAmount -= target;
-            currentWeapon.currentBullets = target;
         }
     }
 }

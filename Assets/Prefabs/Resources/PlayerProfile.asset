@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8a892a89981a242acd9deb60ce93be, type: 3}
   m_Name: PlayerProfile
   m_EditorClassIdentifier: 
+  playerName: CLJoker
   modelId: MaleSwat
   itemIds:
   - AK

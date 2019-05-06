@@ -213,6 +213,23 @@ namespace SA
         #region Init Item Index
         private void InitItemsIndex()
         {
+            //Load data from local, if exist
+            PlayerDataBin playerData = DataManager.LoadLocalPlayer();
+
+            if(playerData != null)
+            {
+                PlayerProfile playerProfile = GameManagers.GetPlayerProfile();
+                playerProfile.playerName = playerData.playerName;
+                playerProfile.modelId = playerData.modelId;
+                playerProfile.itemIds[0] = playerData.mainWeapon;
+                playerProfile.itemIds[1] = playerData.subWeapon;
+                Debug.Log("Load successfull");
+            }
+            else
+            {
+                Debug.Log("No save file to load");
+            }
+
             InitClothIndex();
             InitWeaponIndex();
             InitSubWeaponIndex();
@@ -265,6 +282,18 @@ namespace SA
         {
             GameObject go = Instantiate(w.modelPrefab, p.position, p.rotation, p);
             return go;
+        }
+
+        public void SavePlayerProfile()
+        {
+            PlayerDataBin playerData = new PlayerDataBin();
+            PlayerProfile playerProfile = GameManagers.GetPlayerProfile();
+            playerData.playerName = playerProfile.playerName;
+            playerData.modelId = playerProfile.modelId;
+            playerData.mainWeapon = playerProfile.itemIds[0];
+            playerData.subWeapon = playerProfile.itemIds[1];
+            DataManager.SavePlayer(playerData);
+            Debug.Log("Save Player!!!");
         }
 
     }

@@ -7,6 +7,7 @@ namespace SA
     [CreateAssetMenu(menuName = "Managers/Player Profile")]
     public class PlayerProfile : ScriptableObject
     {
+        public string playerName;
         public string modelId;
         public string[] itemIds;
     }

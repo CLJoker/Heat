@@ -18,5 +18,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 90ecca5c6f0b394458169a3184ed059b, type: 2}
   - {fileID: 11400000, guid: 9aad766b8a526c6428ed0620ae669ed1, type: 2}
   - {fileID: 11400000, guid: d943ae79e0e455443853a5f17e816909, type: 2}
+  - {fileID: 11400000, guid: 647cb88c387b5eb4091deb6695fc1b5f, type: 2}
   currentRoom: {fileID: 11400000, guid: c900b5e54794078449eff8dce56b4c0f, type: 2}
   currentMap: {fileID: 11400000, guid: 17d246f0f99eac44a8521c8fd093d0b0, type: 2}

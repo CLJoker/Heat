@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96e28e04c7bc68741b27f46b6bc1c585, type: 3}
-  m_Name: FemaleBusiness
+  m_Name: FemaleJacket
   m_EditorClassIdentifier: 
-  mesh: {fileID: 4300038, guid: 16c4b6c36252ce14e8083291c9e774fd, type: 3}
+  mesh: {fileID: 4300016, guid: 897b34267f422c1499700402763d096e, type: 3}
   material: {fileID: 2100000, guid: 176c49da1f24739498629fa1c85cfa7b, type: 2}

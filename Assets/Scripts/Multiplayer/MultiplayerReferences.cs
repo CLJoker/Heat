@@ -57,13 +57,14 @@ namespace SA
             playerHolder.health = 100;
             if(firstTeamPlayers.Count <= secondTeamPlayers.Count)
             {
-                firstTeamPlayers.Add(playerHolder);
                 playerHolder.team = 1;
+                firstTeamPlayers.Add(playerHolder);
+                
             }
             else
             {
-                secondTeamPlayers.Add(playerHolder);
                 playerHolder.team = 2;
+                secondTeamPlayers.Add(playerHolder);                
             }
 
             players.Add(playerHolder);

@@ -137,6 +137,7 @@ namespace SA
             if (print.isLocal)
             {
                 mRef.localPlayer = playerH;
+                Debug.Log("Local player is team: " + mRef.localPlayer.team);
             }
         }
 

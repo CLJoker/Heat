@@ -26,7 +26,7 @@ namespace SA
             public Vector3 lookDirection;
             public Vector3 aimPosition;
         }
-        
+
         public State currentState;
 
         public bool isLocal;
@@ -82,13 +82,23 @@ namespace SA
         private void Start()
         {
             InitReferences();
+            ResetState();
             if (isOfflineController)
             {
                 LoadCharacterFromProfile();
-                if(offlineActions != null)
+                if (offlineActions != null)
                     offlineActions.Execute(this);
             }
             Debug.Log("Done all init");
+        }
+
+        private void ResetState()
+        {
+            isAiming = false;
+            isDead = false;
+            isCrouching = false;
+            isInteracting = false;
+            isReloading = false;
         }
 
         public void InitReferences()
@@ -109,7 +119,7 @@ namespace SA
         }
 
         public void LoadCharacterFromProfile()
-        {          
+        {
             PlayerProfile playerProfile = GameManagers.GetPlayerProfile();
             LoadCharacterModel(playerProfile.modelId);
             Debug.Log("Load from profile: " + playerProfile.modelId);
@@ -140,7 +150,7 @@ namespace SA
 
         public void SetCurrentState(State targetState)
         {
-            if(currentState != null)
+            if (currentState != null)
             {
                 currentState.OnExit(this);
             }
@@ -151,7 +161,10 @@ namespace SA
 
         public void OnHit(StateManager shooter, Weapon wp, Vector3 dir, Vector3 pos)
         {
-            if (shooter == this)
+            int playerTeam = MultiplayerManager.singleton.GetMRef().GetPlayer(photonId).team;
+            int shooterTeam = MultiplayerManager.singleton.GetMRef().GetPlayer(shooter.photonId).team;
+
+            if (shooter == this || playerTeam == shooterTeam)
                 return;
 
             GameObject hitParticle = GameManagers.GetObjPool().RequestObject("Blood_Fx");

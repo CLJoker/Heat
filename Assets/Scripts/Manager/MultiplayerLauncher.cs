@@ -96,6 +96,13 @@ namespace SA
             StartCoroutine(RoomCheck());
         }
 
+        public override void OnConnectionFail(DisconnectCause cause)
+        {
+            base.OnConnectionFail(cause);
+            //retry connecting
+            PhotonNetwork.JoinLobby();
+        }
+
         IEnumerator RoomCheck()
         {
             yield return new WaitForSeconds(3);

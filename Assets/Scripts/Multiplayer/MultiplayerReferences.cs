@@ -14,7 +14,10 @@ namespace SA
 
         #region Team Logic
         List<PlayerHolder> firstTeamPlayers = new List<PlayerHolder>();
+        public List<SpawnPosition> firstTeamSpawnPositions = new List<SpawnPosition>();
+
         List<PlayerHolder> secondTeamPlayers = new List<PlayerHolder>();
+        public List<SpawnPosition> secondTeamSpawnPositions = new List<SpawnPosition>();
         #endregion
 
         public MultiplayerReferences()
@@ -31,6 +34,16 @@ namespace SA
         public List<PlayerHolder> getPlayers()
         {
             return players;
+        }
+
+        public List<PlayerHolder> getTeamOne()
+        {
+            return firstTeamPlayers;
+        }
+
+        public List<PlayerHolder> getTeamTwo()
+        {
+            return secondTeamPlayers;
         }
 
         public PlayerHolder AddNewPlayer(NetworkPrint print)

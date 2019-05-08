@@ -6,7 +6,7 @@ namespace SA
 {
     public class SpawnPosition : MonoBehaviour
     {
-
+        public int teamSpawn;
 
     }
 }

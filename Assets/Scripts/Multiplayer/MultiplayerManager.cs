@@ -11,7 +11,7 @@ namespace SA
         bool inGame;
         bool endMatch;
         [SerializeField]
-        int winKillCount = 2;
+        int winKillCount = 5;
         [SerializeField]
         float startingTime = 300;
         float currentTime;
@@ -78,9 +78,21 @@ namespace SA
                 {
                     playersToSpawn[i].spawnTimer = 0;
                     playersToSpawn[i].health = 100;
-                    int ran = Random.Range(0, mRef.spawnPositions.Length);
-                    Vector3 pos = mRef.spawnPositions[ran].transform.position;
-                    Quaternion rot = mRef.spawnPositions[ran].transform.rotation;
+                    
+                    Vector3 pos;
+                    Quaternion rot;
+                    if (playersToSpawn[i].team == 1)
+                    {
+                        int ran = Random.Range(0, mRef.firstTeamSpawnPositions.Count - 1);
+                        pos = mRef.firstTeamSpawnPositions[ran].transform.position;
+                        rot = mRef.firstTeamSpawnPositions[ran].transform.rotation;
+                    }
+                    else
+                    {
+                        int ran = Random.Range(0, mRef.secondTeamSpawnPositions.Count - 1);
+                        pos = mRef.secondTeamSpawnPositions[ran].transform.position;
+                        rot = mRef.secondTeamSpawnPositions[ran].transform.rotation;
+                    }
 
                     photonView.RPC("RPC_BroadcastPlayerHealth", PhotonTargets.All, playersToSpawn[i].photonId, 100);
                     photonView.RPC("RPC_SpawnPlayer", PhotonTargets.All, playersToSpawn[i].photonId, pos, rot);
@@ -133,6 +145,17 @@ namespace SA
         {
             SpawnPosition[] spawnPositions = GameObject.FindObjectsOfType<SpawnPosition>();
             mRef.spawnPositions = spawnPositions;
+            foreach(SpawnPosition spawn in spawnPositions)
+            {
+                if(spawn.teamSpawn == 1)
+                {
+                    mRef.firstTeamSpawnPositions.Add(spawn);
+                }
+                else
+                {
+                    mRef.secondTeamSpawnPositions.Add(spawn);
+                }
+            }
         }
 
         public void BroadCastSceneChange()
@@ -157,13 +180,22 @@ namespace SA
 
         void AssignSpawnPositions()
         {
-            List<PlayerHolder> players = mRef.getPlayers();
+            List<PlayerHolder> firstTeamPlayers = mRef.getTeamOne();
+            List<PlayerHolder> secondTeamPlayers = mRef.getTeamTwo();
 
-            for (int i = 0; i < players.Count; i++)
+            for (int i = 0; i < firstTeamPlayers.Count; i++)
             {
-                int index = i % mRef.spawnPositions.Length;
-                SpawnPosition p = mRef.spawnPositions[index];
-                photonView.RPC("RPC_BroadcastCreateController", PhotonTargets.All, players[i].photonId
+                int index = i % mRef.firstTeamSpawnPositions.Count;
+                SpawnPosition p = mRef.firstTeamSpawnPositions[index];
+                photonView.RPC("RPC_BroadcastCreateController", PhotonTargets.All, firstTeamPlayers[i].photonId
+                    , p.transform.position + Vector3.up * 0.1f, p.transform.rotation);
+            }
+
+            for (int i = 0; i < secondTeamPlayers.Count; i++)
+            {
+                int index = i % mRef.secondTeamSpawnPositions.Count;
+                SpawnPosition p = mRef.secondTeamSpawnPositions[index];
+                photonView.RPC("RPC_BroadcastCreateController", PhotonTargets.All, secondTeamPlayers[i].photonId
                     , p.transform.position + Vector3.up * 0.1f, p.transform.rotation);
             }
         }
@@ -207,15 +239,22 @@ namespace SA
             }
             photonView.RPC("RPC_SyncKillCount", PhotonTargets.All, shooterId, p.killCount);
 
-            if(p.killCount > winKillCount)
+            Debug.Log("first team: " + firstTeamKillCount.value);
+            Debug.Log("Second team: " + secondTeamKillCount.value);
+
+            if(firstTeamKillCount.value > winKillCount)
             {
-                BroadcastMatchOver(shooterId);
+                BroadcastMatchOver(1);
+            }
+            else if(secondTeamKillCount.value > winKillCount)
+            {
+                BroadcastMatchOver(2);
             }
         }
 
-        public void BroadcastMatchOver(int photonId)
+        public void BroadcastMatchOver(int winnerTeam)
         {
-            photonView.RPC("RPC_BroadcastMatchOver", PhotonTargets.All, photonId);
+            photonView.RPC("RPC_BroadcastMatchOver", PhotonTargets.All, winnerTeam);
             endMatch = true;
         }
 
@@ -235,20 +274,18 @@ namespace SA
 
         public void TimerRunOut()
         {
-            List<PlayerHolder> players = mRef.getPlayers();
-            int killCount = 0;
-            int winnerId = -1;
+            int winnerTeam = -1;
 
-            for(int i = 0; i<players.Count; i++)
+            if(firstTeamKillCount.value > secondTeamKillCount.value)
             {
-                if(players[i].killCount > killCount)
-                {
-                    killCount = players[i].killCount;
-                    winnerId = players[i].photonId;
-                }
+                winnerTeam = 1;
+            }
+            else if(firstTeamKillCount.value < secondTeamKillCount.value)
+            {
+                winnerTeam = 2;
             }
 
-            BroadcastMatchOver(winnerId);
+            BroadcastMatchOver(winnerTeam);
         }
         #endregion
 
@@ -275,13 +312,14 @@ namespace SA
         }
 
         [PunRPC]
-        public void RPC_BroadcastMatchOver(int photonId)
+        public void RPC_BroadcastMatchOver(int winnerTeam)
         {
             bool isWinner = false;
-            if(mRef.localPlayer.photonId == photonId)
+            Debug.Log("local player's team:" + mRef.localPlayer.team);
+            Debug.Log("winner team" + winnerTeam);
+            if (mRef.localPlayer.team == winnerTeam)
             {
                 isWinner = true;
-                Debug.Log("winner");
             }
             MultiplayerLauncher.singleton.EndMatch(this, isWinner);
         }

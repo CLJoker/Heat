@@ -54,4 +54,5 @@ MonoBehaviour:
   - RPC_BroadcastMatchOver
   - RPC_BroadcastTime
   - RPC_SyncTeamKillCount
+  - RPC_SelectTeam
   DisableAutoOpenWizard: 1

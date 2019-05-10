@@ -220,7 +220,7 @@ namespace SA
             //    callback.Invoke();
             //    Debug.Log("Callback ################");
             //}
-
+            yield return new WaitForSeconds(1);
 
             AsyncOperation async = SceneManager.LoadSceneAsync(targetLevel, LoadSceneMode.Single);
             async.allowSceneActivation = false;

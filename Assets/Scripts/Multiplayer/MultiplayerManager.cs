@@ -7,6 +7,7 @@ namespace SA
 {
     public class MultiplayerManager : Photon.MonoBehaviour
     {
+        #region Init
         MultiplayerReferences mRef;
         bool inGame;
         bool endMatch;
@@ -37,6 +38,7 @@ namespace SA
 
         public RayBallistics ballistics;
         List<PlayerHolder> playersToSpawn = new List<PlayerHolder>();
+
         private void Update()
         {
             if (endMatch)
@@ -122,9 +124,10 @@ namespace SA
         void InstantiateNetworkPrint()
         {
             PlayerProfile profile = GameManagers.GetPlayerProfile();
-            object[] data = new object[2];
+            object[] data = new object[3];
             data[0] = profile.itemIds[0];
             data[1] = profile.modelId;
+            data[2] = profile.playerName;
 
             GameObject go = PhotonNetwork.Instantiate("NetworkPrint", Vector3.zero, Quaternion.identity, 0, data) as GameObject;
 
@@ -134,14 +137,21 @@ namespace SA
         {
             print.transform.parent = mRef.referencesParent;
             PlayerHolder playerH = mRef.AddNewPlayer(print);
-            if (print.isLocal)
-            {
-                mRef.localPlayer = playerH;
-                Debug.Log("Local player is team: " + mRef.localPlayer.team);
-            }
+            //Debug.Log("New player in team: " + playerH.team);
+            //if (print.isLocal)
+            //{
+            //    mRef.localPlayer = playerH;
+            //    Debug.Log("Local player is " + playerH.photonId + " of team: " + mRef.localPlayer.team);
+            //}
         }
+        #endregion
 
         #region MyCalls
+        public void BroadcastSelectTeam(int photonId, int team)
+        {
+            photonView.RPC("RPC_SelectTeam", PhotonTargets.All, photonId, team);
+        }
+
         public void FindSpawnPositionOnLevel()
         {
             SpawnPosition[] spawnPositions = GameObject.FindObjectsOfType<SpawnPosition>();
@@ -291,6 +301,25 @@ namespace SA
         #endregion
 
         #region RPCs
+        [PunRPC]
+        public void RPC_SelectTeam(int photonId, int team)
+        {
+            PlayerHolder player = GetMRef().GetPlayer(photonId);
+            player.team = team;
+
+            switch (team)
+            {
+                case 1:
+                    GetMRef().getTeamOne().Add(player);
+                    break;
+                case 2:
+                    GetMRef().getTeamTwo().Add(player);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         [PunRPC]
         public void RPC_BroadcastTime(float masterTime)
         {

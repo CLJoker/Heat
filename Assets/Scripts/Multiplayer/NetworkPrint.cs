@@ -11,6 +11,8 @@ namespace SA
 
         string weaponId;
         string modelId;
+        [HideInInspector]
+        public string playerName;
 
         void OnPhotonInstantiate(PhotonMessageInfo info)
         {
@@ -22,6 +24,7 @@ namespace SA
             object[] data = photonView.instantiationData;
             weaponId = (string)data[0];
             modelId = (string)data[1];
+            playerName = (string)data[2];
 
             mm.AddNewPlayer(this);
         }

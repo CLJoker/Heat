@@ -55,17 +55,24 @@ namespace SA
             playerHolder.photonId = print.photonId;
             playerHolder.print = print;
             playerHolder.health = 100;
-            if(firstTeamPlayers.Count <= secondTeamPlayers.Count)
-            {
-                playerHolder.team = 1;
-                firstTeamPlayers.Add(playerHolder);
+            playerHolder.userName = print.playerName;
+            //if(firstTeamPlayers.Count <= secondTeamPlayers.Count)
+            //{
+            //    playerHolder.team = 1;
+            //    firstTeamPlayers.Add(playerHolder);
                 
-            }
-            else
+            //}
+            //else
+            //{
+            //    playerHolder.team = 2;
+            //    secondTeamPlayers.Add(playerHolder);                
+            //}
+
+            if (print.isLocal)
             {
-                playerHolder.team = 2;
-                secondTeamPlayers.Add(playerHolder);                
+                localPlayer = playerHolder;
             }
+            Debug.Log("New player is " + playerHolder.photonId + " of team: " + playerHolder.team);
 
             players.Add(playerHolder);
             return playerHolder;

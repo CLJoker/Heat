@@ -6,6 +6,6 @@ namespace SA
 {
     interface IHittable
     {
-        void OnHit(StateManager shooter, Weapon wp, Vector3 dir, Vector3 pos);
+        void OnHit(StateManager shooter, Weapon wp, Vector3 dir, Vector3 pos, string hitPart);
     }
 }

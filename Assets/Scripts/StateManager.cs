@@ -159,7 +159,7 @@ namespace SA
             currentState.OnEnter(this);
         }
 
-        public void OnHit(StateManager shooter, Weapon wp, Vector3 dir, Vector3 pos)
+        public void OnHit(StateManager shooter, Weapon wp, Vector3 dir, Vector3 pos, string hitPart)
         {
             int playerTeam = MultiplayerManager.singleton.GetMRef().GetPlayer(photonId).team;
             int shooterTeam = MultiplayerManager.singleton.GetMRef().GetPlayer(shooter.photonId).team;
@@ -176,7 +176,8 @@ namespace SA
             {
                 if (!isDead)
                 {
-                    stats.health -= wp.ammoType.damageValue;
+                    int damage = CalculateDamageBaseOnHitPart(hitPart, wp.ammoType.damageValue);
+                    stats.health -= damage;
                     //healthChangedFlag = true;
                     MultiplayerManager mm = MultiplayerManager.singleton;
                     mm.BroadcastPlayerHealth(photonId, stats.health, shooter.photonId);
@@ -207,6 +208,32 @@ namespace SA
             //}
 
             //healthChangedFlag = true;
+        }
+
+        private int CalculateDamageBaseOnHitPart(string hitPart, int damage)
+        {
+            int finalDmg = damage;
+            
+            if(hitPart == "Body")
+            {
+                finalDmg = damage;
+                return finalDmg;
+            }
+
+            if(hitPart == "Head")
+            {
+                finalDmg = Mathf.RoundToInt(damage * 3f);
+                return finalDmg;
+            }
+
+            if(hitPart == "Arms" || hitPart == "Legs")
+            {
+                finalDmg = Mathf.RoundToInt(damage * 0.5f);
+                return finalDmg;
+            }
+
+
+            return finalDmg;
         }
 
         public void SpawnPlayer(Vector3 spawnPosition, Quaternion rotation)

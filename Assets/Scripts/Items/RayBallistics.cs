@@ -33,7 +33,9 @@ namespace SA
             }
             else
             {
-                isHittbale.OnHit(states, wp, dir, closestHit.point);
+                string hitPart = closestHit.transform.gameObject.tag;
+                Debug.Log("Hit: " + hitPart);
+                isHittbale.OnHit(states, wp, dir, closestHit.point, hitPart);
             }
 
             MultiplayerManager mm = MultiplayerManager.singleton;
@@ -68,7 +70,9 @@ namespace SA
             }
             else
             {
-                isHittbale.OnHit(states, states.inventory.currentWeapon, dir, closestHit.point);
+                string hitPart = closestHit.transform.gameObject.tag;
+                Debug.Log("Hit: " + hitPart);
+                isHittbale.OnHit(states, states.inventory.currentWeapon, dir, closestHit.point, hitPart);
             }
         }
 

@@ -10,5 +10,7 @@ namespace SA
         public string playerName;
         public string modelId;
         public string[] itemIds;
+        [HideInInspector]
+        public byte[] avatarData;
     }
 }

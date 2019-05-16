@@ -12988,7 +12988,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: {fileID: 2113513029}
-  image: {fileID: 0}
+  image: {fileID: 44217453}
+  temp: {fileID: 2800000, guid: 0eabce4a82fddf841bf295bf26f4f09e, type: 3}
 --- !u!1 &1419358139
 GameObject:
   m_ObjectHideFlags: 0
@@ -16441,7 +16442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.002319336, y: -0.000091552734}
+  m_AnchoredPosition: {x: 0.0024414062, y: -0.00012207031}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1805840001

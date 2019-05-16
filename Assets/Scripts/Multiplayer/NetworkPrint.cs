@@ -13,6 +13,8 @@ namespace SA
         string modelId;
         [HideInInspector]
         public string playerName;
+        [HideInInspector]
+        public byte[] avatarData;
 
         void OnPhotonInstantiate(PhotonMessageInfo info)
         {
@@ -25,7 +27,7 @@ namespace SA
             weaponId = (string)data[0];
             modelId = (string)data[1];
             playerName = (string)data[2];
-
+            avatarData = (byte[])data[3];
             mm.AddNewPlayer(this);
         }
 

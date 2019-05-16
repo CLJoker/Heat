@@ -9,6 +9,7 @@ public class PlayerDataBin {
     public string modelId;
     public string mainWeapon;
     public string subWeapon;
+    public byte[] avatar;
 
     public PlayerDataBin()
     {
@@ -21,5 +22,6 @@ public class PlayerDataBin {
         modelId = player.modelId;
         mainWeapon = player.mainWeapon;
         subWeapon = player.subWeapon;
+        avatar = player.avatar;
     }
 }

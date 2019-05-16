@@ -124,11 +124,11 @@ namespace SA
         void InstantiateNetworkPrint()
         {
             PlayerProfile profile = GameManagers.GetPlayerProfile();
-            object[] data = new object[3];
+            object[] data = new object[4];
             data[0] = profile.itemIds[0];
             data[1] = profile.modelId;
             data[2] = profile.playerName;
-
+            data[3] = profile.avatarData;
             GameObject go = PhotonNetwork.Instantiate("NetworkPrint", Vector3.zero, Quaternion.identity, 0, data) as GameObject;
 
         }

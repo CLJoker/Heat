@@ -8,6 +8,7 @@ namespace SO
     public class BoolVariable : ScriptableObject
     {
         public bool value;
+        public bool resetOnStart = false;
         
         public void Set(bool v)
         {
@@ -32,6 +33,14 @@ namespace SO
         public bool Compare(BoolVariable v)
         {
             return value == v.value;
+        }
+
+        private void OnEnable()
+        {
+            if (resetOnStart)
+            {
+                value = false;
+            }
         }
 
     }

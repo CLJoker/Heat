@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: isAiming
   m_EditorClassIdentifier: 
   value: 0
+  resetOnStart: 1

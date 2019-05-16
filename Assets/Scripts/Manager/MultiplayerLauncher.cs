@@ -36,7 +36,6 @@ namespace SA
             else
             {
                 Destroy(this.gameObject);
-
             }
         }
 
@@ -63,6 +62,12 @@ namespace SA
             Debug.Log("Connect to master");
             isConnected.value = true;
             onConnectedToMaster.Raise();
+        }
+
+        public override void OnDisconnectedFromPhoton()
+        {
+            base.OnDisconnectedFromPhoton();
+            ConnectToServer();
         }
 
         //This maybe will be change after change Unity version
@@ -100,6 +105,7 @@ namespace SA
         {
             base.OnConnectionFail(cause);
             //retry connecting
+            ConnectToServer();
             PhotonNetwork.JoinLobby();
         }
 
@@ -112,6 +118,7 @@ namespace SA
                 RoomInfo[] rooms = PhotonNetwork.GetRoomList();
 
                 Debug.Log(rooms.Length);
+                Debug.Log(m.name);
                 m.AddMatches(rooms);
 
                 yield return new WaitForSeconds(5);

@@ -20,7 +20,14 @@ namespace SA
 
         private void Awake()
         {
-            singleton = this;
+            if (singleton == null)
+            {
+                singleton = this;
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
 
         // Use this for initialization

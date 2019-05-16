@@ -32,6 +32,7 @@ namespace SA
             }
             else
             {
+                Debug.Log(b.name);
                 MultiplayerLauncher.singleton.CreateRoom(b);
             }
         }

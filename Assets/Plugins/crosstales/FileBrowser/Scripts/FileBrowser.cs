@@ -32,7 +32,7 @@ namespace Crosstales.FB
                 platformWrapper = new Wrapper.FileBrowserMac();
 #endif
             }
-            else if (Util.Helper.isWindowsPlatform)
+            else if (Util.Helper.isWindowsPlatform || Util.Helper.isWindowsEditor)
             {
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
                 if (!Util.Constants.isPro && Util.Helper.isIL2CPP)

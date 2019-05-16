@@ -44,6 +44,7 @@ namespace SA
                 states.shootingFlag = true;
                 states.isShooting = false;
                 Weapon w = states.inventory.currentWeapon;
+                Debug.Log(w.name);
                 if(w.currentBullets > 0)
                 {
                     if (Time.realtimeSinceStartup - w.runTime.weaponHook.lastFired > w.fireRate)

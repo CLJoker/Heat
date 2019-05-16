@@ -5,15 +5,15 @@
 // ----------------------------------------------------------------------------------------------------------------------
 
 #if UNITY_4_7 || UNITY_5 || UNITY_5_3_OR_NEWER
-#define UNITY
+#define SUPPORTED_UNITY
 #endif
 
-namespace ExitGames.Client.Photon.Chat
+namespace Photon.Chat
 {
     using System.Collections.Generic;
     using System.Text;
 
-    #if UNITY || NETFX_CORE
+    #if SUPPORTED_UNITY || NETFX_CORE
     using Hashtable = ExitGames.Client.Photon.Hashtable;
     using SupportClass = ExitGames.Client.Photon.SupportClass;
     #endif
@@ -47,7 +47,7 @@ namespace ExitGames.Client.Photon.Chat
 
         /// <summary>Count of messages this client still buffers/knows for this channel.</summary>
         public int MessageCount { get { return this.Messages.Count; } }
-        
+
         /// <summary>
         /// ID of the last message received.
         /// </summary>
@@ -143,29 +143,15 @@ namespace ExitGames.Client.Photon.Chat
                     }
                 }
                 object temp;
-                if (this.properties.ContainsKey(ChannelWellKnownProperties.PublishSubscribers))
+                if (this.properties.TryGetValue(ChannelWellKnownProperties.PublishSubscribers, out temp))
                 {
-                    temp = this.properties[ChannelWellKnownProperties.PublishSubscribers];
-                    this.PublishSubscribers = temp != null && (bool)temp;
+                    this.PublishSubscribers = (bool)temp;
                 }
-                if (this.properties.ContainsKey(ChannelWellKnownProperties.MaxSubscribers))
+                if (this.properties.TryGetValue(ChannelWellKnownProperties.MaxSubscribers, out temp))
                 {
-                    temp = this.properties[ChannelWellKnownProperties.MaxSubscribers];
-                    if (temp == null)
-                    {
-                        this.MaxSubscribers = 0;
-                    }
-                    else
-                    {
-                        this.MaxSubscribers = (int)temp;
-                    }
+                    this.MaxSubscribers = (int)temp;
                 }
             }
-        }
-
-        internal bool TryAddSubscriber(string user)
-        {
-            return !string.IsNullOrEmpty(user) && !this.Subscribers.Contains(user) && this.Subscribers.Add(user);
         }
 
         internal void AddSubscribers(string[] users)
@@ -176,7 +162,15 @@ namespace ExitGames.Client.Photon.Chat
             }
             for (int i = 0; i < users.Length; i++)
             {
-                this.TryAddSubscriber(users[i]);
+                this.Subscribers.Add(users[i]);
+            }
+        }
+
+        internal void ClearProperties()
+        {
+            if (this.properties != null && this.properties.Count > 0)
+            {
+                this.properties.Clear();
             }
         }
     }

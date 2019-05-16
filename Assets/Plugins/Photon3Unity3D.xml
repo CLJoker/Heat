@@ -1626,15 +1626,18 @@
         <member name="F:ExitGames.Client.Photon.EventData.CustomDataKey">
             <summary>Defined in the "Realtime" layer but made available in EventData for convenience.</summary>
         </member>
+        <member name="F:ExitGames.Client.Photon.EventData.customData">
+            <summary>Backing field CustomData.</summary>
+        </member>
         <member name="P:ExitGames.Client.Photon.EventData.CustomData">
             <summary>Accessor to the sent custom event content (key (byte)245).</summary>
             <remarks>Defined in the uppper layer ("Realtime") but made available in EventData for convenience. Null if the key is not present.</remarks>
         </member>
         <member name="P:ExitGames.Client.Photon.EventData.Item(System.Byte)">
             <summary>
-            Alternative access to the Parameters.
+            Access to the Parameters of a Photon-defined event. Custom Events only use Code, Sender and CustomData.
             </summary>
-            <param name="key">The key byte-code of a event value.</param>
+            <param name="key">The key byte-code of a Photon event value.</param>
             <returns>The Parameters value, or null if the key does not exist in Parameters.</returns>
         </member>
         <member name="M:ExitGames.Client.Photon.EventData.ToString">
@@ -1963,6 +1966,9 @@
         </member>
         <member name="F:ExitGames.Client.Photon.Protocol18.GpType.Array">
             <summary>Array for nested Arrays. GpType: 64 (0x40). Element count and type follows.</summary>
+        </member>
+        <member name="M:ExitGames.Client.Photon.Protocol18.ReadParameterTableDataEvent(ExitGames.Client.Photon.StreamBuffer,System.Byte,System.Collections.Generic.Dictionary{System.Byte,System.Object})">
+            <returns>Null, if event has no parameters.</returns>
         </member>
         <member name="M:ExitGames.Client.Photon.Protocol18.WriteCompressedInt32(ExitGames.Client.Photon.StreamBuffer,System.Int32,System.Boolean)">
             <summary>

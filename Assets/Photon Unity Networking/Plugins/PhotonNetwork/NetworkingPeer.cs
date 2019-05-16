@@ -469,7 +469,6 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
     public NetworkingPeer(string playername, ConnectionProtocol connectionProtocol) : base(connectionProtocol)
     {
         this.Listener = this;
-        this.LimitOfUnreliableCommands = 40;
 
         this.lobby = TypedLobby.Default;
         this.PlayerName = playername;
@@ -888,6 +887,10 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
     {
         // once encryption is availble, the client should send one (secure) authenticate. it includes the AppId (which identifies your app on the Photon Cloud)
         AuthenticationValues auth = this.AuthValues ?? new AuthenticationValues() { UserId = this.PlayerName };
+        if (PhotonNetwork.PhotonServerSettings.HostType == ServerSettings.HostingOption.SelfHosted && string.IsNullOrEmpty(auth.UserId))
+        {
+            auth.UserId = Guid.NewGuid().ToString();
+        }
         if (this.AuthMode == AuthModeOption.Auth)
         {
             return this.OpAuthenticate(this.AppId, this.AppVersion, auth, this.CloudRegion.ToString(), this.requestLobbyStatistics);

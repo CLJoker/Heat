@@ -14,8 +14,7 @@ namespace Crosstales.Common.Util
         public const string ASSET_AUTHOR_URL = "https://www.crosstales.com";
 
         /// <summary>URL of the crosstales assets in UAS.</summary>
-        public const string ASSET_CT_URL = "https://goo.gl/qwtXyb";
-        //public const string ASSET_CT_URL = "https://www.assetstore.unity3d.com/#!/list/42213-crosstales?aid=1011lNGT"; // crosstales list
+        public const string ASSET_CT_URL = "https://assetstore.unity.com/lists/crosstales-42213?aid=1011lNGT";
 
         /// <summary>URL of the crosstales Discord-channel.</summary>
         public const string ASSET_SOCIAL_DISCORD = "https://discord.gg/ZbZ2sh4";
@@ -32,41 +31,38 @@ namespace Crosstales.Common.Util
         /// <summary>URL of the crosstales LinkedIn-profile.</summary>
         public const string ASSET_SOCIAL_LINKEDIN = "https://www.linkedin.com/company/crosstales";
 
-        /// <summary>URL of the crosstales XING-profile.</summary>
-        public const string ASSET_SOCIAL_XING = "https://www.xing.com/companies/crosstales";
-
         /// <summary>URL of the 3rd party asset "PlayMaker".</summary>
-        public const string ASSET_3P_PLAYMAKER = "https://www.assetstore.unity3d.com/#!/content/368?aid=1011lNGT";
+        public const string ASSET_3P_PLAYMAKER = "https://assetstore.unity.com/packages/slug/368?aid=1011lNGT";
 
         /// <summary>URL of the "Badword Filter" asset.</summary>
-        public const string ASSET_BWF = "https://www.assetstore.unity3d.com/#!/content/26255?aid=1011lNGT";
+        public const string ASSET_BWF = "https://assetstore.unity.com/packages/slug/26255?aid=1011lNGT";
 
         /// <summary>URL of the "DJ" asset.</summary>
-        public const string ASSET_DJ = "https://www.assetstore.unity3d.com/#!/content/41993?aid=1011lNGT";
+        public const string ASSET_DJ = "https://assetstore.unity.com/packages/slug/41993?aid=1011lNGT";
 
         /// <summary>URL of the "File Browser" asset.</summary>
-        public const string ASSET_FB = "https://www.assetstore.unity3d.com/#!/content/98713?aid=1011lNGT";
+        public const string ASSET_FB = "https://assetstore.unity.com/packages/slug/98713?aid=1011lNGT";
 
         /// <summary>URL of the "Online Check" asset.</summary>
-        public const string ASSET_OC = "https://www.assetstore.unity3d.com/#!/content/74688?aid=1011lNGT";
+        public const string ASSET_OC = "https://assetstore.unity.com/packages/slug/74688?aid=1011lNGT";
 
         /// <summary>URL of the "Radio" asset.</summary>
-        public const string ASSET_RADIO = "https://www.assetstore.unity3d.com/#!/content/32034?aid=1011lNGT";
+        public const string ASSET_RADIO = "https://assetstore.unity.com/packages/slug/32034?aid=1011lNGT";
 
         /// <summary>URL of the "RT-Voice" asset.</summary>
-        public const string ASSET_RTV = "https://www.assetstore.unity3d.com/#!/content/41068?aid=1011lNGT";
+        public const string ASSET_RTV = "https://assetstore.unity.com/packages/slug/41068?aid=1011lNGT";
 
         /// <summary>URL of the "Turbo Backup" asset.</summary>
-        public const string ASSET_TB = "https://www.assetstore.unity3d.com/#!/content/98711?aid=1011lNGT";
+        public const string ASSET_TB = "https://assetstore.unity.com/packages/slug/98711?aid=1011lNGT";
 
         /// <summary>URL of the "Turbo Builder" asset.</summary>
-        public const string ASSET_TPB = "https://www.assetstore.unity3d.com/#!/content/98714?aid=1011lNGT";
+        public const string ASSET_TPB = "https://assetstore.unity.com/packages/slug/98714?aid=1011lNGT";
 
         /// <summary>URL of the "Turbo Switch" asset.</summary>
-        public const string ASSET_TPS = "https://www.assetstore.unity3d.com/#!/content/60040?aid=1011lNGT";
+        public const string ASSET_TPS = "https://assetstore.unity.com/packages/slug/60040?aid=1011lNGT";
 
         /// <summary>URL of the "True Random" asset.</summary>
-        public const string ASSET_TR = "https://www.assetstore.unity3d.com/#!/content/61617?aid=1011lNGT";
+        public const string ASSET_TR = "https://assetstore.unity.com/packages/slug/61617?aid=1011lNGT";
 
         /// <summary>Factor for kilo bytes.</summary>
         public const int FACTOR_KB = 1024;

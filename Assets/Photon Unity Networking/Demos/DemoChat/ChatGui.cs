@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using ExitGames.Client.Photon.Chat;
+using Photon.Chat;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -130,7 +130,7 @@ public class ChatGui : MonoBehaviour, IChatClientListener
         #if !UNITY_WEBGL
         this.chatClient.UseBackgroundWorkerForSending = true;
         #endif
-        this.chatClient.Connect(PhotonNetwork.PhotonServerSettings.ChatAppID, "1.0", new ExitGames.Client.Photon.Chat.AuthenticationValues(UserName));
+        this.chatClient.Connect(PhotonNetwork.PhotonServerSettings.ChatAppID, "1.0", new Photon.Chat.AuthenticationValues(UserName));
 		
 		this.ChannelToggleToInstantiate.gameObject.SetActive(false);
 		Debug.Log("Connecting as: " + UserName);

@@ -525,29 +525,64 @@ namespace Crosstales.Common.Util
         /// <returns>Returns array of the found files inside the path (alphabetically ordered). Zero length array when an error occured.</returns>
         public static string[] GetFiles(string path, bool isRecursive = false, params string[] extensions)
         {
-            try
+            if (isWebPlatform && !isEditor)
             {
-                string _path = System.IO.Path.GetDirectoryName(path);
-
-                if (extensions == null || extensions.Length == 0)
-                {
-                    return System.IO.Directory.GetFiles(_path, "*", isRecursive ? System.IO.SearchOption.AllDirectories : System.IO.SearchOption.TopDirectoryOnly);
-                }
-                else
-                {
-                    System.Collections.Generic.List<string> files = new System.Collections.Generic.List<string>();
-
-                    foreach (string ext in extensions)
-                    {
-                        files.AddRange(System.IO.Directory.GetFiles(_path, "*." + ext, isRecursive ? System.IO.SearchOption.AllDirectories : System.IO.SearchOption.TopDirectoryOnly));
-                    }
-
-                    return files.OrderBy(q => q).ToArray();
-                }
+                Debug.LogWarning("'GetFiles' is not supported for the current platform!");
             }
-            catch (System.Exception ex)
+            else if (isWSABasedPlatform && !isEditor)
             {
-                Debug.LogWarning("Could not scan the path for files: " + ex);
+#if CT_FB_PRO
+#if UNITY_WSA && !UNITY_EDITOR
+                Crosstales.FB.FileBrowserWSAImpl fbWsa = new Crosstales.FB.FileBrowserWSAImpl();
+                fbWsa.isBusy = true;
+                UnityEngine.WSA.Application.InvokeOnUIThread(() => { fbWsa.GetFiles(path, isRecursive, extensions); }, false);
+
+                do
+                {
+                    //wait
+                } while (fbWsa.isBusy);
+
+                return fbWsa.Selection.ToArray();
+#endif
+#else
+                Debug.LogWarning("'GetFiles' under UWP (WSA) is supported in 'File Browser PRO'. For more, please see: " + BaseConstants.ASSET_FB);
+#endif
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(path))
+                {
+                    try
+                    {
+                        string _path = ValidatePath(path);
+
+                        if (extensions == null || extensions.Length == 0)
+                        {
+                            return System.IO.Directory.GetFiles(_path, "*", isRecursive ? System.IO.SearchOption.AllDirectories : System.IO.SearchOption.TopDirectoryOnly);
+                        }
+                        else
+                        {
+                            foreach (string extension in extensions)
+                            {
+                                if (extension.Equals("*") || extension.Equals("*.*"))
+                                    return System.IO.Directory.GetFiles(_path, "*", isRecursive ? System.IO.SearchOption.AllDirectories : System.IO.SearchOption.TopDirectoryOnly);
+                            }
+
+                            System.Collections.Generic.List<string> files = new System.Collections.Generic.List<string>();
+
+                            foreach (string extension in extensions)
+                            {
+                                files.AddRange(System.IO.Directory.GetFiles(_path, "*." + extension, isRecursive ? System.IO.SearchOption.AllDirectories : System.IO.SearchOption.TopDirectoryOnly));
+                            }
+
+                            return files.OrderBy(q => q).ToArray();
+                        }
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Debug.LogWarning("Could not scan the path for files: " + ex);
+                    }
+                }
             }
 
             return new string[0];
@@ -561,15 +596,44 @@ namespace Crosstales.Common.Util
         /// <returns>Returns array of the found directories inside the path. Zero length array when an error occured.</returns>
         public static string[] GetDirectories(string path, bool isRecursive = false)
         {
-            try
+            if (isWebPlatform && !isEditor)
             {
-                string _path = System.IO.Path.GetDirectoryName(path);
-
-                return System.IO.Directory.GetDirectories(_path, "*", isRecursive ? System.IO.SearchOption.AllDirectories : System.IO.SearchOption.TopDirectoryOnly);
+                Debug.LogWarning("'GetDirectories' is not supported for the current platform!");
             }
-            catch (System.Exception ex)
+            else if (isWSABasedPlatform && !isEditor)
             {
-                Debug.LogWarning("Could not scan the path for directories: " + ex);
+#if CT_FB_PRO
+#if UNITY_WSA && !UNITY_EDITOR
+                Crosstales.FB.FileBrowserWSAImpl fbWsa = new Crosstales.FB.FileBrowserWSAImpl();
+                fbWsa.isBusy = true;
+                UnityEngine.WSA.Application.InvokeOnUIThread(() => { fbWsa.GetDirectories(path, isRecursive); }, false);
+
+                do
+                {
+                    //wait
+                } while (fbWsa.isBusy);
+
+                return fbWsa.Selection.ToArray();
+#endif
+#else
+                Debug.LogWarning("'GetDirectories' under UWP (WSA) is supported in 'File Browser PRO'. For more, please see: " + BaseConstants.ASSET_FB);
+#endif
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(path))
+                {
+                    try
+                    {
+                        string _path = ValidatePath(path);
+
+                        return System.IO.Directory.GetDirectories(_path, "*", isRecursive ? System.IO.SearchOption.AllDirectories : System.IO.SearchOption.TopDirectoryOnly);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Debug.LogWarning("Could not scan the path for directories: " + ex);
+                    }
+                }
             }
 
             return new string[0];
@@ -876,44 +940,51 @@ namespace Crosstales.Common.Util
         /// <param name="move">Move file instead of copy (default: false, optional)</param>
         public static void FileCopy(string inputFile, string outputFile, bool move = false)
         {
-            if (!string.IsNullOrEmpty(outputFile))
+            if ((isWSABasedPlatform || isWebPlatform) && !isEditor)
             {
-                try
+                Debug.LogWarning("'FileCopy' is not supported for the current platform!");
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(outputFile))
                 {
-                    if (!System.IO.File.Exists(inputFile))
+                    try
                     {
-                        Debug.LogError("Input file does not exists: " + inputFile);
-                    }
-                    else
-                    {
-                        System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(outputFile));
-
-                        if (System.IO.File.Exists(outputFile))
+                        if (!System.IO.File.Exists(inputFile))
                         {
-                            if (BaseConstants.DEV_DEBUG)
-                                Debug.LogWarning("Overwrite output file: " + outputFile);
-
-                            System.IO.File.Delete(outputFile);
+                            Debug.LogError("Input file does not exists: " + inputFile);
                         }
-
-                        if (move)
+                        else
                         {
+                            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(outputFile));
+
+                            if (System.IO.File.Exists(outputFile))
+                            {
+                                if (BaseConstants.DEV_DEBUG)
+                                    Debug.LogWarning("Overwrite output file: " + outputFile);
+
+                                System.IO.File.Delete(outputFile);
+                            }
+
+                            if (move)
+                            {
 #if UNITY_STANDALONE || UNITY_EDITOR
-                            System.IO.File.Move(inputFile, outputFile);
+                                System.IO.File.Move(inputFile, outputFile);
 #else
                             System.IO.File.Copy(inputFile, outputFile);
                             System.IO.File.Delete(inputFile);
 #endif
-                        }
-                        else
-                        {
-                            System.IO.File.Copy(inputFile, outputFile);
+                            }
+                            else
+                            {
+                                System.IO.File.Copy(inputFile, outputFile);
+                            }
                         }
                     }
-                }
-                catch (System.Exception ex)
-                {
-                    Debug.LogError("Could not copy file!" + System.Environment.NewLine + ex);
+                    catch (System.Exception ex)
+                    {
+                        Debug.LogError("Could not copy file!" + System.Environment.NewLine + ex);
+                    }
                 }
             }
         }

@@ -28,7 +28,7 @@ using System.IO;
 public static class PhotonNetwork
 {
     /// <summary>Version number of PUN. Also used in GameVersion to separate client version from each other.</summary>
-    public const string versionPUN = "1.94";
+    public const string versionPUN = "1.96";
 
     /// <summary>Version string for your this build. Can be used to separate incompatible clients. Sent during connect.</summary>
     /// <remarks>This is only sent when you connect so that is also the place you set it usually (e.g. in ConnectUsingSettings).</remarks>
@@ -771,22 +771,6 @@ public static class PhotonNetwork
 
     /// <summary>Backup for property isMessageQueueRunning.</summary>
     private static bool m_isMessageQueueRunning = true;
-
-    /// <summary>
-    /// Used once per dispatch to limit unreliable commands per channel (so after a pause, many channels can still cause a lot of unreliable commands)
-    /// </summary>
-    public static int unreliableCommandsLimit
-    {
-        get
-        {
-            return networkingPeer.LimitOfUnreliableCommands;
-        }
-
-        set
-        {
-            networkingPeer.LimitOfUnreliableCommands = value;
-        }
-    }
 
     /// <summary>
     /// Photon network time, synched with the server.

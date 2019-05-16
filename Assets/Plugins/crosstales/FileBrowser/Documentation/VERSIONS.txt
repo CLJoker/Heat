@@ -1,5 +1,8 @@
 ﻿# FileBrowser - Release notes
 
+## 2019.2.6 - 12.05.2019
+* Updated to Common 2019.3.1
+
 ## 2019.2.5 - 18.04.2019
 * Windows: SaveFile works now correctly with paths
 * Updated to Common 2019.3.0

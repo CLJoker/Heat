@@ -16,16 +16,16 @@
         public const string ASSET_NAME_SHORT = "FB";
 
         /// <summary>Version of the asset.</summary>
-        public const string ASSET_VERSION = "2019.2.5";
+        public const string ASSET_VERSION = "2019.2.6";
 
         /// <summary>Build number of the asset.</summary>
-        public const int ASSET_BUILD = 20190418;
+        public const int ASSET_BUILD = 20190512;
 
         /// <summary>Create date of the asset (YYYY, MM, DD).</summary>
         public static readonly System.DateTime ASSET_CREATED = new System.DateTime(2017, 8, 1);
 
         /// <summary>Change date of the asset (YYYY, MM, DD).</summary>
-        public static readonly System.DateTime ASSET_CHANGED = new System.DateTime(2019, 4, 18);
+        public static readonly System.DateTime ASSET_CHANGED = new System.DateTime(2019, 5, 12);
 
         /// <summary>URL of the PRO asset in UAS.</summary>
         public const string ASSET_PRO_URL = "https://assetstore.unity.com/packages/slug/98713?aid=1011lNGT";

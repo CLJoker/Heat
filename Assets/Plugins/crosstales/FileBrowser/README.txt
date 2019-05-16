@@ -1,4 +1,4 @@
-﻿# FileBrowser 2019.2.5
+﻿# FileBrowser 2019.2.6
 
 Thank you for using our asset "File Browser"! 
 If you have any questions about this asset, send us an email at [fb@crosstales.com](mailto:fb@crosstales.com). 
@@ -81,4 +81,4 @@ CH-8002 Zürich
 * [macOS-Demo](https://www.crosstales.com/media/data/assets/FileBrowser/downloads/FileBrowser_mac.zip)
 
 
-`Version: 18.04.2019`
+`Version: 12.05.2019`

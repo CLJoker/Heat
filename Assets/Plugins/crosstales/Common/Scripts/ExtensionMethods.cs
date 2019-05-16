@@ -205,7 +205,7 @@ namespace Crosstales
         /// <returns>String with lines for all array entries.</returns>
         public static string CTDump<T>(this T[] array, string prefix = "", string postfix = "")
         {
-            if (array == null || array.Length <= 0)
+            if (array == null)// || array.Length <= 0)
                 throw new System.ArgumentNullException("array");
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
@@ -233,7 +233,7 @@ namespace Crosstales
         /// <returns>String with lines for all array entries.</returns>
         public static string CTDump(this Quaternion[] array)
         {
-            if (array == null || array.Length <= 0)
+            if (array == null)// || array.Length <= 0)
                 throw new System.ArgumentNullException("array");
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
@@ -265,7 +265,7 @@ namespace Crosstales
         /// <returns>String with lines for all array entries.</returns>
         public static string CTDump(this Vector2[] array)
         {
-            if (array == null || array.Length <= 0)
+            if (array == null)// || array.Length <= 0)
                 throw new System.ArgumentNullException("array");
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
@@ -293,7 +293,7 @@ namespace Crosstales
         /// <returns>String with lines for all array entries.</returns>
         public static string CTDump(this Vector3[] array)
         {
-            if (array == null || array.Length <= 0)
+            if (array == null)// || array.Length <= 0)
                 throw new System.ArgumentNullException("array");
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
@@ -323,7 +323,7 @@ namespace Crosstales
         /// <returns>String with lines for all array entries.</returns>
         public static string CTDump(this Vector4[] array)
         {
-            if (array == null || array.Length <= 0)
+            if (array == null)// || array.Length <= 0)
                 throw new System.ArgumentNullException("array");
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
@@ -355,7 +355,7 @@ namespace Crosstales
         /// <returns>String array with all entries (via ToString).</returns>
         public static string[] CTToString<T>(this T[] array)
         {
-            if (array == null || array.Length <= 0)
+            if (array == null)// || array.Length <= 0)
                 throw new System.ArgumentNullException("array");
 
             string[] result = new string[array.Length];
@@ -595,7 +595,7 @@ namespace Crosstales
 
             return sb.ToString();
         }
-        
+
         /// <summary>
         /// Extension method for IDictionary.
         /// Adds a dictionary to an existing one.

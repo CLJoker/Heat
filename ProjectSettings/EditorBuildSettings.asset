@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/City.unity
     guid: c234cce384abe254fbed918aa313cc1a
+  - enabled: 1
+    path: Assets/Scenes/City (Offline).unity
+    guid: 9618eca502a03ce4186e733f172f5ef5
+  - enabled: 1
+    path: Assets/Scenes/Warehouse.unity
+    guid: c77006add22d5aa42ada3b00fce2d675
   m_configObjects: {}

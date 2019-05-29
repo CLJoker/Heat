@@ -10,6 +10,9 @@ namespace SA
         public List<Item> allItems = new List<Item>();
         Dictionary<string, Item> itemDict = new Dictionary<string, Item>();
 
+        public List<Map> allMaps = new List<Map>();
+        Dictionary<string, Map> mapDict = new Dictionary<string, Map>();
+
         public RoomVariable currentRoom;
         public MapVariable currentMap;
 
@@ -26,6 +29,18 @@ namespace SA
                     Debug.Log("There are two item name : " + allItems[i].name);
                 }
             }
+
+            for (int i = 0; i < allMaps.Count; i++)
+            {
+                if (!mapDict.ContainsKey(allMaps[i].name))
+                {
+                    mapDict.Add(allMaps[i].name, allMaps[i]);
+                }
+                else
+                {
+                    Debug.Log("There are two map name : " + allMaps[i].name);
+                }
+            }
         }
 
         public Item GetItemInstance(string targetID)
@@ -34,6 +49,14 @@ namespace SA
             Item newItem = Instantiate(defaultItem);
             newItem.name = defaultItem.name;
             return newItem;
+        }
+
+        public Map GetMapInstance(string targetId)
+        {
+            Map defaultMap = GetMap(targetId);
+            Map newMap = Instantiate(defaultMap);
+            newMap.name = defaultMap.name;
+            return newMap;
         }
 
         public ClothItem GetClothItem(string targetId)
@@ -72,6 +95,13 @@ namespace SA
         {
             Item retVal = null;
             itemDict.TryGetValue(targetID, out retVal);
+            return retVal;
+        }
+
+        Map GetMap(string targetId)
+        {
+            Map retVal = null;
+            mapDict.TryGetValue(targetId, out retVal);
             return retVal;
         }
 

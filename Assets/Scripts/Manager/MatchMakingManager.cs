@@ -120,6 +120,11 @@ namespace SA
             object sceneObj = null;
             roomInfo.CustomProperties.TryGetValue("scene", out sceneObj);
             string sceneName = (string)sceneObj;
+
+            Map mapInfor = GameManagers.GetResourcesManager().GetMapInstance(sceneName);
+            roomButton.mapInformation = mapInfor;
+            roomButton.AutoAssignMapInformation();
+
             roomButton.room.sceneName = sceneName;
             roomButton.room.roomName = roomInfo.Name;
 

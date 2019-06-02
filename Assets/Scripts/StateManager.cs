@@ -238,13 +238,21 @@ namespace SA
 
         public void SpawnPlayer(Vector3 spawnPosition, Quaternion rotation)
         {
+            //reset stats
             healthChangedFlag = true;
             stats.health = 100;
+            inventory.currentWeapon.currentBullets = inventory.currentWeapon.megazineBullets;
+            inventory.currentWeapon.ammoType.carryingAmount = inventory.currentWeapon.ammoType.carryingTotal;
 
+            //reset transform
             mTransform.position = spawnPosition;
             mTransform.rotation = rotation;
+
+            //reset anim
             anim.Play("Locomotion Normal");
             anim.Play("Empty Override");
+
+            //reset state
             isDead = false;
         }
 

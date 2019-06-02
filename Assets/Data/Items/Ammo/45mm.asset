@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Name: 45mm
   m_EditorClassIdentifier: 
   carryingAmount: 35
+  carryingTotal: 35
   damageValue: 10

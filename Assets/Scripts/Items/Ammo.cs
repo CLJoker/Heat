@@ -8,6 +8,7 @@ namespace SA
     public class Ammo : ScriptableObject
     {
         public int carryingAmount;
+        public int carryingTotal;
         public int damageValue = 20;
 
         public virtual void OnHit()

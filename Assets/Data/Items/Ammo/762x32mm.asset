@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Name: 762x32mm
   m_EditorClassIdentifier: 
   carryingAmount: 90
+  carryingTotal: 90
   damageValue: 20

@@ -30,8 +30,8 @@ public class SaveProfile : MonoBehaviour {
         //Save to PlayerProfile - Online
         GameManagers.GetPlayerProfile().playerName = playerName.text;
         GameManagers.GetPlayerProfile().avatarData = imageData;
-        //Save to local data
 
+        //Save to local data
         PlayerDataBin player = DataManager.LoadLocalPlayer();
         player.playerName = playerName.text;
         player.avatar = imageData;

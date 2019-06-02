@@ -223,6 +223,7 @@ namespace SA
                 playerProfile.modelId = playerData.modelId;
                 playerProfile.itemIds[0] = playerData.mainWeapon;
                 playerProfile.itemIds[1] = playerData.subWeapon;
+                playerProfile.avatarData = playerData.avatar;
                 Debug.Log("Load successfull");
             }
             else
